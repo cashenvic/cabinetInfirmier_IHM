@@ -8,9 +8,9 @@ import { InfirmierInterface } from '../dataInterfaces/infirmier';
 })
 export class AddInfirmierComponent implements OnInit {
 
-  private infirmier : InfirmierInterface;
+  infirmier : InfirmierInterface;
   
-  constructor() {
+  constructor() {/*
     this.infirmier.id = '000';
     this.infirmier.prenom = 'Alexandre';
     this.infirmier.nom = 'Demeure';
@@ -22,7 +22,7 @@ export class AddInfirmierComponent implements OnInit {
       rue: 'rue de la Chimie',
       numero: '060',
       etage: null
-    };
+    };*/
   }
   
   ngOnInit() {
