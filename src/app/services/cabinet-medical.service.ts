@@ -39,7 +39,7 @@ export class CabinetMedicalService {
           const infirmiersXML = Array.from(this.document.querySelectorAll('infirmiers > infirmier'));
           this.cabinet.infirmiers = infirmiersXML.map(I => ({
             id      : I.getAttribute("id"),
-            prenom  : I.querySelector("prenom").textContent,
+            prenom  : I.querySelector("prénom").textContent,
             nom     : I.querySelector("nom"   ).textContent,
             photo   : I.querySelector("photo" ).textContent,
             adresse : this.getAdressFrom(I),
@@ -49,10 +49,10 @@ export class CabinetMedicalService {
           // 2 tableau des patients
           const patientsXML = Array.from(this.document.querySelectorAll('patients > patient'));
           const patients: PatientInterface[] = patientsXML.map(P => ({
-              prenom: P.querySelector('prenom').textContent,
+              prenom: P.querySelector('prénom').textContent,
               nom: P.querySelector('nom').textContent,
               sexe: P.querySelector('sexe').textContent === 'M' ? sexeEnum.M : sexeEnum.F,
-              numeroSecuriteSociale: P.querySelector('numero').textContent,
+              numeroSecuriteSociale: P.querySelector('numéro').textContent,
               adresse: this.getAdressFrom(P)
           }));
 
@@ -91,8 +91,8 @@ export class CabinetMedicalService {
       ville       : (node = root.querySelector("adresse > ville")     ) ? node.textContent                    : "",
       codePostal  : (node = root.querySelector("adresse > codePostal")) ? parseInt(node.textContent, 10) : 0,
       rue         : (node = root.querySelector("adresse > rue")       ) ? node.textContent                    : "",
-      numero      : (node = root.querySelector("adresse > numero")    ) ? node.textContent                    : "",
-      etage       : (node = root.querySelector("adresse > etage")     ) ? node.textContent                    : "",
+      numero      : (node = root.querySelector("adresse > numéro")    ) ? node.textContent                    : "",
+      etage       : (node = root.querySelector("adresse > étage")     ) ? node.textContent                    : "",
     };
   }
 
