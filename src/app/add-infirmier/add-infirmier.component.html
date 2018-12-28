@@ -5,41 +5,41 @@
     <div class="form-row">      
       <div class="col-md-6">
         <label for="validationp01">Nom</label>
-        <input type="text" class="form-control" id="validationp01" placeholder="nom" [(ngModel)]="infirmier.nom" name="nom"  required>
+        <input type="text" class="form-control" id="validationp01" placeholder="nom"  required>
       </div>
 
       <div class="col-md-6">
         <label for="validation02">Prénom</label>
-        <input type="text" class="form-control" id="validationp02" placeholder="prénom" [(ngModel)]="infirmier.prenom" name="prenom" required>
+        <input type="text" class="form-control" id="validationp02" placeholder="prénom"  required>
       </div>
     </div>
 
     <div class="form-row">
       <div class="col-md-3">
         <label for="validationp03">n°</label>
-        <input type="number" class="form-control" id="validationp03" placeholder="n°" [(ngModel)]="infirmier.adresse.numero" name="numero">
+        <input type="number" class="form-control" id="validationp03" placeholder="n°" >
       </div>
 
       <div class="col-md-6">
           <label for="validationp04">rue/avenue/...</label>
-          <input type="text" class="form-control" id="validation04" placeholder="rue" [(ngModel)]="infirmier.adresse.rue" name="rue" required>
+          <input type="text" class="form-control" id="validation04" placeholder="rue" required>
       </div>
 
       <div class="col-md-3">
           <label for="validationp05">étage</label>
-          <input type="text" class="form-control" id="validationp05" placeholder="étage" [(ngModel)]="infirmier.adresse.etage" name="tage">
+          <input type="text" class="form-control" id="validationp05" placeholder="étage">
       </div>
     </div>  
 
     <div class="form-row">
       <div class="col-md-6">
         <label for="validationp06">Ville</label>
-        <input type="text" class="form-control" id="validationp06" placeholder="ville" [(ngModel)]="infirmier.adresse.ville" name="ville"  required>
+        <input type="text" class="form-control" id="validationp06" placeholder="ville"  required>
       </div>
 
       <div class="col-md-6">
         <label for="validationp07">Code Postale</label>
-        <input type="text" class="form-control" id="validationp07"  placeholder="code postale" [(ngModel)]="infirmier.adresse.codePostal" name="codePostal" required>
+        <input type="text" class="form-control" id="validationp07"  placeholder="code postale" required>
       </div>     
     </div>
   </form> 
@@ -48,7 +48,7 @@
   <div class="input-group mb-3">
       <div class="custom-file">        
         <label class="custom-file-label " for="inputGroupFile02">Photo</label>
-        <input type="file" class="custom-file-input " id="inputGroupFile02" [(ngModel)]="infirmier.photo" name="photo" required>
+        <input type="file" class="custom-file-input " id="inputGroupFile02" >required>
       </div>
   </div>
   <br/><br/>  

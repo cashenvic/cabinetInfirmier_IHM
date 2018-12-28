@@ -16,16 +16,16 @@ export class CabinetMedicalService {
   private domParser: DOMParser = new DOMParser();
   private document: Document;
   private cabinet: CabinetInterface;
-  private http : HttpClient;
-  constructor(private httpp: HttpClient) {
-    this.http = httpp;
+
+  constructor(private http: HttpClient) {
   }
 
-  async getData(url: string): Promise<CabinetInterface> {
+  getData(url: string): Promise<CabinetInterface> {
     return new Promise<CabinetInterface>(((resolve, reject) => {
       this.http.get(url, {responseType: 'text'}).toPromise().then(
         res => {
           this.document = this.domParser.parseFromString(res, 'text/xml');          
+          console.log('document :'+ this.document);
 
           //default cabinet
           this.cabinet = {
