@@ -21,9 +21,8 @@ export class SecretaryComponent implements OnInit {
   ngOnInit() {
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
         this.cabinetInt = cabinet;
-    });
-    console.log(this.cabinetInt);
-    
+    }); 
+    console.log('cabinet :' + this.cabinetInt);
   }
 
   onInfirmier() {

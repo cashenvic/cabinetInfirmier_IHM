@@ -32,14 +32,14 @@ export class CabinetMedicalService {
             nom: this.document.querySelector( "nom" ).textContent,                         
             adresse: this.getAdressFrom( this.document.querySelector( "cabinet" ) ), 
             infirmiers: [],
-            patientsNonAffectes: []
+            patientsNonAffectés: []
           };
 
           // 1 - tableau des infirmiers
           const infirmiersXML = Array.from(this.document.querySelectorAll('infirmiers > infirmier'));
           this.cabinet.infirmiers = infirmiersXML.map(I => ({
             id      : I.getAttribute("id"),
-            prenom  : I.querySelector("prénom").textContent,
+            prénom  : I.querySelector("prénom").textContent,
             nom     : I.querySelector("nom"   ).textContent,
             photo   : I.querySelector("photo" ).textContent,
             adresse : this.getAdressFrom(I),
@@ -49,10 +49,10 @@ export class CabinetMedicalService {
           // 2 tableau des patients
           const patientsXML = Array.from(this.document.querySelectorAll('patients > patient'));
           const patients: PatientInterface[] = patientsXML.map(P => ({
-              prenom: P.querySelector('prénom').textContent,
+              prénom: P.querySelector('prénom').textContent,
               nom: P.querySelector('nom').textContent,
               sexe: P.querySelector('sexe').textContent === 'M' ? sexeEnum.M : sexeEnum.F,
-              numeroSecuriteSociale: P.querySelector('numéro').textContent,
+              numéroSécuritéSociale: P.querySelector('numéro').textContent,
               adresse: this.getAdressFrom(P)
           }));
 
@@ -71,10 +71,10 @@ export class CabinetMedicalService {
             if (I !== null) {
                 I.patients.push(P);
             } else {
-                this.cabinet.patientsNonAffectes.push(P);
+                this.cabinet.patientsNonAffectés.push(P);
             }
           });
-          this.cabinet.patientsNonAffectes.map(p => {
+          this.cabinet.patientsNonAffectés.map(p => {
               //console.log('le patient non affecte: ' + p.nom);
           });
           resolve(this.cabinet);
@@ -91,20 +91,20 @@ export class CabinetMedicalService {
       ville       : (node = root.querySelector("adresse > ville")     ) ? node.textContent                    : "",
       codePostal  : (node = root.querySelector("adresse > codePostal")) ? parseInt(node.textContent, 10) : 0,
       rue         : (node = root.querySelector("adresse > rue")       ) ? node.textContent                    : "",
-      numero      : (node = root.querySelector("adresse > numéro")    ) ? node.textContent                    : "",
-      etage       : (node = root.querySelector("adresse > étage")     ) ? node.textContent                    : "",
+      numéro      : (node = root.querySelector("adresse > numéro")    ) ? node.textContent                    : "",
+      étage       : (node = root.querySelector("adresse > étage")     ) ? node.textContent                    : "",
     };
   }
 
   public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
     const res = await this.http.post('/addPatient', {
         patientName: patient.nom,
-        patientForname: patient.prenom,
-        patientNumber: patient.numeroSecuriteSociale,
+        patientForname: patient.prénom,
+        patientNumber: patient.numéroSécuritéSociale,
         patientSex: patient.sexe === sexeEnum.M ? 'M' : 'F',
         patientBirthday: 'AAAA-MM-JJ',
-        patientFloor: patient.adresse.etage,
-        patientStreetNumber: patient.adresse.numero,
+        patientFloor: patient.adresse.étage,
+        patientStreetNumber: patient.adresse.numéro,
         patientStreet: patient.adresse.rue,
         patientPostalCode: patient.adresse.codePostal,
         patientCity: patient.adresse.ville
@@ -113,7 +113,7 @@ export class CabinetMedicalService {
     //console.log('Add patient renvoie', res);
     if (res.status === 200) {
         // OK on peut ajouter en local
-        this.cabinet.patientsNonAffectes.push(patient);
+        this.cabinet.patientsNonAffectés.push(patient);
         return patient;
     }
     return null;
@@ -122,7 +122,7 @@ export class CabinetMedicalService {
 public async affectation(patient: PatientInterface, infirmierId: string): Promise<PatientInterface> {
   const res = await this.http.post('/affectation', {
       infirmier: infirmierId,
-      patient: patient.numeroSecuriteSociale
+      patient: patient.numéroSécuritéSociale
   }, {observe: 'response'}).toPromise<HttpResponse<any>>();
 
   if (res.status === 200) {
@@ -134,7 +134,7 @@ public async affectation(patient: PatientInterface, infirmierId: string): Promis
 public async desAffectation(patient: PatientInterface): Promise<PatientInterface> {
   const res = await this.http.post('/affectation', {
       infirmier: 'none',
-      patient: patient.numeroSecuriteSociale
+      patient: patient.numéroSécuritéSociale
   }, {observe: 'response'}).toPromise<HttpResponse<any>>();
 
   if (res.status === 200) {

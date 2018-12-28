@@ -6,5 +6,5 @@ export interface CabinetInterface {
  nom: string,
  adresse: Adresse;
  infirmiers: InfirmierInterface[];
- patientsNonAffectes: PatientInterface[];
+ patientsNonAffectés: PatientInterface[];
 }
