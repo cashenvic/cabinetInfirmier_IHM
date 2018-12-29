@@ -14,29 +14,29 @@ import { Injectable } from '@angular/core';
 export class CabinetMedicalService {
 
   private domParser: DOMParser = new DOMParser();
-  private document: Document;
+  private doc: Document;
   private cabinet: CabinetInterface;
 
   constructor(private http: HttpClient) {
   }
 
-  getData(url: string): Promise<CabinetInterface> {
+  async getData(url: string): Promise<CabinetInterface> {
     return new Promise<CabinetInterface>(((resolve, reject) => {
       this.http.get(url, {responseType: 'text'}).toPromise().then(
         res => {
-          this.document = this.domParser.parseFromString(res, 'text/xml');          
-          console.log('document :'+ this.document);
+          this.doc = this.domParser.parseFromString(res, 'text/xml');
+          //console.log('document :'+ this.doc.querySelector( "nom" ).textContent);
 
           //default cabinet
           this.cabinet = {
-            nom: this.document.querySelector( "nom" ).textContent,                         
-            adresse: this.getAdressFrom( this.document.querySelector( "cabinet" ) ), 
+            nom: this.doc.querySelector( "nom" ).textContent,                         
+            adresse: this.getAdressFrom( this.doc.querySelector( "cabinet" ) ), 
             infirmiers: [],
             patientsNonAffectes: []
           };
 
           // 1 - tableau des infirmiers
-          const infirmiersXML = Array.from(this.document.querySelectorAll('infirmiers > infirmier'));
+          const infirmiersXML = Array.from(this.doc.querySelectorAll('infirmiers > infirmier'));
           this.cabinet.infirmiers = infirmiersXML.map(I => ({
             id      : I.getAttribute("id"),
             prenom  : I.querySelector("prénom").textContent,
@@ -47,7 +47,7 @@ export class CabinetMedicalService {
           }));
 
           // 2 tableau des patients
-          const patientsXML = Array.from(this.document.querySelectorAll('patients > patient'));
+          const patientsXML = Array.from(this.doc.querySelectorAll('patients > patient'));
           const patients: PatientInterface[] = patientsXML.map(P => ({
               prenom: P.querySelector('prénom').textContent,
               nom: P.querySelector('nom').textContent,

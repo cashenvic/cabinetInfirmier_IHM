@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CabinetMedicalService } from '../services/cabinet-medical.service';
 import {CabinetInterface} from '../dataInterfaces/cabinet';
-//import { AuthService } from '../services/auth.service';
-//import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-secretary',
@@ -14,16 +11,9 @@ export class SecretaryComponent implements OnInit {
   cabinetInt: CabinetInterface;
   infirmier = false;
   patient = false;
-  constructor(private cabinetService : CabinetMedicalService) {  
-  
+  constructor() {    
   }
-
-  ngOnInit() {
-    this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
-        this.cabinetInt = cabinet;
-    }); 
-    console.log('cabinet :' + this.cabinetInt);
-  }
+  ngOnInit() {}
 
   onInfirmier() {
     this.infirmier = true;

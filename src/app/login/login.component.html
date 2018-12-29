@@ -2,16 +2,16 @@
 
 <div>Connexion en tant que :</div><br/>
 
-<button class="btn btn-primary btn-lg active" (click)="onSecretaire()" [disabled]="authSecretary" style="width:130px">Secretaire</button>
-<button class="btn btn-primary btn-lg active" (click)="onInfirmier()" [disabled]="authInfirmier" style="width:130px">Infirmier</button>
+<button class="btn btn-primary btn-lg active" (click)="onSecretaire()" [disabled]="secretairelog" style="width:130px">Secretaire</button>
+<button class="btn btn-primary btn-lg active" (click)="onInfirmier()" [disabled]="infirmierelog" style="width:130px">Infirmier</button>
 <br/><br/>
 
-<div *ngIf="authSecretary">
+<div *ngIf="secretairelog">
 <button class="btn btn-success" *ngIf="!authStatus" (click)="onSignInS()">Se connecter</button>
 <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>
 </div>
 
-<form *ngIf="authInfirmier">
+<form *ngIf="infirmierelog">
     <div class="form-group mx-sm-3 mb-2" *ngIf="!authStatus">
     <label for="inputPassword2" class="sr-only">ID</label>
     <input type="text" class="form-control" id="inputPassword2" [(ngModel)]="IdInfirmier" name="IdInfirmier" placeholder="ID">

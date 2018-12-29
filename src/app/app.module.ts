@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,8 +15,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModifyInfirmierComponent } from './modify-infirmier/modify-infirmier.component';
 import { ModifyPatientComponent } from './modify-patient/modify-patient.component';
 import { AddInfirmierComponent } from './add-infirmier/add-infirmier.component';
+import { ProfilInfComponent } from './profil-inf/profil-inf.component';
 
 const appRoutes: Routes = [  
+  { path: 'main', component: AppComponent },
   { path: 'login', component: LoginComponent },
   { path: 'secretary', component: SecretaryComponent },
   { path: 'infirmier', component: InfirmierComponent },
@@ -30,13 +34,17 @@ const appRoutes: Routes = [
     LoginComponent,
     ModifyInfirmierComponent,
     ModifyPatientComponent,
-    AddInfirmierComponent
+    AddInfirmierComponent,
+    ProfilInfComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

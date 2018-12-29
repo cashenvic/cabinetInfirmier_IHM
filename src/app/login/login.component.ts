@@ -1,16 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @Input() secretairelog : Boolean;
+  @Input() infirmierelog : Boolean;
+
   IdInfirmier : String;
   authStatus: boolean;
-  authSecretary = false;
-  authInfirmier = false;
+ 
   constructor(private authService: AuthService, private router: Router ) { 
     this.IdInfirmier ='000'
   }
@@ -20,13 +23,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSecretaire(){
-    this.authSecretary = true;
-    this.authInfirmier = false;
+    this.secretairelog = true;
+    this.infirmierelog = false;
   }
 
   onInfirmier(){
-    this.authInfirmier = true;
-    this.authSecretary = false;
+    this.infirmierelog = true;
+    this.secretairelog = false;
   }
 
   onSignInS() {

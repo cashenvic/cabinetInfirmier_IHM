@@ -1,18 +1,24 @@
-<nav class="navbar navbar-default">
+   <!--mettre l'icon + titre-->
+<header>
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-collapse">
         <ul class="nav navbar-nav">
-          <li routerLinkActive="active"><a routerLink="login">Authentification</a></li>
-          <li routerLinkActive="active"><a routerLink="secretary">Secrétaire</a></li>
-          <li routerLinkActive="active"><a routerLink="infirmier">Infirmiers</a></li>
+          <li routerLinkActive="active"><a routerLink="login">Accueil</a></li>
+          <li routerLinkActive="active"><a routerLink='secretary' >Secrétaire</a></li>
+          <li routerLinkActive="active"><a routerLink='infirmier' >Infirmier</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
+</header>
+<!--"secretairelog ? 'secretary' : 'login'"
+"infirmierelog ? 'infirmier' : 'login'"
+-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <router-outlet></router-outlet>
     </div>
+  </div>
+</div>
