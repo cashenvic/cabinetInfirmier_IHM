@@ -2,7 +2,7 @@
 <br/><br/><br/>
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-info" *ngFor="let infirmier of infirmiers; let i = index">
+    <div class="panel panel-info" *ngFor="let infirmier of infirmiers; let i = index" >
         <div class="panel-heading" (click) = "current = i">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion">
@@ -10,25 +10,17 @@
             </h4>
         </div>
         <div id="collapse1" class="panel-collapse" [class.collapse]='current != i' >
-            <div class="panel-body">
-                <app-profil-inf></app-profil-inf>
-                <button  class="btn btn-info btn-block active" [disabled]="affecter" >Affecter</button>
-                <button  class="btn btn-warning btn-block active" [disabled]="affecter" >Affecter</button>
-                <button  class="btn btn-danger btn-block active" [disabled]="supprimer" >Supprimer</button>
+            <div class="panel-body">                
+                <app-profil-inf [infirmier]="infirmier"></app-profil-inf>
+                <!--<button  class="btn btn-info btn-block active" (click)="affecterPat()" [disabled]="affecter" >Affecter</button>
+                <button  class="btn btn-warning btn-block active" (click)="desaffecterPat" [disabled]="desaffecter" >Désaffecter</button>
+               --> <button  class="btn btn-danger active" (click)="supprimerInf()" [disabled]="supprimer" >Supprimer</button>
+               
             </div>
         </div>
     </div>
-</div>
-    
+</div>   
 
-<!--
-<button  class="btn btn-secondary active" [disabled]="affecter" >Profile</button>
-<
-<button  class="btn btn-secondary active" [disabled]="affecter" >Afecter</button>
-<button  class="btn btn-secondary active" [disabled]="supprimer" >Supprimer</button>
--->
-<!--
-https://coreui.io/docs/components/list-group/ pour l'affichage des données de tous infirmiers -->
 
 <div *ngIf="ajouter">    
     <app-add-infirmier></app-add-infirmier>

@@ -22,6 +22,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'secretary', component: SecretaryComponent },
   { path: 'infirmier', component: InfirmierComponent },
+  { path: 'modify-infirmier', component: ModifyInfirmierComponent },
+  { path: 'profil-inf', component: ProfilInfComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
 

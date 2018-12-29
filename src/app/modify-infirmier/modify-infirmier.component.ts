@@ -9,12 +9,12 @@ import { InfirmierInterface } from '../dataInterfaces/infirmier';
 })
 export class ModifyInfirmierComponent implements OnInit {
   ajouter = false;
-  affecter =false;
+  affecter = false;
+  desaffecter = false;
   supprimer = false;
   infirmiers : InfirmierInterface[];
 
-  constructor(private cabinetService : CabinetMedicalService) {  
-  
+  constructor(private cabinetService : CabinetMedicalService) {   
   }
 
   ngOnInit() {
@@ -25,5 +25,16 @@ export class ModifyInfirmierComponent implements OnInit {
 
   ajoutInf(){
     this.ajouter =true;
+  }
+
+  affecterPat(){
+    this.affecter=true;
+  }
+
+  desaffecterPat(){
+    this.desaffecter=true;
+  }
+  supprimerInf(){
+    this.supprimer=true;
   }
 }
