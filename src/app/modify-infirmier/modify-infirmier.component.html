@@ -1,4 +1,4 @@
-<button (click)="ajoutInf()" class="btn btn-success  active" [disabled]="ajouter">New</button>
+<button (click)="ajoutInf()" class="btn btn-success active" [disabled]="ajouter">New</button>
 <br/><br/><br/>
 
 <div class="panel-group" id="accordion">
@@ -11,17 +11,9 @@
         </div>
         <div id="collapse1" class="panel-collapse" [class.collapse]='current != i' >
             <div class="panel-body">                
-                <app-profil-inf [infirmier]="infirmier"></app-profil-inf>
-                <!--<button  class="btn btn-info btn-block active" (click)="affecterPat()" [disabled]="affecter" >Affecter</button>
-                <button  class="btn btn-warning btn-block active" (click)="desaffecterPat" [disabled]="desaffecter" >Désaffecter</button>
-               --> <button  class="btn btn-danger active" (click)="supprimerInf()" [disabled]="supprimer" >Supprimer</button>
-               
+                <app-profil-inf [infirmier]="infirmier"></app-profil-inf>               
             </div>
         </div>
     </div>
 </div>   
 
-
-<div *ngIf="ajouter">    
-    <app-add-infirmier></app-add-infirmier>
-</div>

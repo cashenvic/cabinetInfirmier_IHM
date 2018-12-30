@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CabinetMedicalService } from '../services/cabinet-medical.service';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify-infirmier',
@@ -14,7 +15,7 @@ export class ModifyInfirmierComponent implements OnInit {
   supprimer = false;
   infirmiers : InfirmierInterface[];
 
-  constructor(private cabinetService : CabinetMedicalService) {   
+  constructor(private cabinetService : CabinetMedicalService, private router: Router ) {   
   }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class ModifyInfirmierComponent implements OnInit {
 
   ajoutInf(){
     this.ajouter =true;
+    this.router.navigate(['add-inf']);
   }
 
   affecterPat(){
@@ -37,4 +39,6 @@ export class ModifyInfirmierComponent implements OnInit {
   supprimerInf(){
     this.supprimer=true;
   }
+
+  
 }

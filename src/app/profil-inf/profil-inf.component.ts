@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
+import { PatientInterface } from '../dataInterfaces/patient';
 
 @Component({
   selector: 'app-profil-inf',
@@ -9,22 +10,16 @@ import { InfirmierInterface } from '../dataInterfaces/infirmier';
 export class ProfilInfComponent implements OnInit {
   @Input() infirmier : InfirmierInterface;
   imgSrc: string;
-  lien : String;
 
   constructor() { 
   }
 
   ngOnInit() {
     this.imgSrc = 'data/' + this.infirmier.photo;
-    
-    this.lien = 'profile';
   }
 
-  redigProfile(){
-    this.lien = 'profile';
-  }
-  redigPatient(){
-    this.lien = 'patient';
+  onDesaffectationPatient(patient: PatientInterface) {
+    console.log(`patient ${patient.prenom} ${patient.nom} est désaffecté`);
   }
 
 }

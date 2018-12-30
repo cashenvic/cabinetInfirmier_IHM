@@ -1,6 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { 
+  MatButtonModule, 
+  MatCheckboxModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSnackBarModule
+} from '@angular/material';
+
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +28,7 @@ import { ModifyPatientComponent } from './modify-patient/modify-patient.componen
 import { AddInfirmierComponent } from './add-infirmier/add-infirmier.component';
 import { ProfilInfComponent } from './profil-inf/profil-inf.component';
 
+
 const appRoutes: Routes = [  
   { path: 'main', component: AppComponent },
   { path: 'login', component: LoginComponent },
@@ -24,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'infirmier', component: InfirmierComponent },
   { path: 'modify-infirmier', component: ModifyInfirmierComponent },
   { path: 'profil-inf', component: ProfilInfComponent },
+  { path: 'add-inf', component: AddInfirmierComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
 
@@ -45,8 +58,15 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
