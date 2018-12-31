@@ -6,6 +6,7 @@ import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { CabinetInterface } from '../dataInterfaces/cabinet';
 import { PatientInterface } from '../dataInterfaces/patient';
 
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -143,5 +144,13 @@ public async desAffectation(patient: PatientInterface): Promise<PatientInterface
   return null;
 }
 
+getInfirmierById(id: String,infirmiers : InfirmierInterface[]) {
+  const infirmier = infirmiers.find(
+    (s) => {
+      return s.id === id;
+    }
+  );
+  return infirmier;
+}
  
 }

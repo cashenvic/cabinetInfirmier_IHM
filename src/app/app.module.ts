@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {CdkTableModule} from '@angular/cdk/table';
+
 import {   
   MatAutocompleteModule,
   MatButtonModule,
@@ -53,16 +54,18 @@ import { ProfilInfComponent } from './profil-inf/profil-inf.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LogSComponent } from './login/log-s/log-s.component';
 import { LogIComponent } from './login/log-i/log-i.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 const appRoutes: Routes = [  
   { path: 'main', component: AppComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'log-i', component: LogIComponent },
-  { path: 'log-s', component: LogSComponent },
-  { path: 'secretary', component: SecretaryComponent },
-  { path: 'infirmier', component: InfirmierComponent },
+  { path: 'infirmierlog', component: LogIComponent },
+  { path: 'secretairelog', component: LogSComponent },
+  { path: 'secretaire', component: SecretaryComponent },
+  { path: 'infirmier/:id', component: InfirmierComponent },
   { path: 'modify-infirmier', component: ModifyInfirmierComponent },
-  { path: 'profil-inf', component: ProfilInfComponent },
-  { path: 'add-inf', component: AddInfirmierComponent },
+  { path: 'profil-infirmier', component: ProfilInfComponent },
+  { path: 'ajout-infirmier', component: AddInfirmierComponent },
+  { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
 
@@ -77,7 +80,8 @@ const appRoutes: Routes = [
     AddInfirmierComponent,
     ProfilInfComponent,
     LogSComponent,
-    LogIComponent
+    LogIComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

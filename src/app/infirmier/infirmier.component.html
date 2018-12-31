@@ -1,4 +1,10 @@
+<mat-card class="taille-card" fxFlex >
+    <mat-card-header>
+        <mat-card-title>{{infirmier.nom}} {{infirmier.prenom}}</mat-card-title>
+    </mat-card-header>
+ </mat-card>
 
+<!--
 
         <div class="tab-content no-border padding-24">
           <div id="home" class="tab-pane in active">
@@ -8,7 +14,7 @@
                   <img class="editable img-responsive" alt=" Avatar" id="avatar2" [src]="imgSrc">
                 </span>
                 <div class="space space-4"></div>
-              </div><!-- /.col -->
+              </div>
 
               <div class="col-xs-12 col-sm-9">
                 <h4 class="blue">
@@ -26,8 +32,8 @@
                   </div>                
                 </div>
               </div>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            </div>
+          </div>
           <div class="space-20"></div>
           <br/>
 
@@ -81,35 +87,19 @@
                                 <span *ngIf="patient.adresse.etage !== ''">, {{patient.adresse.etage}} étage</span>
                               </div>
                             </div>                             
-                            </div><!--fin patient-->
+                            </div>
                           </div> 
                         </div>
                       </div>
                     </div>   
                     
-						      </div> <!-- /#content patient -->
+						      </div>
 							
                 </div>
               </div>
-            </div><!-- /#home -->
+            </div>
           </div>
 
 
-
-
-<!--
-
-<button  mat-raised-button class="btn-w-md ml-3 orange-500-bg" (click)="allExpandState = true">Expand All </button>
-<button  mat-raised-button class="btn-w-md ml-3 orange-500-bg" (click)="allExpandState = false">Collapse All </button>
-
-<mat-expansion-panel [expanded]="allExpandState"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-	<mat-expansion-panel-header>
-		<mat-panel-title>
-			Personal data
-		</mat-panel-title>
-		<mat-panel-description>
-			Type your name and age
-		</mat-panel-description>
-	</mat-expansion-panel-header>
-</mat-expansion-panel>
 -->
+

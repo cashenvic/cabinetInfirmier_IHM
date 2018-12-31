@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InfirmierInterface } from 'src/app/dataInterfaces/infirmier';
 import { CabinetMedicalService } from 'src/app/services/cabinet-medical.service';
+import { Log } from 'src/app/dataInterfaces/Log';
 
 @Component({
   selector: 'app-log-i',
@@ -10,13 +11,10 @@ import { CabinetMedicalService } from 'src/app/services/cabinet-medical.service'
   styleUrls: ['./log-i.component.css']
 })
 export class LogIComponent implements OnInit {
-  @Input() authStatus : Boolean;
-  @Input() wholog : String;
   IdInfirmier : String;
   infirmiers : InfirmierInterface[];
-  positionIndex : number;
-
-  constructor(private cabinetService : CabinetMedicalService, private authService: AuthService, private router: Router ) { 
+  wholog : Log;
+  constructor(private cabinetService : CabinetMedicalService, private authService: AuthService,  private router: Router ) { 
   }
 
   ngOnInit() {
@@ -24,40 +22,17 @@ export class LogIComponent implements OnInit {
       this.infirmiers = cabinet.infirmiers;
     });
   }
-
   
-
-  onSignOut() {
-    this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-    this.wholog ="";
-    this.router.navigate(['login']);
-  }  
-
-  verifId() : Boolean {
-    let verif :Boolean = false;
-    this.infirmiers.forEach( element => {
-      if(this.IdInfirmier == element.id){
-        console.log('vrai');
-        return verif;
-      }
-    });
-    return verif;
-    alert("ID Invalid");
-  }
-
-  onSignInI() {
+  onSignInI() {    
+    this.wholog = Log.infirmier;
     let vérif : boolean = false;
     this.infirmiers.forEach( (element,i) => {
       if(this.IdInfirmier == element.id){
         vérif =true;
-        this.authService.signIn().then(
+        this.authService.signIn( this.wholog).then(
           () => {
-            console.log('Sign in successful! ->' + i);
-            this.positionIndex = i;
-            this.authStatus = this.authService.isAuth;
-            this.wholog ='Infirmier';
-            this.router.navigate(['infirmier']);
+            console.log('Connection avec succès');
+            this.router.navigate(['infirmier/'+this.IdInfirmier]);
           }
         );
       }
@@ -66,5 +41,8 @@ export class LogIComponent implements OnInit {
       alert("ID Invalid");
     }
   }
-
+  
+  onSignOut() {    
+    this.authService.signOut();
+  }  
 }

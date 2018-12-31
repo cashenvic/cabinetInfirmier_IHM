@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Log } from 'src/app/dataInterfaces/Log';
 
 @Component({
   selector: 'app-log-s',
@@ -8,31 +9,25 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./log-s.component.css']
 })
 export class LogSComponent implements OnInit {
-  @Input() authStatus : Boolean;
-  @Input() wholog : String;
-
+  wholog : Log;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.wholog);
   }
 
-  onSignInS() {
-    this.authService.signIn().then(
+  onSignInS() {    
+    this.wholog = Log.secretaire;
+    this.authService.signIn(this.wholog).then(
       () => {
-        console.log('Sign in successful!');
-        this.authStatus = true;
-        this.wholog ='Sécretaire';
-        this.router.navigate(['secretary']);
+        console.log('Connection avec succès');
+        this.router.navigate(['secretaire']);
       }
     );
   }
   
-  onSignOut() {
+  
+  onSignOut() {    
     this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
-    this.wholog ="";
-    this.router.navigate(['login']);
-  }
+  }  
 
 }

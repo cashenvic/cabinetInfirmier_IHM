@@ -1,13 +1,13 @@
-<mat-card class="taille-card" >
-    <mat-card-header>
-        <mat-card-title>Login Secrétaire</mat-card-title>
-    </mat-card-header>
-    <br/>    
-    <br/>    
-    <mat-card-actions>
-      <div class="btn-toolbar">
-        <button *ngIf="!authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignInS()">Connecter</button>
-        <button *ngIf="authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignOut()">Déconnecter</button>
-      </div>
-    </mat-card-actions>
-    </mat-card>
+<mat-card class="taille-card" fxFlex >
+  <mat-card-header>
+      <mat-card-title>Login Secrétaire</mat-card-title>
+  </mat-card-header>
+  <br/>    
+  <br/>    
+  <mat-card-actions>
+    <div fxLayoutAlign="center">
+      <button *ngIf="!authStatus" mat-raised-button type="button" color="primary" style="width: 200px" (click)="onSignInS()">Connecter</button>
+      <button *ngIf="authStatus" mat-raised-button type="button" color="warn" style="width: 200px" (click)="onSignOut()">Déconnecter</button>
+    </div>
+  </mat-card-actions>
+  </mat-card>

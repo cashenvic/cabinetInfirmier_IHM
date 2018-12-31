@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output  } from '@angular/core';
 import { CabinetMedicalService } from './services/cabinet-medical.service';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { Log } from './dataInterfaces/Log';
 
 
 @Component({
@@ -12,14 +14,12 @@ export class AppComponent {
   @Output() sidenavClose = new EventEmitter();
   @Output() public sidenavToggle = new EventEmitter();
   cabinetNom : String;
-  cabinetImg : String;
-  pagelog;
+  cabinetImg : String; 
 
-  wholog : String ='a';
-
-  constructor( private router: Router, private cabinetService : CabinetMedicalService ) { 
+  constructor( private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
   }
   ngOnInit() {
+
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.cabinetNom = cabinet.nom;
       console.log('cabinet :' + this.cabinetNom);
@@ -35,4 +35,7 @@ export class AppComponent {
     this.sidenavToggle.emit();
   }
 
+  Logout(){
+    this.authService.signOut();
+  }
 }

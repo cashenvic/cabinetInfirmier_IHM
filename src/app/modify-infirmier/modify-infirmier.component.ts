@@ -26,7 +26,7 @@ export class ModifyInfirmierComponent implements OnInit {
 
   ajoutInf(){
     this.ajouter =true;
-    this.router.navigate(['add-inf']);
+    this.router.navigate(['ajout-infirmier']);
   }
 
   affecterPat(){

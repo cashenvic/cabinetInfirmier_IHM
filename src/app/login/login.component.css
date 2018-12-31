@@ -1,8 +1,4 @@
 .taille-card{
-    width: 500px;
-    margin : 50px 200;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
+  width: 500px;
+  margin : 50px;
+}

@@ -8,24 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Input() wholog : String;
   authStatus: boolean;
  
   constructor(private authService: AuthService, private router: Router ) { 
   }
   
   ngOnInit() {
-    this.authStatus = this.authService.isAuth;
-    
+    this.authStatus = this.authService.isAuth;    
   }
 
 
   loginS() {
-    this.router.navigate(['log-s']);
+    this.router.navigate(['secretairelog']);
   }
 
   loginI() {
-    this.router.navigate(['log-i']);
+    this.router.navigate(['infirmierlog']);
   }
 
 

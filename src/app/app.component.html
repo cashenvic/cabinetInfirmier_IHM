@@ -1,42 +1,14 @@
-   <!--mettre l'icon + titre
-<header>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li routerLinkActive="active"><a routerLink="login">Accueil</a></li>
-          <li routerLinkActive="active"><a routerLink='secretary' >Secrétaire</a></li>
-          <li routerLinkActive="active"><a routerLink='infirmier' >Infirmier</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>-->
-<!--"secretairelog ? 'secretary' : 'login'"
-"infirmierelog ? 'infirmier' : 'login'"
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div> -->
-
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
       <mat-nav-list (sidenavClose)="sidenav.close()">
-          <a mat-list-item routerLink="login" (click)="onSidenavClose()">
-              <mat-icon>account_circle</mat-icon> <span class="nav-caption">Login</span>
+          <a mat-list-item routerLink="secretairelog" (click)="onSidenavClose()">
+              <mat-icon>account_circle</mat-icon> <span class="nav-caption">Secrétaire</span>   
           </a>
-          <a mat-list-item routerLink="secretary" (click)="onSidenavClose()">
-              <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Secrétaire</span>   
+          <a mat-list-item routerLink="infirmierlog" (click)="onSidenavClose()">
+              <mat-icon>assignment_ind</mat-icon><span class="nav-caption">Infirmier</span>
           </a>
-          <a mat-list-item routerLink="infirmier" (click)="onSidenavClose()">
-              <mat-icon>account_balance</mat-icon><span class="nav-caption">Infirmier</span>
-          </a>
-          <a mat-list-item routerLink="login" (click)="onSidenavClose()">
-              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Logout</span>
+          <a mat-list-item routerLink="login" (click)="onSidenavClose();Logout()">
+              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Déconnecter</span>
           </a>
         </mat-nav-list>
   </mat-sidenav>
@@ -62,7 +34,7 @@
                   <mat-icon>people_outline</mat-icon>
               </button>
             </a>
-            <a routerLink="login"> Logout
+            <a routerLink="login" (click)="Logout()"> Logout
               <button mat-icon-button>
                 <mat-icon>exit_to_app</mat-icon>
               </button>
