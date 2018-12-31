@@ -18,9 +18,15 @@ export class AuthService {
       (resolve, reject) => {
         setTimeout(
           () => {
-            this.isAuth = true;
-            this.whoLog = person;
-            resolve(true);
+            if(this.isAuth==false){
+              this.isAuth = true;
+              this.whoLog = person;
+              resolve(true);
+            }
+            else{
+              console.log("Vous êtes déjà connecter sur un compte.\nIl faut vous déconnecter");
+            }
+            
           }, 500
         );
       }

@@ -15,6 +15,7 @@ export class LogIComponent implements OnInit {
   infirmiers : InfirmierInterface[];
   wholog : Log;
   constructor(private cabinetService : CabinetMedicalService, private authService: AuthService,  private router: Router ) { 
+    
   }
 
   ngOnInit() {
