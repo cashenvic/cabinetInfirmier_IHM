@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { PatientInterface } from '../dataInterfaces/patient';
+import { sexeEnum } from '../dataInterfaces/sexe';
 
 @Component({
   selector: 'app-profil-inf',
@@ -10,16 +11,15 @@ import { PatientInterface } from '../dataInterfaces/patient';
 export class ProfilInfComponent implements OnInit {
   @Input() infirmier : InfirmierInterface;
   imgSrc: string;
+  patients : PatientInterface[];
 
-  constructor() { 
+  constructor(){
+
   }
-
   ngOnInit() {
     this.imgSrc = 'data/' + this.infirmier.photo;
+    this.patients = this.infirmier.patients;
   }
 
-  onDesaffectationPatient(patient: PatientInterface) {
-    console.log(`patient ${patient.prenom} ${patient.nom} est désaffecté`);
-  }
 
 }

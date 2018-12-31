@@ -1,0 +1,29 @@
+<mat-card class="taille-card" >
+    <mat-card-header>
+        <mat-card-title>Login Infirmier</mat-card-title>
+    </mat-card-header>
+    <br/>    
+    <br/>    
+
+    <mat-card-content>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="ID" [(ngModel)]="IdInfirmier" name="id" required>
+              </mat-form-field>
+            </td>
+          </tr>
+      </table>
+      </form>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <div class="btn-toolbar">
+        <button *ngIf="!authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignInI()">Connecter</button>
+        <button *ngIf="authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignOut()">Déconnecter</button>
+      </div>
+    </mat-card-actions>
+    </mat-card>

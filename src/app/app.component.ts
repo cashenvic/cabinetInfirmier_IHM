@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output  } from '@angular/core';
 import { CabinetMedicalService } from './services/cabinet-medical.service';
 import { Router } from '@angular/router';
-import { HttpClient } from 'selenium-webdriver/http';
+
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,13 @@ import { HttpClient } from 'selenium-webdriver/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @Output() sidenavClose = new EventEmitter();
+  @Output() public sidenavToggle = new EventEmitter();
   cabinetNom : String;
-  cabinetIcon;
-  secretairelog : Boolean = false;
-  infirmierelog : Boolean = false;
+  cabinetImg : String;
+  pagelog;
+
+  wholog : String ='a';
 
   constructor( private router: Router, private cabinetService : CabinetMedicalService ) { 
   }
@@ -21,6 +24,15 @@ export class AppComponent {
       this.cabinetNom = cabinet.nom;
       console.log('cabinet :' + this.cabinetNom);
     });
+    this.cabinetImg = 'data/hospital-icon.png';
+  }
+
+  public onSidenavClose = () => {
+    this.sidenavClose.emit();
+  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 
 }

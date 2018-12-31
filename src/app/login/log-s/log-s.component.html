@@ -1,0 +1,13 @@
+<mat-card class="taille-card" >
+    <mat-card-header>
+        <mat-card-title>Login Secrétaire</mat-card-title>
+    </mat-card-header>
+    <br/>    
+    <br/>    
+    <mat-card-actions>
+      <div class="btn-toolbar">
+        <button *ngIf="!authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignInS()">Connecter</button>
+        <button *ngIf="authStatus" mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="onSignOut()">Déconnecter</button>
+      </div>
+    </mat-card-actions>
+    </mat-card>

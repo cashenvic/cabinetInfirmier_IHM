@@ -1,37 +1,63 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
-  MatButtonModule, 
-  MatCheckboxModule,
-  MatCardModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatSelectModule,
-  MatSnackBarModule
-} from '@angular/material';
-
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {CdkTableModule} from '@angular/cdk/table';
+import {   
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SecretaryComponent } from './secretary/secretary.component';
 import { InfirmierComponent } from './infirmier/infirmier.component';
-import { PatientsComponent } from './patients/patients.component';
 import { LoginComponent } from './login/login.component';
-
-import { Routes, RouterModule } from '@angular/router';
 import { ModifyInfirmierComponent } from './modify-infirmier/modify-infirmier.component';
 import { ModifyPatientComponent } from './modify-patient/modify-patient.component';
 import { AddInfirmierComponent } from './add-infirmier/add-infirmier.component';
 import { ProfilInfComponent } from './profil-inf/profil-inf.component';
 
 
+import { Routes, RouterModule } from '@angular/router';
+import { LogSComponent } from './login/log-s/log-s.component';
+import { LogIComponent } from './login/log-i/log-i.component';
 const appRoutes: Routes = [  
   { path: 'main', component: AppComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'log-i', component: LogIComponent },
+  { path: 'log-s', component: LogSComponent },
   { path: 'secretary', component: SecretaryComponent },
   { path: 'infirmier', component: InfirmierComponent },
   { path: 'modify-infirmier', component: ModifyInfirmierComponent },
@@ -45,12 +71,13 @@ const appRoutes: Routes = [
     AppComponent,
     SecretaryComponent,
     InfirmierComponent,
-    PatientsComponent,
     LoginComponent,
     ModifyInfirmierComponent,
     ModifyPatientComponent,
     AddInfirmierComponent,
-    ProfilInfComponent
+    ProfilInfComponent,
+    LogSComponent,
+    LogIComponent
   ],
   imports: [
     BrowserModule,
@@ -58,15 +85,76 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    MatButtonModule, 
-    MatCheckboxModule,
+
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
     MatDialogModule,
-    MatFormFieldModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+
+    FlexLayoutModule,
+    CdkTableModule
+  ],
+  exports: [
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

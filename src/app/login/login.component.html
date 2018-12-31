@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<!--<h2>Login</h2>
 
 <div>Connexion en tant que :</div><br/>
 
@@ -21,3 +21,18 @@
 <button class="btn btn-success" *ngIf="!authStatus" (click)="onSignInI()">Se connecter</button>
 <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>
 </form>
+-->
+<a *ngIf="wholog === 'Sécretaire'" routerLink="log-s"></a>
+<a *ngIf="wholog === 'Infirmier'" routerLink="log-i"></a>
+
+<mat-card class="taille-card" >
+    <mat-card-header>
+        <mat-card-title>Authentification</mat-card-title>
+    </mat-card-header>
+    <span class="example-spacer"></span>    
+    <br/><i>Connexion en tant que :</i><br/><br/>    
+    <div class="btn-toolbar">
+    <button mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="loginS()">Secrétaire</button>
+    <button mat-raised-button  class="btn-w-md ml-3 orange-500-bg" (click)="loginI()">Infirmier</button>
+    </div>
+ </mat-card>
