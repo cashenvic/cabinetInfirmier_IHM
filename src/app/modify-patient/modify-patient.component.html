@@ -57,8 +57,8 @@
             
             <div class="profile-info-row">
                 <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
-                
-                <div class="profile-info-value" *ngFor="let id of patient.visite.actes">                            
+
+                <div class="profile-info-value" *ngFor="let id of patient.visite?.actes">
                     <span>{{actesService.getActesbyId(id).nom}}</span>
                 </div>
             </div>  
