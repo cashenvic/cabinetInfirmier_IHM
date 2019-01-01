@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {PatientInterface} from '../dataInterfaces/patient';
 import {ActeInterface} from '../dataInterfaces/actes';
@@ -25,6 +25,7 @@ export class ModifyPatientComponent implements OnInit {
   affecter = false;
   supprimer = false;
     patients: PatientInterface[];
+    @Input() patient;
 
     actesMedical: ActeInterface;
 
@@ -35,13 +36,6 @@ export class ModifyPatientComponent implements OnInit {
   ngOnInit() {
     const person = Log.secretaire;
     this.authService.verifLog(person);
-
-    this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
-      this.patients = cabinet.patientsNonAffectes;
-      /*cabinet.infirmiers.forEach( (element)=> {
-        //this.patients.push(element.patients);
-      });*/
-    });
 
     this.actesService.getDataActe('/data/actes.xml').then(actes => {
       this.actesMedical = actes;      

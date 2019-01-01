@@ -1,18 +1,12 @@
-<button (click)="ajoutP()" class="btn btn-success active" [disabled]="ajouter">
-    <mat-icon>add</mat-icon>
-</button>
-<br/><br/><br/>
-
 <mat-accordion>
-    <mat-expansion-panel 
-    *ngFor="let patient of patients"
+    <mat-expansion-panel
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false">
         <mat-expansion-panel-header class="lightsmoke">
-        <mat-panel-title class="blue">
-            # {{patient.nom}} {{patient.prenom}}
-        </mat-panel-title>
-        <mat-panel-description><i>non affecté(e)</i></mat-panel-description>
+            <mat-panel-title class="blue">
+                # {{patient.nom}} {{patient.prenom}}
+            </mat-panel-title>
+            <mat-panel-description><i>non affecté(e)</i></mat-panel-description>
         </mat-expansion-panel-header>
 
         <div class="panel-body">  
@@ -40,7 +34,7 @@
                 <div class="profilep-info-name"> N° de sécurité sociale<mat-icon>note_add</mat-icon> </div>
 
                 <div class="profile-info-value">
-                <span>{{patient.numeroSecuriteSociale}}</span>
+                    <span>{{patient.numeroSecuriteSociale}}</span>
                 </div>
             </div>
 
@@ -48,18 +42,18 @@
                 <div class="profilep-info-name"> Adresse <mat-icon>place</mat-icon></div>
                 
                 <div class="profile-info-value">
-                <span>{{patient.adresse.numero}} {{patient.adresse.rue}}</span>
-                <span>{{patient.adresse.codePostal}}</span>
-                <span>{{patient.adresse.ville}}</span>
-                <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
+                    <span>{{patient.adresse.numero}} {{patient.adresse.rue}}</span>
+                    <span>{{patient.adresse.codePostal}}</span>
+                    <span>{{patient.adresse.ville}}</span>
+                    <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
                 </div>
             </div>
-            
-            <div class="profile-info-row">
+
+            <div class="profile-info-row" *ngFor="let id of patient.visite?.actes">
                 <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
 
-                <div class="profile-info-value" *ngFor="let id of patient.visite?.actes">
-                    <span>{{actesService.getActesbyId(id).nom}}</span>
+                <div class="profile-info-value">
+                    <span *ngIf="patient.visite?.actes != undefined">{{actesService.getActesbyId(id).nom}}</span>
                 </div>
             </div>  
             <br/><br/>

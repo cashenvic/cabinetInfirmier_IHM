@@ -1,16 +1,14 @@
-<br/><br/>
-
-<mat-accordion color="primary">
+<mat-accordion color="primary" class="mt-3">
     <mat-expansion-panel 
     *ngFor="let infirmier of infirmiers"
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false">
         <mat-expansion-panel-header class="lightsmoke">
             <mat-panel-title class="blue">
-            # {{infirmier.id}}
+                # {{infirmier.id}}
             </mat-panel-title>
             <mat-panel-description>
-            <i>{{infirmier.nom}} {{infirmier.prenom}}</i>
+                <i>{{infirmier.nom}} {{infirmier.prenom}}</i>
             </mat-panel-description>
         </mat-expansion-panel-header>
 
