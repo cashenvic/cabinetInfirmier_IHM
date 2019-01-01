@@ -5,9 +5,11 @@ import { sexeEnum } from '../dataInterfaces/sexe';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { CabinetInterface } from '../dataInterfaces/cabinet';
 import { PatientInterface } from '../dataInterfaces/patient';
-
+import { VisiteInterface } from '../dataInterfaces/visite';
 
 import { Injectable } from '@angular/core';
+import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
+import { element } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +55,10 @@ export class CabinetMedicalService {
               prenom: P.querySelector('prénom').textContent,
               nom: P.querySelector('nom').textContent,
               sexe: (P.querySelector('sexe').textContent === 'M') ? sexeEnum.M : sexeEnum.F,
+              naissance : P.querySelector('naissance').textContent,
               numeroSecuriteSociale: P.querySelector('numéro').textContent,
-              adresse: this.getAdressFrom(P)
+              adresse: this.getAdressFrom(P),
+              visite : this.getVisiteFrom(P),
           }));
 
           // 3 Tableau des affectations à faire.
@@ -96,6 +100,20 @@ export class CabinetMedicalService {
       etage       : (node = root.querySelector("adresse > étage")     ) ? node.textContent                    : "",
     };
   }
+
+  private getVisiteFrom(root : Element): VisiteInterface {
+    let node: Element;
+    let actesId : Array<string> = [];
+    root.querySelectorAll("acte").forEach( (element) => {
+        actesId.push(element.getAttribute("id"));
+    });
+    return {
+      intervenant : root.querySelector("visite").getAttribute("intervenant"),
+      date        : root.querySelector("visite").getAttribute("date"),
+      actes       : actesId
+    };
+  }
+
 
   public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
     const res = await this.http.post('/addPatient', {

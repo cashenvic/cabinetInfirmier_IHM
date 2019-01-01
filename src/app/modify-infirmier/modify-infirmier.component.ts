@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CabinetMedicalService } from '../services/cabinet-medical.service';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Log } from '../dataInterfaces/Log';
 
 @Component({
   selector: 'app-modify-infirmier',
@@ -10,15 +12,15 @@ import { Router } from '@angular/router';
 })
 export class ModifyInfirmierComponent implements OnInit {
   ajouter = false;
-  affecter = false;
-  desaffecter = false;
-  supprimer = false;
   infirmiers : InfirmierInterface[];
 
-  constructor(private cabinetService : CabinetMedicalService, private router: Router ) {   
+  constructor(private cabinetService : CabinetMedicalService, private router: Router, private authService : AuthService ) {   
   }
 
   ngOnInit() {
+    const person = Log.secretaire;
+    this.authService.verifLog(person);
+    
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.infirmiers = cabinet.infirmiers;
     });
@@ -29,16 +31,4 @@ export class ModifyInfirmierComponent implements OnInit {
     this.router.navigate(['ajout-infirmier']);
   }
 
-  affecterPat(){
-    this.affecter=true;
-  }
-
-  desaffecterPat(){
-    this.desaffecter=true;
-  }
-  supprimerInf(){
-    this.supprimer=true;
-  }
-
-  
 }

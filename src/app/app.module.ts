@@ -47,7 +47,6 @@ import { InfirmierComponent } from './infirmier/infirmier.component';
 import { LoginComponent } from './login/login.component';
 import { ModifyInfirmierComponent } from './modify-infirmier/modify-infirmier.component';
 import { ModifyPatientComponent } from './modify-patient/modify-patient.component';
-import { AddInfirmierComponent } from './add-infirmier/add-infirmier.component';
 import { ProfilInfComponent } from './profil-inf/profil-inf.component';
 
 
@@ -64,7 +63,6 @@ const appRoutes: Routes = [
   { path: 'infirmier/:id', component: InfirmierComponent },
   { path: 'modify-infirmier', component: ModifyInfirmierComponent },
   { path: 'profil-infirmier', component: ProfilInfComponent },
-  { path: 'ajout-infirmier', component: AddInfirmierComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
@@ -77,7 +75,6 @@ const appRoutes: Routes = [
     LoginComponent,
     ModifyInfirmierComponent,
     ModifyPatientComponent,
-    AddInfirmierComponent,
     ProfilInfComponent,
     LogSComponent,
     LogIComponent,

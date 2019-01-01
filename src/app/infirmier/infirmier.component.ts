@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { CabinetMedicalService } from '../services/cabinet-medical.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Adresse } from '../dataInterfaces/adresse';
 import { Log } from '../dataInterfaces/Log';
-import { PatientInterface } from '../dataInterfaces/patient';
+import { ActeMedicalService } from '../services/acte-medical.service';
+import { ActeInterface } from '../dataInterfaces/actes';
 
 @Component({
   selector: 'app-infirmier',
@@ -20,8 +20,11 @@ export class InfirmierComponent implements OnInit {
   imgSrc : String;
   id : String;
 
-  constructor(private cabinetService : CabinetMedicalService, private router: Router,
-    private route: ActivatedRoute, private authService : AuthService ) {   
+  actesMedical : ActeInterface;
+
+  constructor(private cabinetService : CabinetMedicalService, 
+    private route: ActivatedRoute, private authService : AuthService,
+    private actesService : ActeMedicalService ) {   
   }
 
   ngOnInit() {    
@@ -35,10 +38,16 @@ export class InfirmierComponent implements OnInit {
       this.infirmier = this.cabinetService.getInfirmierById(this.id,this.infirmiers);       
       this.imgSrc = 'data/' + this.infirmier.photo; 
       
-    });     
+    });   
+    
+    this.actesService.getDataActe('/data/actes.xml').then(actes => {
+      this.actesMedical = actes;      
+    });   
+
+
   }
 
-
+  
 
 
 }

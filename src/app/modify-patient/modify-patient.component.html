@@ -1,4 +1,6 @@
-<button (click)="ajoutP()" class="btn btn-success active" [disabled]="ajouter">New</button>
+<button (click)="ajoutP()" class="btn btn-success active" [disabled]="ajouter">
+    <mat-icon>add</mat-icon>
+</button>
 <br/><br/><br/>
 
 <mat-accordion>
@@ -10,7 +12,7 @@
         <mat-panel-title class="blue">
             # {{patient.nom}} {{patient.prenom}}
         </mat-panel-title>
-        <mat-panel-description>date d'intervention</mat-panel-description>
+        <mat-panel-description><i>non affecté(e)</i></mat-panel-description>
         </mat-expansion-panel-header>
 
         <div class="panel-body">  
@@ -19,7 +21,7 @@
             </h4>
 
             <div class="profile-info-row">
-                <div class="profilep-info-name"> Sexe </div>
+                <div class="profilep-info-name"> Sexe <mat-icon>wc</mat-icon></div>
 
                 <div class="profile-info-value">
                 <span>{{patient.sexe}}</span>
@@ -27,7 +29,15 @@
             </div>
 
             <div class="profile-info-row">
-                <div class="profilep-info-name"> N° de sécurité sociale </div>
+                <div class="profilep-info-name"> Date de Naissance<mat-icon>cake</mat-icon> </div>
+
+                <div class="profile-info-value">
+                    <span>{{patient.naissance}}</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profilep-info-name"> N° de sécurité sociale<mat-icon>note_add</mat-icon> </div>
 
                 <div class="profile-info-value">
                 <span>{{patient.numeroSecuriteSociale}}</span>
@@ -35,7 +45,7 @@
             </div>
 
             <div class="profile-info-row">
-                <div class="profilep-info-name"> Adresse </div>
+                <div class="profilep-info-name"> Adresse <mat-icon>place</mat-icon></div>
                 
                 <div class="profile-info-value">
                 <span>{{patient.adresse.numero}} {{patient.adresse.rue}}</span>
@@ -43,15 +53,22 @@
                 <span>{{patient.adresse.ville}}</span>
                 <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
                 </div>
-            </div> 
+            </div>
+            
+            <div class="profile-info-row">
+                <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
+                
+                <div class="profile-info-value" *ngFor="let id of patient.visite.actes">                            
+                    <span>{{actesService.getActesbyId(id).nom}}</span>
+                </div>
+            </div>  
             <br/><br/>
-            <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="30px" >
-                <div>
-                    <button mat-raised-button  class="affect" (click)="affecterPat()" [disabled]="affecter" style="width: 200px">Affecter</button>
-                </div>  
-                <div>
-                    <button mat-raised-button  class="supp" (click)="supprimerInf()" [disabled]="supprimer" style="width: 200px">Supprimer</button>
-                </div>     
+            
+            <div fxLayoutAlign="center">
+                <button mat-raised-button  class="affect" (click)="affecterPat()" style="width: 150px">Affecter</button>
+            </div>  
+            <div fxLayoutAlign="end">
+                <button mat-raised-button  class="supp" (click)="supprimerInf()" ><mat-icon>delete</mat-icon></button>
             </div>                          
         </div>  
 

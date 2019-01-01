@@ -2,10 +2,10 @@
   <mat-sidenav #sidenav role="navigation" class="siv">
       <mat-nav-list (sidenavClose)="sidenav.close()">
           <a mat-list-item *ngIf="!authService.isAuth" routerLink="secretairelog" (click)="onSidenavClose()" >
-              <mat-icon>account_circle</mat-icon> <span class="nav-caption">Secrétaire</span>   
+              <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Secrétaire</span>   
           </a>
           <a mat-list-item *ngIf="!authService.isAuth" routerLink="infirmierlog" (click)="onSidenavClose()"  >
-              <mat-icon>assignment_ind</mat-icon><span class="nav-caption">Infirmier</span>
+              <mat-icon>local_hospital</mat-icon><span class="nav-caption">Infirmier</span>
           </a>
           <a mat-list-item *ngIf="authService.isAuth" routerLink="login" (click)="onSidenavClose();Logout()">
               <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Déconnecter</span>
@@ -21,7 +21,7 @@
             </button>
         </div>
         <div>            
-            <a routerLink="login">
+            <a (click)="redigAccueil()">
               <img [src]="cabinetImg" class="logo" class="icon-main">
               <span class="titre">{{cabinetNom}} </span>
             </a>
@@ -44,11 +44,12 @@
         </div>
       </mat-toolbar>
 
-    <main>
+    <main>     
       <router-outlet></router-outlet>
     </main>
     
   </mat-sidenav-content>
-
 </mat-sidenav-container>
+
+<!--local_hospital footer icon-->
 

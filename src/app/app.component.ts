@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output  } from '@angular/core';
 import { CabinetMedicalService } from './services/cabinet-medical.service';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { Log } from './dataInterfaces/Log';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class AppComponent {
   cabinetNom : String;
   cabinetImg : String; 
 
-  constructor( private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
+  constructor(  private router: Router, private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
   }
   ngOnInit() {
 
@@ -39,4 +38,9 @@ export class AppComponent {
     this.authService.signOut();
   }
 
+  redigAccueil(){
+    if(!this.authService.isAuth){
+      this.router.navigate(['login']);
+    }
+  }
 }
