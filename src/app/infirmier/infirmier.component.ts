@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { InfirmierInterface } from '../dataInterfaces/infirmier';
-import { CabinetMedicalService } from '../services/cabinet-medical.service';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { Log } from '../dataInterfaces/Log';
-import { ActeMedicalService } from '../services/acte-medical.service';
-import { ActeInterface } from '../dataInterfaces/actes';
+import {Component, OnInit} from '@angular/core';
+import {InfirmierInterface} from '../dataInterfaces/infirmier';
+import {CabinetMedicalService} from '../services/cabinet-medical.service';
+import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../services/auth.service';
+import {Log} from '../dataInterfaces/Log';
+import {ActeMedicalService} from '../services/acte-medical.service';
+import {ActeInterface} from '../dataInterfaces/actes';
 
 @Component({
   selector: 'app-infirmier',
@@ -14,17 +14,17 @@ import { ActeInterface } from '../dataInterfaces/actes';
 })
 export class InfirmierComponent implements OnInit {
   panelOpenState = false;
-  infirmiers : InfirmierInterface[];
-  infirmier : InfirmierInterface ;
+    infirmiers: InfirmierInterface[];
+    infirmier: InfirmierInterface;
 
-  imgSrc : String;
-  id : String;
+    imgSrc: String;
+    id: String;
 
-  actesMedical : ActeInterface;
+    actesMedical: ActeInterface;
 
-  constructor(private cabinetService : CabinetMedicalService, 
-    private route: ActivatedRoute, private authService : AuthService,
-    private actesService : ActeMedicalService ) {   
+    constructor(private cabinetService: CabinetMedicalService,
+                private route: ActivatedRoute, private authService: AuthService,
+                private actesService: ActeMedicalService) {
   }
 
   ngOnInit() {    

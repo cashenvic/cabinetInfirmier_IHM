@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ActeInterface } from '../dataInterfaces/actes';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActeInterface} from '../dataInterfaces/actes';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ActeMedicalService {
 
   private domParser: DOMParser = new DOMParser();
   private doc: Document;
-  private actesMedical : ActeInterface;
+    private actesMedical: ActeInterface;
 
   constructor(private http: HttpClient) {
   }
@@ -43,7 +43,7 @@ export class ActeMedicalService {
             nom : I.textContent
           }));
 
-          console.log('actes: ' + this.actesMedical);
+            //console.log('actes: ' + this.actesMedical);
           resolve(this.actesMedical);
         }, rej => {
           reject(rej);
