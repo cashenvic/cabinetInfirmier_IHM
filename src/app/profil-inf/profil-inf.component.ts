@@ -12,7 +12,8 @@ export class ProfilInfComponent implements OnInit {
   @Input() infirmier : InfirmierInterface;
   imgSrc: string;
   patients : PatientInterface[];
-
+  panelOpenState = false;
+  
   constructor(){
 
   }

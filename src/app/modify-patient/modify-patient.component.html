@@ -1,21 +1,59 @@
-<button (click)="ajoutPatient()" class="btn btn-success  active" [disabled]="ajouter">New</button>
+<button (click)="ajoutP()" class="btn btn-success active" [disabled]="ajouter">New</button>
 <br/><br/><br/>
 
-<div class="panel-group" id="accordion">
-    <div class="panel panel-info" *ngFor="let patient of patients; let i = index">
-        <div class="panel-heading" (click) = "current = i">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion">
-                # {{patient.nom | uppercase}} {{patient.prenom}}</a>
+<mat-accordion>
+    <mat-expansion-panel 
+    *ngFor="let patient of patients"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="lightsmoke">
+        <mat-panel-title class="blue">
+            # {{patient.nom}} {{patient.prenom}}
+        </mat-panel-title>
+        <mat-panel-description>date d'intervention</mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="panel-body">  
+            <h4 class="blue">
+                <span class="middle">{{patient.nom}} {{patient.prenom}}</span>
             </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse" [class.collapse]='current != i' >
-            <div class="panel-body">
-                mettre le profil de tous les patients
-                <button  class="btn btn-info btn-block active" (click)="affecterPat()" [disabled]="affecter" >Affecter</button>
-                <button  class="btn btn-warning btn-block active" (click)="desaffecterPat" [disabled]="desaffecter" >Désaffecter</button>
-                <button  class="btn btn-danger btn-block active" (click)="supprimerInf()" [disabled]="supprimer" >Supprimer</button>
+
+            <div class="profile-info-row">
+                <div class="profilep-info-name"> Sexe </div>
+
+                <div class="profile-info-value">
+                <span>{{patient.sexe}}</span>
+                </div>
             </div>
-        </div>
-    </div>
-</div>   
+
+            <div class="profile-info-row">
+                <div class="profilep-info-name"> N° de sécurité sociale </div>
+
+                <div class="profile-info-value">
+                <span>{{patient.numeroSecuriteSociale}}</span>
+                </div>
+            </div>
+
+            <div class="profile-info-row">
+                <div class="profilep-info-name"> Adresse </div>
+                
+                <div class="profile-info-value">
+                <span>{{patient.adresse.numero}} {{patient.adresse.rue}}</span>
+                <span>{{patient.adresse.codePostal}}</span>
+                <span>{{patient.adresse.ville}}</span>
+                <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
+                </div>
+            </div> 
+            <br/><br/>
+            <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="30px" >
+                <div>
+                    <button mat-raised-button  class="affect" (click)="affecterPat()" [disabled]="affecter" style="width: 200px">Affecter</button>
+                </div>  
+                <div>
+                    <button mat-raised-button  class="supp" (click)="supprimerInf()" [disabled]="supprimer" style="width: 200px">Supprimer</button>
+                </div>     
+            </div>                          
+        </div>  
+
+    </mat-expansion-panel>
+</mat-accordion> <!--finpatient-->

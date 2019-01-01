@@ -3,7 +3,9 @@ import { InfirmierInterface } from '../dataInterfaces/infirmier';
 import { CabinetMedicalService } from '../services/cabinet-medical.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Adresse } from '../dataInterfaces/adresse';
 import { Log } from '../dataInterfaces/Log';
+import { PatientInterface } from '../dataInterfaces/patient';
 
 @Component({
   selector: 'app-infirmier',
@@ -11,12 +13,10 @@ import { Log } from '../dataInterfaces/Log';
   styleUrls: ['./infirmier.component.css']
 })
 export class InfirmierComponent implements OnInit {
-  @Input() position : number;
-  panelOpenState: boolean = false;
-  allExpandState = false;
-
+  panelOpenState = false;
   infirmiers : InfirmierInterface[];
-  infirmier : InfirmierInterface;
+  infirmier : InfirmierInterface ;
+
   imgSrc : String;
   id : String;
 
@@ -32,12 +32,13 @@ export class InfirmierComponent implements OnInit {
 
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.infirmiers = cabinet.infirmiers;
-      this.infirmier = this.cabinetService.getInfirmierById(this.id , this.infirmiers);
-      console.log(this.infirmier);
-    });
-    this.imgSrc = 'data/' + this.infirmier.photo;
-
+      this.infirmier = this.cabinetService.getInfirmierById(this.id,this.infirmiers);       
+      this.imgSrc = 'data/' + this.infirmier.photo; 
+      
+    });     
   }
+
+
 
 
 }

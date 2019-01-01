@@ -37,6 +37,7 @@ mat-toolbar{
 
 .entete{
     height: 80px;
+    background: #00897b!important
 }
 
 .icon-main{
@@ -53,4 +54,8 @@ mat-toolbar{
     letter-spacing: 1px;
     word-spacing: 2px;
     font-size: 20px;
-  }
+}
+
+.siv{
+    background: #fafafa!important
+}

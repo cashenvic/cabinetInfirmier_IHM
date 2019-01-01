@@ -52,7 +52,7 @@ export class CabinetMedicalService {
           const patients: PatientInterface[] = patientsXML.map(P => ({
               prenom: P.querySelector('prénom').textContent,
               nom: P.querySelector('nom').textContent,
-              sexe: P.querySelector('sexe').textContent === 'M' ? sexeEnum.M : sexeEnum.F,
+              sexe: (P.querySelector('sexe').textContent === 'M') ? sexeEnum.M : sexeEnum.F,
               numeroSecuriteSociale: P.querySelector('numéro').textContent,
               adresse: this.getAdressFrom(P)
           }));

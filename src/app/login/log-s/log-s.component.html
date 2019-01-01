@@ -6,8 +6,8 @@
   <br/>    
   <mat-card-actions>
     <div fxLayoutAlign="center">
-      <button *ngIf="!authService.isAuth" mat-raised-button type="button" color="primary" style="width: 200px" (click)="onSignInS()">Connecter</button>
-      <button *ngIf="authService.isAuth" mat-raised-button type="button" color="warn" style="width: 200px" (click)="onSignOut()">Déconnecter</button>
+      <button mat-raised-button class="connect" *ngIf="!authService.isAuth" style="width: 150px" (click)="onSignInS()">Connecter</button>
+      <button mat-raised-button class="disconnect" *ngIf="authService.isAuth" style="width: 150px" (click)="onSignOut()">Déconnecter</button>
     </div>
   </mat-card-actions>
   </mat-card>

@@ -15,7 +15,7 @@ export class LogSComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSignInS() {    
+  onSignInS() {        
     this.wholog = Log.secretaire;
     this.authService.signIn(this.wholog).then(
       () => {

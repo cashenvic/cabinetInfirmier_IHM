@@ -24,7 +24,7 @@ export class AuthService {
               resolve(true);
             }
             else{
-              console.log("Vous êtes déjà connecter sur un compte.\nIl faut vous déconnecter");
+              reject("Vous êtes déjà connecter sur un compte.\nIl faut vous déconnecter");
             }
             
           }, 500
@@ -41,7 +41,7 @@ export class AuthService {
       this.whoLog = Log.nobody;
       this.isAuth = false;    
       this.router.navigate(['login']);
-      console.log("Déconnecter");
+      console.log("Vous êtes maintenant déconnecter");
     }
   }
 
@@ -50,13 +50,13 @@ export class AuthService {
       return true;
     }
     else if(this.isAuth && (person == Log.infirmier)){
-      this.router.navigate(['/infirmierlog']);
+      this.router.navigate(['infirmierlog']);
     } 
     else if(this.isAuth && (person == Log.secretaire)){
-      this.router.navigate(['/secretairelog']);
+      this.router.navigate(['secretairelog']);
     } 
     else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     }
   }
 }

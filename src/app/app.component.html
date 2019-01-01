@@ -1,20 +1,20 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
+  <mat-sidenav #sidenav role="navigation" class="siv">
       <mat-nav-list (sidenavClose)="sidenav.close()">
-          <a mat-list-item routerLink="secretairelog" (click)="onSidenavClose()">
+          <a mat-list-item *ngIf="!authService.isAuth" routerLink="secretairelog" (click)="onSidenavClose()" >
               <mat-icon>account_circle</mat-icon> <span class="nav-caption">Secrétaire</span>   
           </a>
-          <a mat-list-item routerLink="infirmierlog" (click)="onSidenavClose()">
+          <a mat-list-item *ngIf="!authService.isAuth" routerLink="infirmierlog" (click)="onSidenavClose()"  >
               <mat-icon>assignment_ind</mat-icon><span class="nav-caption">Infirmier</span>
           </a>
-          <a mat-list-item routerLink="login" (click)="onSidenavClose();Logout()">
+          <a mat-list-item *ngIf="authService.isAuth" routerLink="login" (click)="onSidenavClose();Logout()">
               <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Déconnecter</span>
           </a>
         </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content >
-    <mat-toolbar class="entete" color="primary" (sidenavToggle)="sidenav.toggle()" >
+    <mat-toolbar class="entete" (sidenavToggle)="sidenav.toggle()" >
         <div fxHide.gt-xs>
             <button mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>
@@ -29,12 +29,12 @@
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
           <ul fxLayout fxLayoutGap="15px" class="navigation-items">
           <li>                    
-            <a routerLink="login">Login
+            <a routerLink="login" *ngIf="!authService.isAuth" >Login
               <button mat-icon-button>
                   <mat-icon>people_outline</mat-icon>
               </button>
             </a>
-            <a routerLink="login" (click)="Logout()"> Logout
+            <a routerLink="login" *ngIf="authService.isAuth" (click)="Logout()"> Logout
               <button mat-icon-button>
                 <mat-icon>exit_to_app</mat-icon>
               </button>

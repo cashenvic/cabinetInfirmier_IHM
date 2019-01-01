@@ -1,5 +1,15 @@
 .taille-card{
-    width: 500px;
-    margin : 50px;
-  }
+  width: 500px;
+  margin : 50px;
+}
+
+.connect{
+  background: #53b658!important;
+  color:white!important
   
+}
+
+.disconnect{
+  background: #d60000!important;
+  color:white!important
+}

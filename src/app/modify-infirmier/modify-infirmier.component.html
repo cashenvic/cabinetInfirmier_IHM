@@ -1,19 +1,24 @@
 <button (click)="ajoutInf()" class="btn btn-success active" [disabled]="ajouter">New</button>
 <br/><br/><br/>
 
-<div class="panel-group" id="accordion">
-    <div class="panel panel-info" *ngFor="let infirmier of infirmiers; let i = index" >
-        <div class="panel-heading" (click) = "current = i">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion">
-                # {{infirmier.id}}</a>
-            </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse" [class.collapse]='current != i' >
+<mat-accordion color="primary">
+    <mat-expansion-panel 
+    *ngFor="let infirmier of infirmiers"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="lightsmoke">
+            <mat-panel-title class="blue">
+            <b># {{infirmier.id}}</b>
+            </mat-panel-title>
+            <mat-panel-description>
+            <i>{{infirmier.nom}} {{infirmier.prenom}}</i>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
             <div class="panel-body">                
                 <app-profil-inf [infirmier]="infirmier"></app-profil-inf>               
             </div>
-        </div>
-    </div>
-</div>   
-
+        </div>       
+    </mat-expansion-panel>
+</mat-accordion> <!--finpatient-->
