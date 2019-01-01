@@ -1,3 +1,16 @@
-<p>
-    patient-affect-dialog works!
-</p>
+<h1 mat-dialog-title>Affectation</h1>
+<div mat-dialog-content>
+    <p>A quel infirmier <span class="font-weight-bold">{{data.patient.nom}} {{data.patient.prenom}}</span> doit être
+        affecté?</p>
+    <mat-form-field>
+        <mat-select placeholder="Infirmier" name="infirmier" [(ngModel)]="infirmier">
+            <mat-option *ngFor="let i of data.infirmiers" [value]="i">
+                {{i.prenom}} {{i.nom}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Annuler</button>
+    <button mat-button [mat-dialog-close]="infirmier" cdkFocusInitial>Ok</button>
+</div>

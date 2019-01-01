@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {PatientInterface} from '../dataInterfaces/patient';
 import {ActeInterface} from '../dataInterfaces/actes';
@@ -9,6 +9,7 @@ import {sexeEnum} from "../dataInterfaces/sexe";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
 import {InfirmierInterface} from "../dataInterfaces/infirmier";
+import {PatientAffectDialogComponent} from "../patient-affect-dialog/patient-affect-dialog.component";
 
 export interface AffectationPatientDialogData {
     patient: PatientInterface;
@@ -26,6 +27,9 @@ export class ModifyPatientComponent implements OnInit {
   supprimer = false;
     patients: PatientInterface[];
     @Input() patient;
+    @Input() infirmiers: InfirmierInterface[];
+    @Output() affectionEmitter: EventEmitter<AffectationPatientDialogData> = new EventEmitter();
+    @Output() desAffectionEmitter: EventEmitter<PatientInterface> = new EventEmitter();
 
     actesMedical: ActeInterface;
 
@@ -43,9 +47,31 @@ export class ModifyPatientComponent implements OnInit {
 
   }
 
-    P() {
-        this.ajouter = true;
-  }
+    openAffectationDialog(): void {
+        const dialogRef = this.dialog.open(PatientAffectDialogComponent, {
+            width: '250px',
+            data: {patient: this.patient, infirmiers: this.infirmiers}
+        });
+
+        dialogRef.afterClosed().subscribe(infirmier => {
+            if (infirmier !== undefined) {
+                this.cabinetService.affectation(this.patient, infirmier.id).then(p => {
+                    if (p !== null) {
+                        this.affectionEmitter.emit({patient: this.patient, infirmiers: this.infirmiers});
+                        this.snackBar.open(`${this.patient.prenom} ${this.patient.nom} a bien été affecté à 
+                        ${infirmier.prenom} ${infirmier.nom}`, 'Ok', ({
+                            duration: 5000,
+                        }));
+                    } else {
+                        this.snackBar.open(`Echec de l'affectation`, 'Ok', ({
+                            duration: 5000,
+                        }));
+                    }
+                });
+
+            }
+        });
+    }
 
     ajoutP(): void {
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
