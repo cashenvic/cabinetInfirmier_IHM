@@ -19,30 +19,40 @@ export class LogIComponent implements OnInit {
   }
 
   ngOnInit() {
+    //pull les données cabinetInfirmier.xml à partir du serveur
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.infirmiers = cabinet.infirmiers;
     });
   }
   
+  //function test de connexion
   onSignInI() {    
     this.wholog = Log.infirmier;
+
     let vérif : boolean = false;
     this.infirmiers.forEach( (element,i) => {
+      
       if(this.IdInfirmier == element.id){
+        //si id existe
         vérif =true;
+        //connexion
         this.authService.signIn( this.wholog).then(
           () => {
             console.log('Connection avec succès');
+            //redirection à la page infirmier 
             this.router.navigate(['infirmier/'+this.IdInfirmier]);
           }
         );
       }
     });
+
+    //si id incorrect/inexistant retourne un message d'alerte
     if(!vérif){      
       alert("ID Invalid");
     }
   }
   
+  //déconnection
   onSignOut() {    
     this.authService.signOut();
   }  

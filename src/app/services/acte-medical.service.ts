@@ -14,12 +14,13 @@ export class ActeMedicalService {
   constructor(private http: HttpClient) {
   }
 
+  //fonction pull des données du document XML actes
   async getDataActe(url: string): Promise<ActeInterface> {
     return new Promise<ActeInterface>( (resolve, reject) => {
       this.http.get(url, {responseType: 'text'}).toPromise().then(
         res => {
           this.doc = this.domParser.parseFromString(res, 'text/xml');
-          //console.log('document :'+ this.doc.querySelector( "nom" ).textContent);
+
           //default actes
           this.actesMedical = {
             types : [],
@@ -43,7 +44,6 @@ export class ActeMedicalService {
             nom : I.textContent
           }));
 
-            //console.log('actes: ' + this.actesMedical);
           resolve(this.actesMedical);
         }, rej => {
           reject(rej);
@@ -53,6 +53,7 @@ export class ActeMedicalService {
     });
   }
 
+  //fonction pour obtenir les données de l'acte dont l'id est donnée en paramètre
   private getActesbyId(id : string){
     const actes = this.actesMedical.actes.find(element => {
       return element.id === id;
@@ -61,6 +62,7 @@ export class ActeMedicalService {
     return actes;
   }
 
+  //fonction pour obtenir les données du type dont l'id est donnée en paramètre
   private getTypesbyId(id : string){
     const types = this.actesMedical.types.find(element => {
       return element.id === id;
@@ -69,8 +71,8 @@ export class ActeMedicalService {
     return types;
   }
 
-
-  private Facture(coef : string, cle : string) {
+  //fonction pour obtenir le coût du soins
+  private facture(coef : string, cle : string) {
     let total = 0.0;
     switch(cle){
       case "AMI": total = 3.15 * (+coef) ;

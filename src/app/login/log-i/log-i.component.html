@@ -1,9 +1,10 @@
 <mat-card class="taille-card" fxFlex>
+
   <mat-card-header>
       <mat-card-title>Login Infirmier</mat-card-title>
   </mat-card-header>
-  <br/>    
-  <br/>    
+  <br/><br/> 
+
   <mat-card-content *ngIf="!authService.isAuth" >
     <form fxLayoutAlign="center">
       <table class="example-full-width" cellspacing="0">
@@ -25,4 +26,5 @@
       <button mat-raised-button class="disconnect" *ngIf="authService.isAuth"  style="width: 150px" (click)="onSignOut()">Déconnecter</button>
     </div>
   </mat-card-actions>
+  
 </mat-card>

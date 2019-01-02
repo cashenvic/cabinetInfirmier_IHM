@@ -38,21 +38,25 @@ export class ModifyPatientComponent implements OnInit {
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
+        //pull les données actes.xml à partir du serveur            
         this.actesService.getDataActe('/data/actes.xml').then(actes => {
             this.actesMedical = actes;
         });
     }
 
     ngOnInit() {
+        //vérification de l'accès au page
         const person = Log.secretaire;
         this.authService.verifLog(person);
+
         if (this.affected) {
             this.affecterText = "Réaffecter";
         } else {
             this.affecterText = "Affecter";
         }
+        
         if (this.patient.sexe === sexeEnum.F) {
-            this.sexePatient = 'Feminin';
+            this.sexePatient = 'Féminin';
         } else {
             this.sexePatient = 'Masculin';
         }

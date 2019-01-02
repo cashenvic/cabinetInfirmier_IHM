@@ -17,11 +17,12 @@ export class LoginComponent implements OnInit {
     this.authStatus = this.authService.isAuth;    
   }
 
-
+  //redirection à la page de connection du secrétaire
   loginS() {
     this.router.navigate(['secretairelog']);
   }
 
+  //redirection à la page de connection de l'infirmier
   loginI() {
     this.router.navigate(['infirmierlog']);
   }

@@ -27,15 +27,14 @@ export class SecretaryComponent implements OnInit {
     }
 
     ngOnInit() {
+        //vérification de l'accès au page
         const person = Log.secretaire;
         this.authService.verifLog(person);
 
+        //pull les données cabinetInfirmier.xml à partir du serveur
         this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
             this.patients = cabinet.patientsNonAffectes;
             this.infirmiers = cabinet.infirmiers;
-            /*cabinet.infirmiers.forEach( (element)=> {
-            //this.patients.push(element.patients);
-            });*/
         });
     }
 
@@ -49,6 +48,7 @@ export class SecretaryComponent implements OnInit {
         this.infirmier = false;
     }
 
+    //fonction d'ajout patient avec message correponsant
     ajoutP(): void {
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',

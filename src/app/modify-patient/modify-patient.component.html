@@ -1,18 +1,26 @@
 <mat-accordion>
+    <!--Affichage du profil du patient-->
     <mat-expansion-panel
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false">
         <mat-expansion-panel-header class="lightsmoke">
+
             <mat-panel-title class="blue">
                 # {{patient.nom}} {{patient.prenom}}
             </mat-panel-title>
-            <mat-panel-description *ngIf="!affected"><i>Non affecté(e)</i></mat-panel-description>
-            <mat-panel-description *ngIf="affected">
+
+            <mat-panel-description *ngIf="!affected" fxLayoutAlign="end">
+                <i>Non affecté<i *ngIf="sexePatient === 'Féminin'">e</i> </i>
+            </mat-panel-description>
+
+            <mat-panel-description *ngIf="affected" fxLayoutAlign="end">
                 <i>Date d'intervention : {{patient.visite.date}}&nbsp;&nbsp;</i>
                 <mat-icon>event_note</mat-icon>
             </mat-panel-description>
-        </mat-expansion-panel-header>
 
+        </mat-expansion-panel-header><!--fin header-->
+
+        <!-- contenu-->
         <div class="panel-body">  
             <h4 class="blue">
                 <span class="middle">{{patient.nom}} {{patient.prenom}}</span>
@@ -54,22 +62,24 @@
             </div>
 
             <div *ngIf="patient.visite != undefined">
-                <!--<div class="profile-info-row" *ngFor="let id of patient.visite.actes">
+                <div class="profile-info-row" *ngFor="let id of patient.visite.actes">
                     <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
 
                     <div class="profile-info-value">
                         {{actesService.getActesbyId(id).nom}}
                     </div>
-                </div>-->
+                </div>
             </div>
             <br/><br/>
             
             <div fxLayoutAlign="center">
+                <!--button affecter-->
                 <button mat-raised-button
                         matTooltip="Affecter le patient un infirmier"
                         class="affect mr-2" (click)="openAffectationDialog()" style="width: 150px">
                     {{affecterText}}
                 </button>
+                 <!--button désaffecter-->
                 <button mat-raised-button
                         matTooltip="Désaffecter le patient de cet infirmier"
                         class="desaff" [disabled]="!affected" (click)="desaffect()"
@@ -77,9 +87,10 @@
                     Désaffecter
                 </button>
             </div>
-            <div fxLayoutAlign="center">
+
+            <div fxLayoutAlign="center"> <!--**********************??????????????****************-->
             </div>                          
-        </div>  
+        </div>  <!-- fin contenu-->
 
     </mat-expansion-panel>
-</mat-accordion> <!--finpatient-->
+</mat-accordion> <!--fin profil patient-->

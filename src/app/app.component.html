@@ -1,4 +1,6 @@
+<!--barre de navigation-->
 <mat-sidenav-container>
+  <!--contenu du menu-->
   <mat-sidenav #sidenav role="navigation" class="siv">
       <mat-nav-list (sidenavClose)="sidenav.close()">
           <a mat-list-item *ngIf="!authService.isAuth" routerLink="secretairelog" (click)="onSidenavClose()" >
@@ -13,6 +15,7 @@
         </mat-nav-list>
   </mat-sidenav>
 
+  <!--entête de la barre de navigation-->
   <mat-sidenav-content >
     <mat-toolbar class="entete" (sidenavToggle)="sidenav.toggle()" >
         <div fxHide.gt-xs>
@@ -20,12 +23,16 @@
                 <mat-icon>menu</mat-icon>
             </button>
         </div>
+
+        <!--logo + nom du cabinet-->
         <div>            
             <a (click)="redigAccueil()">
               <img [src]="cabinetImg" class="logo" class="icon-main">
               <span class="titre">{{cabinetNom}} </span>
             </a>
         </div>
+
+        <!--login + logout-->
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
           <ul fxLayout fxLayoutGap="15px" class="navigation-items">
           <li>                    
@@ -42,9 +49,11 @@
           </li>
           </ul>
         </div>
+
       </mat-toolbar>
 
-    <main>     
+    <main> 
+      <!--redirection-->    
       <router-outlet></router-outlet>
     </main>
     

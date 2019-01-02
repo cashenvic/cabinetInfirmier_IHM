@@ -2,12 +2,13 @@
   <mat-card-header>
       <mat-card-title>Login Secrétaire</mat-card-title>
   </mat-card-header>
-  <br/>    
-  <br/>    
+  <br/> <br/> 
+
   <mat-card-actions>
     <div fxLayoutAlign="center">
       <button mat-raised-button class="connect" *ngIf="!authService.isAuth" style="width: 150px" (click)="onSignInS()">Connecter</button>
       <button mat-raised-button class="disconnect" *ngIf="authService.isAuth" style="width: 150px" (click)="onSignOut()">Déconnecter</button>
     </div>
   </mat-card-actions>
-  </mat-card>
+  
+</mat-card>

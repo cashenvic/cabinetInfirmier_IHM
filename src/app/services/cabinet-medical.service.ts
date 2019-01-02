@@ -21,12 +21,12 @@ export class CabinetMedicalService {
   constructor(private http: HttpClient) {
   }
 
+  //fonction pull des données du document XML cabinetInfirmier
   async getData(url: string): Promise<CabinetInterface> {
     return new Promise<CabinetInterface>(((resolve, reject) => {
       this.http.get(url, {responseType: 'text'}).toPromise().then(
         res => {
           this.doc = this.domParser.parseFromString(res, 'text/xml');
-          //console.log('document :'+ this.doc.querySelector( "nom" ).textContent);
 
           //default cabinet
           this.cabinet = {
@@ -84,10 +84,11 @@ export class CabinetMedicalService {
         }, rej => {
           reject(rej);
       }     
-      );
-    }));
-}
+        );
+        }));
+    }
 
+    //fonction ajout patient + post des données dans le document XML
     public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
     const res = await this.http.post('/addPatient', {
         patientName: patient.nom,
@@ -111,6 +112,7 @@ export class CabinetMedicalService {
         return null;
     }
 
+    //fonction pour obtenir les données du l'infirmier dont l'id est donnée en paramètre
     public getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
         const infirmier = infirmiers.find((s) => {
             return s.id === id;
@@ -118,6 +120,7 @@ export class CabinetMedicalService {
         return infirmier;
     }
 
+    //fonction pour obtenir les données des infirmiers du cabinet
     async getInfirmiers(url: string) : Promise< InfirmierInterface[] > {
         await this.getData(url).then((cabinet) => {
             return cabinet.infirmiers;
@@ -125,6 +128,7 @@ export class CabinetMedicalService {
         return null;
     }
 
+    //fonction pour affecter le patient à l'infirmier dont l'id est passé en paramètre
     public async affectation(patient: PatientInterface, infirmierId: string): Promise<PatientInterface> {
         const res = await this.http.post('/affectation', {
             infirmier: infirmierId,
@@ -137,6 +141,7 @@ export class CabinetMedicalService {
         return null;
     }
 
+     //fonction pour desaffecter le patient à son infirmier 
     public async desAffectation(patient: PatientInterface): Promise<PatientInterface> {
         const res = await this.http.post('/affectation', {
             infirmier: 'none',
@@ -149,6 +154,7 @@ export class CabinetMedicalService {
         return null;
     }
 
+     //fonction pour obtenir les données de l'adresse
     private getAdressFrom(root: Element): Adresse {
         let node: Element;
         return {
@@ -160,6 +166,7 @@ export class CabinetMedicalService {
         };
     }
 
+     //fonction pour obtenir les données des visites
     private getVisiteFrom(root: Element): VisiteInterface {
         let actesId: Array<string> = [];
         root.querySelectorAll("acte").forEach((elt) => {

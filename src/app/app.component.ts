@@ -18,10 +18,10 @@ export class AppComponent {
   constructor(  private router: Router, private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
   }
   ngOnInit() {
-
+    //pull les données cabinetInfirmier.xml à partir du serveur
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.cabinetNom = cabinet.nom;
-      console.log('cabinet :' + this.cabinetNom);
+      //console.log('cabinet :' + this.cabinetNom);
     });
     this.cabinetImg = 'data/hospital-icon.png';
   }
@@ -34,10 +34,12 @@ export class AppComponent {
     this.sidenavToggle.emit();
   }
 
+  //fonction de déconnection
   Logout(){
     this.authService.signOut();
   }
 
+  //fonction qui redirige à la page de login lorqu'on clique sur le nom ou le logo du cabinet
   redigAccueil(){
     if(!this.authService.isAuth){
       this.router.navigate(['login']);

@@ -4,7 +4,6 @@ import {InfirmierInterface} from '../dataInterfaces/infirmier';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {Log} from '../dataInterfaces/Log';
-import {ActeMedicalService} from "../services/acte-medical.service";
 import {PatientInterface} from "../dataInterfaces/patient";
 import {ActeInterface} from "../dataInterfaces/actes";
 
@@ -14,7 +13,7 @@ import {ActeInterface} from "../dataInterfaces/actes";
   styleUrls: ['./modify-infirmier.component.css']
 })
 export class ModifyInfirmierComponent implements OnInit {
-  ajouter = false;
+    ajouter = false;
     infirmiers: InfirmierInterface[];
     @Output() patientDesaff = new EventEmitter();
     @Input() infirmier: InfirmierInterface;
@@ -24,21 +23,18 @@ export class ModifyInfirmierComponent implements OnInit {
 
     panelOpenState = false;
 
-    constructor(private actesService: ActeMedicalService, private cabinetService: CabinetMedicalService, private router: Router,
+    constructor(private cabinetService: CabinetMedicalService, private router: Router,
                 private authService: AuthService) {
     }
 
     ngOnInit() {
+        //vérification de l'accès au page
         const person = Log.secretaire;
         this.authService.verifLog(person);
 
+        //pull les données cabinetInfirmier.xml à partir du serveur
         this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
             this.infirmiers = cabinet.infirmiers;
-        });
-
-        this.actesService.getDataActe('/data/actes.xml').then(actes => {
-            this.actesMedical = actes;
-            //console.log(this.actesMedical.types);
         });
 
         this.imgSrc = 'data/' + this.infirmier.photo;
@@ -46,11 +42,13 @@ export class ModifyInfirmierComponent implements OnInit {
         console.log('Fin init modify-infirmier');
     }
 
+    //redirection à la page d'ajout infirmier
     ajoutInf() {
         this.ajouter = true;
-    this.router.navigate(['ajout-infirmier']);
-  }
+        this.router.navigate(['ajout-infirmier']);
+    }
 
+    
     onPatientDesaff() {
         this.patientDesaff.emit();
     }

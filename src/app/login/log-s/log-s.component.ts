@@ -15,17 +15,19 @@ export class LogSComponent implements OnInit {
   ngOnInit() {
   }
 
+  //function test de connexion
   onSignInS() {        
     this.wholog = Log.secretaire;
     this.authService.signIn(this.wholog).then(
       () => {
         console.log('Connection avec succès');
+        //redirection à la page infirmier 
         this.router.navigate(['secretaire']);
       }
     );
   }
   
-  
+  //déconnection
   onSignOut() {    
     this.authService.signOut();
   }  

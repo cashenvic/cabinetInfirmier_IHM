@@ -63,9 +63,14 @@
                       <div class="profile-info-row">
                         <div class="profilep-info-name"> Sexe <mat-icon>wc</mat-icon></div>
 
-                        <div class="profile-info-value">
-                          <span>{{patient.sexe}}</span>
+                        <div class="profile-info-value" *ngIf="patient.sexe == '1'">
+                          <span>Féminin</span>                          
                         </div>
+
+                        <div class="profile-info-value" *ngIf="patient.sexe == '0'">
+                          <span>Masculin</span>                          
+                        </div>
+
                       </div>
 
                       <div class="profile-info-row">
