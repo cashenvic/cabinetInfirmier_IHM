@@ -6,7 +6,7 @@
             <mat-panel-title class="blue">
                 # {{patient.nom}} {{patient.prenom}}
             </mat-panel-title>
-            <mat-panel-description><i>non affecté(e)</i></mat-panel-description>
+            <mat-panel-description><i><span *ngIf="!affected">non </span>affecté(e)</i></mat-panel-description>
         </mat-expansion-panel-header>
 
         <div class="panel-body">  
