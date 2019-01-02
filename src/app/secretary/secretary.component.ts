@@ -7,6 +7,7 @@ import {PatientInterface} from "../dataInterfaces/patient";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
 import {MatDialog, MatSnackBar} from "@angular/material";
+import {InfirmierInterface} from "../dataInterfaces/infirmier";
 
 @Component({
   selector: 'app-secretary',
@@ -19,6 +20,7 @@ export class SecretaryComponent implements OnInit {
   infirmier = false;
   patient = false;
     patients: PatientInterface[];
+    infirmiers: InfirmierInterface[];
 
     constructor(private authService: AuthService, private cabinetService: CabinetMedicalService,
                 private dialog: MatDialog, private snackBar: MatSnackBar) {
@@ -29,6 +31,7 @@ export class SecretaryComponent implements OnInit {
 
       this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
           this.patients = cabinet.patientsNonAffectes;
+          this.infirmiers = cabinet.infirmiers;
           /*cabinet.infirmiers.forEach( (element)=> {
             //this.patients.push(element.patients);
           });*/

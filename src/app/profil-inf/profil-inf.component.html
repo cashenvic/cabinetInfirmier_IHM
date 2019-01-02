@@ -47,7 +47,7 @@
             </div>
 
             <mat-accordion>
-              <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p" [affected]="true"
+              <app-modify-patient *ngFor="let p of patients" [patient]="p" [affected]="true"
                                   [infirmiers]="infirmiers">
               </app-modify-patient>
               <!-- <mat-expansion-panel

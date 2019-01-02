@@ -13,7 +13,7 @@ import {CabinetMedicalService} from "../services/cabinet-medical.service";
   styleUrls: ['./profil-inf.component.css']
 })
 export class ProfilInfComponent implements OnInit {
-  @Input() infirmier : InfirmierInterface;
+    @Input() infirmier: InfirmierInterface;
   imgSrc: string;
     patients: PatientInterface[];
     actesMedical: ActeInterface;
@@ -25,7 +25,9 @@ export class ProfilInfComponent implements OnInit {
   desaffecter = false;
 
     constructor(private actesService: ActeMedicalService, private authService: AuthService, private cabinetService: CabinetMedicalService) {
-        this.getInfirmiers();
+        this.cabinetService.getInfirmiers('/data/cabinetInfirmier.xml').then((inf) => {
+            this.infirmiers = inf;
+        });
   }
   ngOnInit() {
     const person = Log.secretaire;
@@ -50,8 +52,6 @@ export class ProfilInfComponent implements OnInit {
   }
 
     getInfirmiers() {
-        this.cabinetService.getInfirmiers('/data/cabinetInfirmier.xml').then((inf) => {
-            this.infirmiers = inf;
-        });
+
     }
 }
