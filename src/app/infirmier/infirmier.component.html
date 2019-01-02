@@ -1,50 +1,47 @@
 <mat-card fxFlex >    
-  <div class="tab-content no-border padding-24">
-    <div class="tab-pane in active">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 center">
-          <span class="profile-picture">
-              <img class="editable img-responsive" alt=" Avatar" id="avatar2" [src]="imgSrc">
-            </span>
-          <div class="space space-4"></div>
-        </div>
-
-        <div class="col-xs-12 col-sm-9">
-          <h4 class="blue">
-            <span class="middle">{{infirmier.nom}} {{infirmier.prenom}}</span>
-          </h4>
-          <div class="profile-user-info">
-            <div class="profile-info-row">
-              <div class="profile-info-name"> Adresse </div>
-
-              <div class="profile-info-value">
-                <i class="fa fa-map-marker light-orange bigger-110"></i>
-                <span>{{infirmier.adresse.numero}} {{infirmier.adresse.rue}}</span>
-                <span>{{infirmier.adresse.codePostal}}</span>
-                <span>{{infirmier.adresse.ville}}</span>
-                <span *ngIf="infirmier.adresse.etage !== ''">au {{infirmier.adresse.etage}}e étage</span>
-                <mat-icon>place</mat-icon>
-              </div>
-            </div>                
-          </div>
-        </div><!--fin profil-->
-
-        <div class="space space-4"></div>
-
+    <div class="tab-content no-border padding-24">
+      <div class="tab-pane in active">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="widget-box transparent">
-              <div class="widget-header widget-header-small">
-                <h4 class="widget-title smaller">
-                  Patients
-                </h4>
-              </div>
+          <div class="col-xs-12 col-sm-3 center">
+            <span class="profile-picture">
+                <img class="editable img-responsive" alt=" Avatar" id="avatar2" [src]="imgSrc">
+              </span>
+            <div class="space space-4"></div>
+          </div>
+  
+          <div class="col-xs-12 col-sm-9">
+            <h4 class="blue">
+              <span class="middle">{{infirmier.nom}} {{infirmier.prenom}}</span>
+            </h4>
+            <div class="profile-user-info">
+              <div class="profile-info-row">
+                <div class="profile-info-name"> Adresse </div>
+  
+                <div class="profile-info-value">
+                  <i class="fa fa-map-marker light-orange bigger-110"></i>
+                  <span>{{infirmier.adresse.numero}} {{infirmier.adresse.rue}}</span>
+                  <span>{{infirmier.adresse.codePostal}}</span>
+                  <span>{{infirmier.adresse.ville}}</span>
+                  <span *ngIf="infirmier.adresse.etage !== ''">au {{infirmier.adresse.etage}}e étage</span>
+                  <mat-icon>place</mat-icon>
+                </div>
+              </div>                
+            </div>
+          </div><!--fin profil-->
+  
+          <div class="space space-4"></div>
+  
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="widget-box transparent">
+                <div class="widget-header widget-header-small">
+                  <h4 class="widget-title smaller">
+                    Patients
+                  </h4>
+                </div>
 
-              <mat-accordion>
-                  <app-modify-patient *ngFor="let pat of infirmier.patients" [patient]="pat" [affected]="true"
-                                      [infirmiers]="infirmiers" (desAffectionEmitter)="patientDesaffected()">
-                  </app-modify-patient>
-                  <!--<mat-expansion-panel
+                <mat-accordion >
+                  <mat-expansion-panel 
                   *ngFor="let patient of infirmier.patients"
                   (opened)="panelOpenState = true"
                   (closed)="panelOpenState = false">
@@ -58,7 +55,7 @@
                       </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <div class="panel-body">
+                    <div class="panel-body">  
                       <h4 class="blue">
                         <span class="middle">{{patient.nom}} {{patient.prenom}}</span>
                       </h4>
@@ -73,14 +70,14 @@
 
                       <div class="profile-info-row">
                         <div class="profilep-info-name"> Date de Naissance <mat-icon>cake</mat-icon></div>
-
+  
                         <div class="profile-info-value">
                           <span>{{patient.naissance}}</span>
                         </div>
                       </div>
 
                       <div class="profile-info-row">
-                        <div class="profilep-info-name"> N° de sécurité sociale <mat-icon>note_add</mat-icon></div>
+                        <div class="profilep-info-name"> Numéro de sécurité sociale <mat-icon>note_add</mat-icon></div>
 
                         <div class="profile-info-value">
                           <span>{{patient.numeroSecuriteSociale}}</span>
@@ -89,29 +86,30 @@
 
                       <div class="profile-info-row">
                         <div class="profilep-info-name"> Adresse <mat-icon>place</mat-icon></div>
-
+                        
                         <div class="profile-info-value">
                           <span>{{patient.adresse.numero}} {{patient.adresse.rue}}</span>
                           <span>{{patient.adresse.codePostal}}</span>
                           <span>{{patient.adresse.ville}}</span>
                           <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
                         </div>
-                      </div>
+                      </div>  
 
                       <div class="profile-info-row">
                         <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
-
-                        <div class="profile-info-value" *ngFor="let id of patient.visite.actes">
+                        
+                        <div class="profile-info-value" *ngFor="let id of patient.visite.actes">                            
                           <span>{{actesService.getActesbyId(id).nom}}</span>
                         </div>
-                      </div>
-                    </div>
-                  </mat-expansion-panel>-->
-              </mat-accordion> <!--finpatient-->
-            </div>
-          </div>              
+                      </div>  
+                                                
+                    </div>  
+                  </mat-expansion-panel>
+                </mat-accordion> <!--finpatient-->
+              </div>
+            </div>              
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </mat-card>
