@@ -16,37 +16,38 @@ import {InfirmierInterface} from "../dataInterfaces/infirmier";
 })
 
 export class SecretaryComponent implements OnInit {
-  cabinetInt: CabinetInterface;
-  infirmier = false;
-  patient = false;
+    cabinetInt: CabinetInterface;
+    infirmier = false;
+    patient = false;
     patients: PatientInterface[];
     infirmiers: InfirmierInterface[];
 
     constructor(private authService: AuthService, private cabinetService: CabinetMedicalService,
                 private dialog: MatDialog, private snackBar: MatSnackBar) {
-  }
-  ngOnInit() {
-    const person = Log.secretaire;
-    this.authService.verifLog(person);
+    }
 
-      this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
-          this.patients = cabinet.patientsNonAffectes;
-          this.infirmiers = cabinet.infirmiers;
-          /*cabinet.infirmiers.forEach( (element)=> {
+    ngOnInit() {
+        const person = Log.secretaire;
+        this.authService.verifLog(person);
+
+        this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
+            this.patients = cabinet.patientsNonAffectes;
+            this.infirmiers = cabinet.infirmiers;
+            /*cabinet.infirmiers.forEach( (element)=> {
             //this.patients.push(element.patients);
-          });*/
-      });
-  }
+            });*/
+        });
+    }
 
-  onInfirmier() {
-    this.infirmier = true;
-    this.patient = false ;
-  }
+    onInfirmier() {
+        this.infirmier = true;
+        this.patient = false;
+    }
 
-  onPatient() {
-    this.patient = true ;
-    this.infirmier = false;
-  }
+    onPatient() {
+        this.patient = true;
+        this.infirmier = false;
+    }
 
     ajoutP(): void {
         const dialogRef = this.dialog.open(PatientAddFormComponent, {

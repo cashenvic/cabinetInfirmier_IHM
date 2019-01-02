@@ -6,7 +6,11 @@
             <mat-panel-title class="blue">
                 # {{patient.nom}} {{patient.prenom}}
             </mat-panel-title>
-            <mat-panel-description><i><span *ngIf="!affected">non </span>affecté(e)</i></mat-panel-description>
+            <mat-panel-description *ngIf="!affected"><i>Non affecté(e)</i></mat-panel-description>
+            <mat-panel-description *ngIf="affected">
+                <i>Date d'intervention : {{patient.visite.date}}&nbsp;&nbsp;</i>
+                <mat-icon>event_note</mat-icon>
+            </mat-panel-description>
         </mat-expansion-panel-header>
 
         <div class="panel-body">  
@@ -18,7 +22,7 @@
                 <div class="profilep-info-name"> Sexe <mat-icon>wc</mat-icon></div>
 
                 <div class="profile-info-value">
-                <span>{{patient.sexe}}</span>
+                    <span>{{sexePatient}}</span>
                 </div>
             </div>
 
@@ -49,22 +53,28 @@
                 </div>
             </div>
 
-            <div class="profile-info-row" *ngFor="let id of patient.visite?.actes">
-                <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
+            <div *ngIf="patient.visite != undefined">
+                <!--<div class="profile-info-row" *ngFor="let id of patient.visite.actes">
+                    <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
 
-                <div class="profile-info-value">
-                    <span *ngIf="patient.visite?.actes != undefined">{{actesService.getActesbyId(id).nom}}</span>
-                </div>
-            </div>  
+                    <div class="profile-info-value">
+                        {{actesService.getActesbyId(id).nom}}
+                    </div>
+                </div>-->
+            </div>
             <br/><br/>
             
             <div fxLayoutAlign="center">
                 <button mat-raised-button class="affect" (click)="openAffectationDialog()" style="width: 150px">
-                    Affecter
+                    {{affecterText}}
                 </button>
-            </div>  
-            <div fxLayoutAlign="end">
-                <button mat-raised-button  class="supp" (click)="supprimerInf()" ><mat-icon>delete</mat-icon></button>
+            </div>
+            <!--TODO: Bouton de desaffectation-->
+            <div fxLayoutAlign="center">
+                <button mat-raised-button class="supp" [disabled]="!affected" (click)="desaffect()"
+                        style="width: 150px">
+                    Désaffecter
+                </button>
             </div>                          
         </div>  
 

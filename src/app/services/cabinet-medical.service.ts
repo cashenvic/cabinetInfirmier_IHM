@@ -87,41 +87,8 @@ export class CabinetMedicalService {
       );
     }));
 }
-  
-  private getAdressFrom(root: Element): Adresse {
-    let node: Element;
-    return {
-      ville       : (node = root.querySelector("adresse > ville")     ) ? node.textContent                    : "",
-      codePostal  : (node = root.querySelector("adresse > codePostal")) ? parseInt(node.textContent, 10) : 0,
-      rue         : (node = root.querySelector("adresse > rue")       ) ? node.textContent                    : "",
-      numero      : (node = root.querySelector("adresse > numéro")    ) ? node.textContent                    : "",
-      etage       : (node = root.querySelector("adresse > étage")     ) ? node.textContent                    : "",
-    };
-  }
 
-    getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
-        const infirmier = infirmiers.find((s) => {
-            return s.id === id;
-        });
-        return infirmier;
-    }
-
-    getInfirmierById(id: String, url: string) {
-        this.getData(url).then((cabinet) => {
-            const infirmier = cabinet.infirmiers.find((s) => {
-                return s.id === id;
-            });
-            return infirmier;
-        });
-    }
-
-    async getInfirmiers(url: string): Promise<InfirmierInterface[]> {
-        await this.getData(url).then((cabinet) => {
-            return cabinet.infirmiers;
-        });
-    }
-
-  public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
+    public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
     const res = await this.http.post('/addPatient', {
         patientName: patient.nom,
         patientForname: patient.prenom,
@@ -141,32 +108,65 @@ export class CabinetMedicalService {
         this.cabinet.patientsNonAffectes.push(patient);
         return patient;
     }
-    return null;
-}
+        return null;
+    }
 
-public async affectation(patient: PatientInterface, infirmierId: string): Promise<PatientInterface> {
-  const res = await this.http.post('/affectation', {
-      infirmier: infirmierId,
-      patient: patient.numeroSecuriteSociale
-  }, {observe: 'response'}).toPromise<HttpResponse<any>>();
+    getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
+        const infirmier = infirmiers.find((s) => {
+            return s.id === id;
+        });
+        return infirmier;
+    }
 
-  if (res.status === 200) {
-      return patient;
-  }
-  return null;
-}
+    /*getInfirmierById(id: String, url: string) {
+        this.getData(url).then((cabinet) => {
+            const infirmier = cabinet.infirmiers.find((s) => {
+                return s.id === id;
+            });
+            return infirmier;
+        });
+    }*/
 
-public async desAffectation(patient: PatientInterface): Promise<PatientInterface> {
-  const res = await this.http.post('/affectation', {
-      infirmier: 'none',
-      patient: patient.numeroSecuriteSociale
-  }, {observe: 'response'}).toPromise<HttpResponse<any>>();
+    async getInfirmiers(url: string): Promise<InfirmierInterface[]> {
+        await this.getData(url).then((cabinet) => {
+            return cabinet.infirmiers;
+        });
+    }
 
-  if (res.status === 200) {
-      return patient;
-  }
-  return null;
-}
+    public async affectation(patient: PatientInterface, infirmierId: string): Promise<PatientInterface> {
+        const res = await this.http.post('/affectation', {
+            infirmier: infirmierId,
+            patient: patient.numeroSecuriteSociale
+        }, {observe: 'response'}).toPromise<HttpResponse<any>>();
+
+        if (res.status === 200) {
+            return patient;
+        }
+        return null;
+    }
+
+    public async desAffectation(patient: PatientInterface): Promise<PatientInterface> {
+        const res = await this.http.post('/affectation', {
+            infirmier: 'none',
+            patient: patient.numeroSecuriteSociale
+        }, {observe: 'response'}).toPromise<HttpResponse<any>>();
+
+        if (res.status === 200) {
+            return patient;
+        }
+        return null;
+    }
+
+    private getAdressFrom(root: Element): Adresse {
+        let node: Element;
+        return {
+            ville: (node = root.querySelector("adresse > ville")) ? node.textContent : "",
+            codePostal: (node = root.querySelector("adresse > codePostal")) ? parseInt(node.textContent, 10) : 0,
+            rue: (node = root.querySelector("adresse > rue")) ? node.textContent : "",
+            numero: (node = root.querySelector("adresse > numéro")) ? node.textContent : "",
+            etage: (node = root.querySelector("adresse > étage")) ? node.textContent : "",
+        };
+    }
 
     private getVisiteFrom(root: Element): VisiteInterface {
         let actesId: Array<string> = [];

@@ -8,12 +8,12 @@ import {ActeMedicalService} from '../services/acte-medical.service';
 import {ActeInterface} from '../dataInterfaces/actes';
 
 @Component({
-  selector: 'app-infirmier',
-  templateUrl: './infirmier.component.html',
-  styleUrls: ['./infirmier.component.css']
+    selector: 'app-infirmier',
+    templateUrl: './infirmier.component.html',
+    styleUrls: ['./infirmier.component.css']
 })
 export class InfirmierComponent implements OnInit {
-  panelOpenState = false;
+    panelOpenState = false;
     infirmiers: InfirmierInterface[];
     infirmier: InfirmierInterface;
 
@@ -25,22 +25,23 @@ export class InfirmierComponent implements OnInit {
     constructor(private cabinetService: CabinetMedicalService,
                 private route: ActivatedRoute, private authService: AuthService,
                 private actesService: ActeMedicalService) {
-  }
+        const person = Log.infirmier;
+        this.authService.verifLog(person);
 
-  ngOnInit() {    
-    const person = Log.infirmier;
-    this.authService.verifLog(person);
+        this.id = this.route.snapshot.params['id'];
 
-    this.id = this.route.snapshot.params['id'];
+        this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
+            this.infirmiers = cabinet.infirmiers;
+            this.infirmier = this.cabinetService.getInfirmierById(this.id, this.infirmiers);
+            this.imgSrc = 'data/' + this.infirmier.photo;
+        });
 
-    this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
-      this.infirmiers = cabinet.infirmiers;
-        this.infirmier = this.cabinetService.getInfirmierById(this.id, this.infirmiers);
-        this.imgSrc = 'data/' + this.infirmier.photo;
-    });   
-    
-    this.actesService.getDataActe('/data/actes.xml').then(actes => {
-      this.actesMedical = actes;
-    });
-  }
+        this.actesService.getDataActe('/data/actes.xml').then(actes => {
+            this.actesMedical = actes;
+        });
+    }
+
+    ngOnInit() {
+
+    }
 }
