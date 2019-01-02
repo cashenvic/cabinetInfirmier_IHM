@@ -55,7 +55,6 @@ import {LogSComponent} from './login/log-s/log-s.component';
 import {LogIComponent} from './login/log-i/log-i.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {PatientAddFormComponent} from './patient-add-form/patient-add-form.component';
-import {PatientComponent} from './patient/patient.component';
 import {PatientAffectDialogComponent} from './patient-affect-dialog/patient-affect-dialog.component';
 
 const appRoutes: Routes = [

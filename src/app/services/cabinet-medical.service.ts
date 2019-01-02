@@ -1,15 +1,13 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 
-import { Adresse } from '../dataInterfaces/adresse';
-import { sexeEnum } from '../dataInterfaces/sexe';
-import { InfirmierInterface } from '../dataInterfaces/infirmier';
-import { CabinetInterface } from '../dataInterfaces/cabinet';
-import { PatientInterface } from '../dataInterfaces/patient';
-import { VisiteInterface } from '../dataInterfaces/visite';
+import {Adresse} from '../dataInterfaces/adresse';
+import {sexeEnum} from '../dataInterfaces/sexe';
+import {InfirmierInterface} from '../dataInterfaces/infirmier';
+import {CabinetInterface} from '../dataInterfaces/cabinet';
+import {PatientInterface} from '../dataInterfaces/patient';
+import {VisiteInterface} from '../dataInterfaces/visite';
 
-import { Injectable } from '@angular/core';
-import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
-import { element } from '@angular/core/src/render3';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -101,18 +99,12 @@ export class CabinetMedicalService {
     };
   }
 
-  private getVisiteFrom(root : Element): VisiteInterface {
-    let node: Element;
-    let actesId : Array<string> = [];
-    root.querySelectorAll("acte").forEach( (element) => {
-        actesId.push(element.getAttribute("id"));
+    getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
+        const infirmier = infirmiers.find((s) => {
+            return s.id === id;
     });
-    return {
-      intervenant : root.querySelector("visite").getAttribute("intervenant"),
-      date        : root.querySelector("visite").getAttribute("date"),
-      actes       : actesId
-    };
-  }
+        return infirmier;
+    }
 
 
   public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
@@ -162,13 +154,16 @@ public async desAffectation(patient: PatientInterface): Promise<PatientInterface
   return null;
 }
 
-getInfirmierById(id: String,infirmiers : InfirmierInterface[]) {
-  const infirmier = infirmiers.find(
-    (s) => {
-      return s.id === id;
+    private getVisiteFrom(root: Element): VisiteInterface {
+        let actesId: Array<string> = [];
+        root.querySelectorAll("acte").forEach((elt) => {
+            actesId.push(elt.getAttribute("id"));
+        });
+        return {
+            intervenant: root.querySelector("visite").getAttribute("intervenant"),
+            date: root.querySelector("visite").getAttribute("date"),
+            actes: actesId
+        };
     }
-  );
-  return infirmier;
-}
  
 }

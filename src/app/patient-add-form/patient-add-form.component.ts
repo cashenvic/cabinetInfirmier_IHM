@@ -18,6 +18,7 @@ export class PatientAddFormComponent implements OnInit {
         prenom: '',
         nom: '',
         sexe: null,
+        naissance: '',
         numeroSecuriteSociale: '',
         adresse: {
             ville: '',
@@ -25,6 +26,11 @@ export class PatientAddFormComponent implements OnInit {
             rue: '',
             numero: '',
             etage: '',
+        },
+        visite: {
+            intervenant: '',
+            date: '',
+            actes: [],
         }
     };
 
