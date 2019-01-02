@@ -204,7 +204,11 @@ body{margin-top:20px;}
 .affect{
     background: #80cbc4!important;
     color:white!important
+}
 
+.desaff {
+    background: #ff9800 !important;
+    color: white !important;
 }
 
 .supp{

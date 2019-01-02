@@ -65,16 +65,19 @@
             <br/><br/>
             
             <div fxLayoutAlign="center">
-                <button mat-raised-button class="affect" (click)="openAffectationDialog()" style="width: 150px">
+                <button mat-raised-button
+                        matTooltip="Affecter le patient un infirmier"
+                        class="affect mr-2" (click)="openAffectationDialog()" style="width: 150px">
                     {{affecterText}}
                 </button>
-            </div>
-            <!--TODO: Bouton de desaffectation-->
-            <div fxLayoutAlign="center">
-                <button mat-raised-button class="supp" [disabled]="!affected" (click)="desaffect()"
+                <button mat-raised-button
+                        matTooltip="Désaffecter le patient de cet infirmier"
+                        class="desaff" [disabled]="!affected" (click)="desaffect()"
                         style="width: 150px">
                     Désaffecter
                 </button>
+            </div>
+            <div fxLayoutAlign="center">
             </div>                          
         </div>  
 
