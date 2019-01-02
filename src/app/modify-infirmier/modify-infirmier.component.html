@@ -13,8 +13,8 @@
         </mat-expansion-panel-header>
 
         <div>
-            <div class="panel-body">                
-                <app-profil-inf [infirmier]="infirmier"></app-profil-inf>               
+            <div class="panel-body">
+                <app-profil-inf [infirmier]="infirmier" (desaffecterEmitter)="onPatientDesaff()"></app-profil-inf>
             </div>
         </div>       
     </mat-expansion-panel>

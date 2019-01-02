@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {InfirmierInterface} from '../dataInterfaces/infirmier';
 import {PatientInterface} from '../dataInterfaces/patient';
 import {ActeMedicalService} from '../services/acte-medical.service';
@@ -23,6 +23,7 @@ export class ProfilInfComponent implements OnInit {
 
     affecter = false;
     desaffecter = false;
+    @Output() desaffecterEmitter: EventEmitter<PatientInterface> = new EventEmitter<PatientInterface>();
 
     constructor(private actesService: ActeMedicalService, private authService: AuthService, private cabinetService: CabinetMedicalService) {
 
@@ -50,8 +51,8 @@ export class ProfilInfComponent implements OnInit {
         this.affecter = true;
     }
 
-    desaffecterPat() {
-        this.desaffecter = true;
+    onDesaffecterPat() {
+        this.desaffecterEmitter.emit();
     }
 
     getInfirmiers() {

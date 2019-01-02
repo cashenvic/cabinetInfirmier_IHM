@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {InfirmierInterface} from '../dataInterfaces/infirmier';
 import {Router} from '@angular/router';
@@ -13,6 +13,7 @@ import {Log} from '../dataInterfaces/Log';
 export class ModifyInfirmierComponent implements OnInit {
   ajouter = false;
     infirmiers: InfirmierInterface[];
+    @Output() patientDesaff = new EventEmitter();
 
     constructor(private cabinetService: CabinetMedicalService, private router: Router, private authService: AuthService) {
   }
@@ -30,5 +31,9 @@ export class ModifyInfirmierComponent implements OnInit {
         this.ajouter = true;
     this.router.navigate(['ajout-infirmier']);
   }
+
+    onPatientDesaff() {
+        this.patientDesaff.emit();
+    }
 
 }

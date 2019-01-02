@@ -48,7 +48,7 @@
 
             <mat-accordion>
               <app-modify-patient *ngFor="let p of patients" [patient]="p" [affected]="true"
-                                  [infirmiers]="infirmiers" (desAffectionEmitter)="ngOnInit()">
+                                  [infirmiers]="infirmiers" (desAffectionEmitter)="onDesaffecterPat()">
               </app-modify-patient>
               <!-- <mat-expansion-panel
                *ngFor="let patient of infirmier.patients"
