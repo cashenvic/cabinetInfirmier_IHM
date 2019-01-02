@@ -111,26 +111,18 @@ export class CabinetMedicalService {
         return null;
     }
 
-    getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
+    public getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
         const infirmier = infirmiers.find((s) => {
             return s.id === id;
         });
         return infirmier;
     }
 
-    /*getInfirmierById(id: String, url: string) {
-        this.getData(url).then((cabinet) => {
-            const infirmier = cabinet.infirmiers.find((s) => {
-                return s.id === id;
-            });
-            return infirmier;
-        });
-    }*/
-
-    async getInfirmiers(url: string) {
+    async getInfirmiers(url: string) : Promise< InfirmierInterface[] > {
         await this.getData(url).then((cabinet) => {
             return cabinet.infirmiers;
         });
+        return null;
     }
 
     public async affectation(patient: PatientInterface, infirmierId: string): Promise<PatientInterface> {
