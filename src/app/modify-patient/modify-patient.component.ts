@@ -26,8 +26,9 @@ export class ModifyPatientComponent implements OnInit {
   affecter = false;
   supprimer = false;
     patients: PatientInterface[];
-    @Input() patient;
+    @Input() patient: PatientInterface;
     @Input() infirmiers: InfirmierInterface[];
+    @Input() affected: boolean;
     @Output() affectionEmitter: EventEmitter<AffectationPatientDialogData> = new EventEmitter();
     @Output() desAffectionEmitter: EventEmitter<PatientInterface> = new EventEmitter();
 
@@ -46,6 +47,15 @@ export class ModifyPatientComponent implements OnInit {
     }); 
 
   }
+
+    patientActions() {
+        //call either affect or desaffect
+        if (this.affected) {
+
+        } else {
+            this.openAffectationDialog();
+        }
+    }
 
     openAffectationDialog(): void {
         const dialogRef = this.dialog.open(PatientAffectDialogComponent, {

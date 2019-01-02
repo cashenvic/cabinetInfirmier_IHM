@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { InfirmierInterface } from '../dataInterfaces/infirmier';
-import { PatientInterface } from '../dataInterfaces/patient';
-import { ActeMedicalService } from '../services/acte-medical.service';
-import { AuthService } from '../services/auth.service';
-import { Log } from '../dataInterfaces/Log';
-import { ActeInterface } from '../dataInterfaces/actes';
+import {Component, Input, OnInit} from '@angular/core';
+import {InfirmierInterface} from '../dataInterfaces/infirmier';
+import {PatientInterface} from '../dataInterfaces/patient';
+import {ActeMedicalService} from '../services/acte-medical.service';
+import {AuthService} from '../services/auth.service';
+import {Log} from '../dataInterfaces/Log';
+import {ActeInterface} from '../dataInterfaces/actes';
+import {CabinetMedicalService} from "../services/cabinet-medical.service";
 
 @Component({
   selector: 'app-profil-inf',
@@ -14,24 +15,25 @@ import { ActeInterface } from '../dataInterfaces/actes';
 export class ProfilInfComponent implements OnInit {
   @Input() infirmier : InfirmierInterface;
   imgSrc: string;
-  patients : PatientInterface[];
-  actesMedical : ActeInterface;
+    patients: PatientInterface[];
+    actesMedical: ActeInterface;
+    infirmiers: InfirmierInterface[];
 
   panelOpenState = false;
   
   affecter = false;
   desaffecter = false;
-  
-  constructor(private actesService : ActeMedicalService, private authService : AuthService,){
 
+    constructor(private actesService: ActeMedicalService, private authService: AuthService, private cabinetService: CabinetMedicalService) {
+        this.getInfirmiers();
   }
   ngOnInit() {
     const person = Log.secretaire;
     this.authService.verifLog(person);
 
     this.actesService.getDataActe('/data/actes.xml').then(actes => {
-      this.actesMedical = actes;      
-      console.log(this.actesMedical.types);
+      this.actesMedical = actes;
+        //console.log(this.actesMedical.types);
     });  
 
     this.imgSrc = 'data/' + this.infirmier.photo;
@@ -47,5 +49,9 @@ export class ProfilInfComponent implements OnInit {
     this.desaffecter=true;
   }
 
-
+    getInfirmiers() {
+        this.cabinetService.getInfirmiers('/data/cabinetInfirmier.xml').then((inf) => {
+            this.infirmiers = inf;
+        });
+    }
 }

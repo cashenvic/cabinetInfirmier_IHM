@@ -35,19 +35,12 @@ export class InfirmierComponent implements OnInit {
 
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.infirmiers = cabinet.infirmiers;
-      this.infirmier = this.cabinetService.getInfirmierById(this.id,this.infirmiers);       
-      this.imgSrc = 'data/' + this.infirmier.photo; 
-      
+        this.infirmier = this.cabinetService.getInfirmierById(this.id, this.infirmiers);
+        this.imgSrc = 'data/' + this.infirmier.photo;
     });   
     
     this.actesService.getDataActe('/data/actes.xml').then(actes => {
-      this.actesMedical = actes;      
-    });   
-
-
+      this.actesMedical = actes;
+    });
   }
-
-  
-
-
 }

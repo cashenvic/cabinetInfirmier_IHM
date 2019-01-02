@@ -41,7 +41,9 @@
               </div>
 
               <mat-accordion>
-                  <app-modify-patient *ngFor="let pat of infirmier.patients" [patient]="pat"></app-modify-patient>
+                  <app-modify-patient *ngFor="let pat of infirmier.patients" [patient]="pat" [affected]="true"
+                                      [infirmiers]="infirmiers">
+                  </app-modify-patient>
                   <!--<mat-expansion-panel
                   *ngFor="let patient of infirmier.patients"
                   (opened)="panelOpenState = true"
