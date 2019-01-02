@@ -127,7 +127,7 @@ export class CabinetMedicalService {
         });
     }*/
 
-    async getInfirmiers(url: string): Promise<InfirmierInterface[]> {
+    async getInfirmiers(url: string) {
         await this.getData(url).then((cabinet) => {
             return cabinet.infirmiers;
         });
