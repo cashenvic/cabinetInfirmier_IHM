@@ -35,6 +35,8 @@ export class ModifyPatientComponent implements OnInit {
 
     actesMedical: ActeInterface;
 
+    tooltipAffecterPatient: string;
+
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -48,7 +50,9 @@ export class ModifyPatientComponent implements OnInit {
 
         if (this.affected) {
             this.affecterText = "Réaffecter";
+            this.tooltipAffecterPatient = "Réaffecter le patient à un autre infirmier";
         } else {
+            this.tooltipAffecterPatient = "Affecter le patient à un infirmier";
             this.affecterText = "Affecter";
         }
         
