@@ -35,6 +35,8 @@ export class InfirmierComponent implements OnInit {
     this.imgSrc = 'data/' + this.infirmier.photo;      
      
   }
+ 
+
 
 
 }
