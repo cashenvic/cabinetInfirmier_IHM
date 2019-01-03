@@ -22,10 +22,10 @@ export class AppComponent {
     //pull les données cabinetInfirmier.xml à partir du serveur
     this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
       this.cabinetNom = cabinet.nom;
-      //console.log('cabinet :' + this.cabinetNom);
     });
     this.cabinetImg = 'data/hospital-icon.png';
 
+    //pull les données actes.xml à partir du serveur
     this.actesService.getDataActe('/data/actes.xml');
 
   }

@@ -8,7 +8,7 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Nom</mat-label>
-                <input matInput type="text" id="nom" name="nom" pattern="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+"
+                <input matInput type="text" id="nom" name="nom" pattern="[A-Z]([a-z]*[üûùôïîëêèéçâà '-]*[A-Z]*){2,20}$"
                        [(ngModel)]="data.patient.nom" placeholder="Nom" required/>
             </mat-form-field>
         </div>
@@ -16,7 +16,7 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Prénom</mat-label>
-                <input matInput type="text" id="prenom" name="prenom" pattern="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+"
+                <input matInput type="text" id="prenom" name="prenom" pattern="[A-Z]([a-z]*[üûùôïîëêèéçâà '-]*[A-Z]*){2,20}$"
                        [(ngModel)]="data.patient.prenom" placeholder="Prénom" required/>
             </mat-form-field>
         </div>
@@ -54,17 +54,17 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Numéro</mat-label>
-                <input matInput type="number" ngModel="data.patient.adresse" id="numero" name="numero"
-                        placeholder="Numéro"  pattern="[0-9]+"
-                        [(ngModel)]="data.patient.adresse.numero" required/>
+                <input matInput type="number" id="numero" name="numero"
+                        placeholder="Numéro Facultatif"  pattern="[0-9]{1,5}"
+                        [(ngModel)]="data.patient.adresse.numero"/>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Rue</mat-label>
-                <input matInput type="text" ngModel="data.patient.adresse" id="rue" placeholder="Rue" name="rue"
-                        [(ngModel)]="data.patient.adresse.rue" pattern="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+" required/>
+                <input matInput type="text" id="rue" placeholder="Rue" name="rue"
+                        [(ngModel)]="data.patient.adresse.rue" pattern="([a-z]*[ÿüûùôïîëêèéçâàŸÜÛÙÔÏÎËÊÈÉÇÂÀ '-]*[A-Z]*){5,50}$" required/>
             </mat-form-field>
         </div>
 
@@ -73,8 +73,8 @@
                 <mat-label>Etage</mat-label>
                 <!--https://fr.sputniknews.com/insolite/201512011019945249-arabie-saoudite-gratte-ciel-record/-->
                 <!-- +1 juste au cas ou ;)-->
-                <input matInput type="number" min="0" max="201" ngModel="data.patient.adresse" id="etage" name="etage"
-                       placeholder="Etage" pattern="[0-9]+"
+                <input matInput type="number" min="1" max="201" id="etage" name="etage"
+                       placeholder="Etage Facultatif"
                        [(ngModel)]="data.patient.adresse.etage"/>
             </mat-form-field>
         </div>
@@ -82,8 +82,8 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Ville</mat-label>
-                <input matInput type="text" ngModel="data.patient.adresse" id="ville" placeholder="Grenoble"
-                       name="ville" pattern="[\p{L}\p{Zs}\p{S}\p{Pd}\*ç\*']+"
+                <input matInput type="text" id="ville" placeholder="Ville"
+                       name="ville" pattern="([a-z]*[ÿüûùôïîëêèéçâàŸÜÛÙÔÏÎËÊÈÉÇÂÀ '-]*[A-Z]*){3,20}$"
                        [(ngModel)]="data.patient.adresse.ville" required/>
             </mat-form-field>
         </div>
@@ -91,25 +91,25 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Code postal</mat-label>
-                <input matInput type="number" pattern="\d\d\d\d\d" ngModel="data.patient.adresse" id="codepostal"
-                       placeholder="38000"
-                       name="codepostal"
+                <input matInput type="number" pattern="\d\d\d\d\d" id="codepostal"
+                       placeholder="5 chifres"   name="codepostal"
                        [(ngModel)]="data.patient.adresse.codePostal" required/>
             </mat-form-field>
         </div>
 
-        <!--actes-->
-
-        <!--intervenant-->
-
-        <!--date de visite-->
+        <!--
+        - actes
+        - intervenant
+        - date de visite
+        on peut ajouter l'ajout de ces 3 champs mais le serveur ne prends en compte ces champs
+        -->
 
     </form>
 </div>
 <!-- cdkFocusInitial dirige le focus vers l'element-->
 <div mat-dialog-actions fxLayoutAlign="center">
-    <button mat-raised-button class="annuler" (click)="onNoClick()" class="mr-3 w-25">Annuler</button>
-    <button mat-raised-button class="ok" [mat-dialog-close]="data.patient" cdkFocusInitial
+    <button mat-raised-button class="mr-3 w-25 annuler" (click)="onNoClick()" >Annuler</button>
+    <button mat-raised-button class="enregist" [mat-dialog-close]="data.patient" cdkFocusInitial
             [disabled]="!formulaire.valid" class="w-25">
         Enregistrer
     </button>

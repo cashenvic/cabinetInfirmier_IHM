@@ -35,9 +35,9 @@ export class PatientAddFormComponent implements OnInit {
 
     ngOnInit() {
         if (this.data.ajout) {
-            this.titreDialog = "Ajouter un patient";
+            this.titreDialog = "Ajout d'un nouveau patient";
         } else {
-            this.titreDialog = "Modifier un patient";
+            this.titreDialog = "Modification des données d'un patient";
         }
     }
 
