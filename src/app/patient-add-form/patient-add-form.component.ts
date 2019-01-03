@@ -1,9 +1,14 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, NgModule, OnInit, ViewChild} from '@angular/core';
 import {PatientInterface} from '../dataInterfaces/patient';
 import {NgForm} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MAT_DATE_LOCALE, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {AffectationPatientDialogData} from "../modify-patient/modify-patient.component";
 
+@NgModule({
+    providers: [
+        {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+    ],
+})
 
 @Component({
     selector: 'app-patientaddform',
@@ -33,6 +38,8 @@ export class PatientAddFormComponent implements OnInit {
             actes: [],
         }
     };
+    // pour eviter de choisir des dates de naissances dans le futur
+    maxDate = new Date();
 
     constructor(public snackBar: MatSnackBar,
                 public dialogRef: MatDialogRef<PatientAddFormComponent>,
