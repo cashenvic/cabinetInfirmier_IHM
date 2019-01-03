@@ -1,5 +1,6 @@
 <!--barre de navigation-->
-<mat-sidenav-container>
+<mat-sidenav-container >
+
   <!--contenu du menu-->
   <mat-sidenav #sidenav role="navigation" class="siv">
       <mat-nav-list (sidenavClose)="sidenav.close()">
@@ -10,7 +11,7 @@
               <mat-icon>local_hospital</mat-icon><span class="nav-caption">Infirmier</span>
           </a>
           <a mat-list-item *ngIf="authService.isAuth" routerLink="login" (click)="onSidenavClose();Logout()">
-              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">Déconnecter</span>
+              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">déconnecter</span>
           </a>
         </mat-nav-list>
   </mat-sidenav>
@@ -36,12 +37,12 @@
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
           <ul fxLayout fxLayoutGap="15px" class="navigation-items">
           <li>                    
-            <a routerLink="login" *ngIf="!authService.isAuth" >Login
+            <a routerLink="login" *ngIf="!authService.isAuth" > connecter
               <button mat-icon-button>
-                  <mat-icon>people_outline</mat-icon>
+                  <mat-icon>person</mat-icon>
               </button>
             </a>
-            <a routerLink="login" *ngIf="authService.isAuth" (click)="Logout()"> Logout
+            <a routerLink="login" *ngIf="authService.isAuth" (click)="Logout()"> déconnecter
               <button mat-icon-button>
                 <mat-icon>exit_to_app</mat-icon>
               </button>
@@ -52,11 +53,18 @@
 
       </mat-toolbar>
 
-    <main> 
+    <main class="container"> 
       <!--redirection-->    
-      <router-outlet></router-outlet>
+      <router-outlet ></router-outlet>
+      <br/><br/><br/>
     </main>
-    
+   
+    <footer class="page-footer font-small fixed-bottom" fxLayoutAlign="center center" >
+      <div class="footer-copyright text-center">© 2019 Copyright :
+        <a href="https://gitlab.com/yakuzHanh/clientangular"> Do Hanh - Cisse Drissa</a>
+      </div>
+    </footer>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
 

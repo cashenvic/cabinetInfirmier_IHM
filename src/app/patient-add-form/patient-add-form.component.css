@@ -1,3 +1,13 @@
 mat-form-field {
     width: 100%;
 }
+
+.ok{
+    background: #53b658!important;
+    color:white!important
+}
+
+.annuler{
+    background: #d60000!important;
+    color:white!important
+}

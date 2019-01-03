@@ -37,7 +37,7 @@ mat-toolbar{
 
 .entete{
     height: 80px;
-    background: #00897b!important
+    background: #00695c!important
 }
 
 .icon-main{
@@ -59,4 +59,17 @@ mat-toolbar{
 
 .siv{
     background: #fafafa!important
+}
+
+
+main {
+    overflow-y: auto;
+    flex: 1;
+}
+
+footer{
+    background: #00695c!important;
+    color: white!important;
+    height: 5%;
+    font-size: small;
 }
