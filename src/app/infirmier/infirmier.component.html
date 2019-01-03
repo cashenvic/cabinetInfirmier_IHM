@@ -40,16 +40,18 @@
                   </h4>
                 </div>
 
-                <mat-accordion >
+                <mat-accordion class="card" >
+                  <!--contenu-->
                   <mat-expansion-panel 
                   *ngFor="let patient of infirmier.patients"
                   (opened)="panelOpenState = true"
-                  (closed)="panelOpenState = false">
+                  (closed)="panelOpenState = false" >
+
                     <mat-expansion-panel-header class="lightsmoke">
                       <mat-panel-title class="blue">
                         # {{patient.nom}} {{patient.prenom}}
                       </mat-panel-title>
-                      <mat-panel-description>
+                      <mat-panel-description fxLayoutAlign="end">
                         <i>date d'intervention : {{patient.visite.date}}&nbsp;&nbsp;</i>
                         <mat-icon>event_note</mat-icon>
                       </mat-panel-description>
@@ -82,7 +84,7 @@
                       </div>
 
                       <div class="profile-info-row">
-                        <div class="profilep-info-name"> Numéro de sécurité sociale <mat-icon>note_add</mat-icon></div>
+                        <div class="profilep-info-name"> N° de sécurité sociale <mat-icon>note_add</mat-icon></div>
 
                         <div class="profile-info-value">
                           <span>{{patient.numeroSecuriteSociale}}</span>
@@ -100,16 +102,26 @@
                         </div>
                       </div>  
 
-                      <div class="profile-info-row">
+                      <!--<div class="profile-info-row">
                         <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
                         
                         <div class="profile-info-value" *ngFor="let id of patient.visite.actes">                            
                           <span>{{actesService.getActesbyId(id).nom}}</span>
                         </div>
-                      </div>  
+                      </div> -->
                                                 
-                    </div>  
-                  </mat-expansion-panel>
+                    </div> 
+                    <div *ngIf="patient.visite.actes !== ''">
+                      <hr>
+                      <h5 class="blue">
+                        <span class="middle">Soins</span>
+                      </h5><br/>
+
+                      <app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>
+    
+                    </div>
+                    
+                  </mat-expansion-panel> <!--fin contenu-->
                 </mat-accordion> <!--finpatient-->
               </div>
             </div>              

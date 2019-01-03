@@ -38,10 +38,7 @@ export class ModifyPatientComponent implements OnInit {
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
-        //pull les données actes.xml à partir du serveur            
-        this.actesService.getDataActe('/data/actes.xml').then(actes => {
-            this.actesMedical = actes;
-        });
+        this.actesMedical =  this.actesService.actesMedical;
     }
 
     ngOnInit() {

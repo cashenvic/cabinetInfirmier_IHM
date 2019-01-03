@@ -33,15 +33,9 @@ export class ProfilInfComponent implements OnInit {
         const person = Log.secretaire;
         this.authService.verifLog(person);
 
-        this.cabinetService.getInfirmiers('/data/cabinetInfirmier.xml').then((inf) => {
-            this.infirmiers = inf;
-        });
-
-        this.actesService.getDataActe('/data/actes.xml').then(actes => {
-            this.actesMedical = actes;
-            //console.log(this.actesMedical.types);
-        });
-
+        this.infirmiers = this.cabinetService.cabinet.infirmiers;
+        this.actesMedical =  this.actesService.actesMedical;
+        
         this.imgSrc = 'data/' + this.infirmier.photo;
         this.patients = this.infirmier.patients;
     }

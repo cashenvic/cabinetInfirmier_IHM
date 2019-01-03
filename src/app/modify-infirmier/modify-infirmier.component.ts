@@ -32,10 +32,7 @@ export class ModifyInfirmierComponent implements OnInit {
         const person = Log.secretaire;
         this.authService.verifLog(person);
 
-        //pull les données cabinetInfirmier.xml à partir du serveur
-        this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
-            this.infirmiers = cabinet.infirmiers;
-        });
+        this.infirmiers = this.cabinetService.cabinet.infirmiers;
 
         this.imgSrc = 'data/' + this.infirmier.photo;
         this.patients = this.infirmier.patients;

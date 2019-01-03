@@ -61,14 +61,14 @@
                 </div>
             </div>
 
-            <div *ngIf="patient.visite != undefined">
-                <div class="profile-info-row" *ngFor="let id of patient.visite.actes">
-                    <div class="profilep-info-name"> Soins <mat-icon>local_hospital</mat-icon></div>
+            <div *ngIf="patient.visite.actes !== ''">
+                <hr>
+                <h5 class="blue">
+                    <span class="middle">Soins</span>
+                </h5><br/>
 
-                    <div class="profile-info-value">
-                        {{actesService.getActesbyId(id).nom}}
-                    </div>
-                </div>
+                <app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>
+
             </div>
             <br/><br/>
             

@@ -9,7 +9,7 @@ export class ActeMedicalService {
 
   private domParser: DOMParser = new DOMParser();
   private doc: Document;
-    private actesMedical: ActeInterface;
+  public actesMedical: ActeInterface;
 
   constructor(private http: HttpClient) {
   }
@@ -54,7 +54,7 @@ export class ActeMedicalService {
   }
 
   //fonction pour obtenir les données de l'acte dont l'id est donnée en paramètre
-  private getActesbyId(id : string){
+  public getActesbyId(id : string ){
     const actes = this.actesMedical.actes.find(element => {
       return element.id === id;
     }
@@ -63,7 +63,7 @@ export class ActeMedicalService {
   }
 
   //fonction pour obtenir les données du type dont l'id est donnée en paramètre
-  private getTypesbyId(id : string){
+  public getTypesbyId(id : string){
     const types = this.actesMedical.types.find(element => {
       return element.id === id;
     }
@@ -72,7 +72,7 @@ export class ActeMedicalService {
   }
 
   //fonction pour obtenir le coût du soins
-  private facture(coef : string, cle : string) {
+  public facture(coef : string, cle : string) {
     let total = 0.0;
     switch(cle){
       case "AMI": total = 3.15 * (+coef) ;

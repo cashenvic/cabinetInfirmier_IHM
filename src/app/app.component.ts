@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output  } from '@angular/core';
 import { CabinetMedicalService } from './services/cabinet-medical.service';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { ActeMedicalService } from './services/acte-medical.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent {
   cabinetNom : String;
   cabinetImg : String; 
 
-  constructor(  private router: Router, private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
+  constructor( private actesService : ActeMedicalService,  private router: Router, private cabinetService : CabinetMedicalService,  private authService : AuthService ) { 
   }
   ngOnInit() {
     //pull les données cabinetInfirmier.xml à partir du serveur
@@ -24,6 +25,9 @@ export class AppComponent {
       //console.log('cabinet :' + this.cabinetNom);
     });
     this.cabinetImg = 'data/hospital-icon.png';
+
+    this.actesService.getDataActe('/data/actes.xml');
+
   }
 
   public onSidenavClose = () => {

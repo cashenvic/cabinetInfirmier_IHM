@@ -6,7 +6,7 @@ export interface PatientInterface {
  prenom: string;
  nom: string;
  sexe: sexeEnum;
-    naissance: string;
+ naissance: string;
  numeroSecuriteSociale: string;
  adresse: Adresse;
  visite: VisiteInterface;

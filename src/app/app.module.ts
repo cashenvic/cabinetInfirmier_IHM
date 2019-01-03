@@ -56,6 +56,7 @@ import {LogIComponent} from './login/log-i/log-i.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {PatientAddFormComponent} from './patient-add-form/patient-add-form.component';
 import {PatientAffectDialogComponent} from './patient-affect-dialog/patient-affect-dialog.component';
+import { CoutSoinsComponent } from './cout-soins/cout-soins.component';
 
 const appRoutes: Routes = [
   { path: 'main', component: AppComponent },
@@ -85,6 +86,7 @@ const appRoutes: Routes = [
       NotFoundComponent,
       PatientAddFormComponent,
       PatientAffectDialogComponent,
+      CoutSoinsComponent,
   ],
   imports: [
     BrowserModule,

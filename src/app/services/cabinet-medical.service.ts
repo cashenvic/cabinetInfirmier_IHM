@@ -16,7 +16,7 @@ export class CabinetMedicalService {
 
   private domParser: DOMParser = new DOMParser();
   private doc: Document;
-  private cabinet: CabinetInterface;
+  public cabinet: CabinetInterface;
 
   constructor(private http: HttpClient) {
   }
@@ -113,19 +113,11 @@ export class CabinetMedicalService {
     }
 
     //fonction pour obtenir les données du l'infirmier dont l'id est donnée en paramètre
-    public getInfirmierById(id: String, infirmiers: InfirmierInterface[]) {
-        const infirmier = infirmiers.find((s) => {
+    public getInfirmierById(id: string) {
+        const infirmier = this.cabinet.infirmiers.find((s) => {
             return s.id === id;
         });
         return infirmier;
-    }
-
-    //fonction pour obtenir les données des infirmiers du cabinet
-    async getInfirmiers(url: string) : Promise< InfirmierInterface[] > {
-        await this.getData(url).then((cabinet) => {
-            return cabinet.infirmiers;
-        });
-        return null;
     }
 
     //fonction pour affecter le patient à l'infirmier dont l'id est passé en paramètre
