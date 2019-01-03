@@ -77,7 +77,7 @@
             
             <div fxLayoutAlign="center">
                 <!--button modifier patient-->
-                <button mat-raised-button
+                <button mat-raised-button *ngIf="!inInfirmier"
                         matTooltip="Modifier ce patient"
                         [matTooltipShowDelay]="showDelay"
                         class="mr-2 w-25" (click)="modifier()">

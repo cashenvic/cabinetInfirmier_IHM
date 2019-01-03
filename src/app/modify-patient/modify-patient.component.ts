@@ -29,6 +29,7 @@ export class ModifyPatientComponent implements OnInit {
     @Input() patient: PatientInterface;
     @Input() infirmiers: InfirmierInterface[];
     @Input() affected: boolean;
+    @Input() inInfirmier: boolean;
     @Output() affectionEmitter: EventEmitter<AffectationPatientDialogData> = new EventEmitter();
     @Output() desAffectionEmitter: EventEmitter<PatientInterface> = new EventEmitter();
     affecterText: string;
@@ -115,13 +116,11 @@ export class ModifyPatientComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
-                console.log('le patient etait ' + patient.sexe);
                 if (patient.sexe === 'M') {
                     patient.sexe = sexeEnum.M;
                 } else {
                     patient.sexe = sexeEnum.F;
                 }
-                console.log('le patient est now ' + patient.sexe);
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
