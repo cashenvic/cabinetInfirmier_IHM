@@ -66,28 +66,34 @@
                 <h5 class="blue">
                     <span class="middle">Soins</span>
                 </h5><br/>
-
-                <app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>
+                <button (click)="openFacture()" mat-raised-button
+                        matTooltip="Afficher le detail des soins"
+                        [matTooltipShowDelay]="showDelay">Facture detaillée
+                </button>
+                <!--<app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>-->
 
             </div>
             <br/><br/>
             
             <div fxLayoutAlign="center">
                 <!--button modifier patient-->
-                <button mat-raised-button
+                <button mat-raised-button *ngIf="!inInfirmier"
                         matTooltip="Modifier ce patient"
+                        [matTooltipShowDelay]="showDelay"
                         class="mr-2 w-25" (click)="modifier()">
                     Modifier
                 </button>
                 <!--button affecter-->
                 <button mat-raised-button
                         matTooltip="{{tooltipAffecterPatient}}"
+                        [matTooltipShowDelay]="showDelay"
                         class="affect mr-2 w-25" (click)="openAffectationDialog()" style="width: 150px">
                     {{affecterText}}
                 </button>
                  <!--button désaffecter-->
                 <button mat-raised-button
                         matTooltip="Désaffecter le patient de cet infirmier"
+                        [matTooltipShowDelay]="showDelay"
                         class="desaff w-25" [disabled]="!affected" (click)="desaffect()"
                         style="width: 150px">
                     Désaffecter

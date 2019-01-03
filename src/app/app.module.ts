@@ -163,7 +163,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule
   ],
-    entryComponents: [PatientAddFormComponent, PatientAffectDialogComponent],
+    entryComponents: [PatientAddFormComponent, PatientAffectDialogComponent, CoutSoinsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

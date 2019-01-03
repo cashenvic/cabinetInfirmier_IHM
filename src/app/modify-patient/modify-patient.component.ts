@@ -10,6 +10,7 @@ import {InfirmierInterface} from "../dataInterfaces/infirmier";
 import {PatientAffectDialogComponent} from "../patient-affect-dialog/patient-affect-dialog.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
+import {CoutSoinsComponent, soinInterface} from "../cout-soins/cout-soins.component";
 
 export interface AffectationPatientDialogData {
     ajout: boolean;
@@ -24,12 +25,11 @@ export interface AffectationPatientDialogData {
 })
 export class ModifyPatientComponent implements OnInit {
     ajouter = false;
-    affecter = false;
-    supprimer = false;
-    patients: PatientInterface[];
+    showDelay = 400;
     @Input() patient: PatientInterface;
     @Input() infirmiers: InfirmierInterface[];
     @Input() affected: boolean;
+    @Input() inInfirmier: boolean;
     @Output() affectionEmitter: EventEmitter<AffectationPatientDialogData> = new EventEmitter();
     @Output() desAffectionEmitter: EventEmitter<PatientInterface> = new EventEmitter();
     affecterText: string;
@@ -38,6 +38,15 @@ export class ModifyPatientComponent implements OnInit {
     actesMedical: ActeInterface;
 
     tooltipAffecterPatient: string;
+
+    //variables soins
+    acteSoin: Array<string>;
+    total: number = 0.0;
+
+    dataActePatient: Array<soinInterface> = [];
+    displayedColumns: string[] = ['acteId', 'type', 'libelle', 'cout'];
+
+    //fin variables soins
 
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
@@ -65,6 +74,40 @@ export class ModifyPatientComponent implements OnInit {
         }
     }
 
+    openFacture() {
+        let unSoin: soinInterface = {
+            id: "",
+            type: "",
+            libelle: "",
+            cout: 0.0,
+        };
+
+        this.acteSoin = this.patient.visite.actes;
+
+        this.acteSoin.forEach(element => {
+            unSoin.id = this.actesService.getActesbyId(element).id;
+            unSoin.type = this.actesService.getActesbyId(element).type;
+            unSoin.libelle = this.actesService.getActesbyId(element).nom;
+
+            let coef = this.actesService.getActesbyId(element).coef;
+            let cle = this.actesService.getActesbyId(element).cle;
+            let cout = this.actesService.facture(coef, cle);
+            unSoin.cout = cout;
+
+            this.total += (+cout);
+
+            this.dataActePatient.push(unSoin);
+        });
+        console.log('le total du cout des actes est: ' + this.total);
+        const dialogRef = this.dialog.open(CoutSoinsComponent, {
+            width: '750px',
+            data: {actes: this.dataActePatient, patient: this.patient, total: this.total}
+        });
+
+        dialogRef.afterClosed().subscribe(patient => {
+        });
+    }
+
     modifier() {
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
@@ -73,13 +116,11 @@ export class ModifyPatientComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
-                console.log('le patient etait ' + patient.sexe);
                 if (patient.sexe === 'M') {
                     patient.sexe = sexeEnum.M;
                 } else {
                     patient.sexe = sexeEnum.F;
                 }
-                console.log('le patient est now ' + patient.sexe);
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
