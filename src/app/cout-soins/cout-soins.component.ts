@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActeMedicalService } from '../services/acte-medical.service';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {ActeMedicalService} from '../services/acte-medical.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {AffectationPatientDialogData} from "../modify-patient/modify-patient.component";
 
-export interface dataInterface {    
-  id : string;
-  type : string;
-  libelle : string;
-  cout : number;
+export interface soinInterface {
+    id: string;
+    type: string;
+    libelle: string;
+    cout: number;
 }
 
 @Component({
@@ -14,18 +16,20 @@ export interface dataInterface {
   styleUrls: ['./cout-soins.component.css']
 })
 export class CoutSoinsComponent implements OnInit {
- @Input() acteSoin : Array<string>;
-  total : number = 0.0;    
+    @Input() acteSoin: Array<string>;
+    total: number = 0.0;
 
-  dataActePatient : Array<dataInterface> = [];  
+    dataActePatient: Array<soinInterface> = [];
   displayedColumns: string[] = ['acteId', 'type', 'libelle', 'cout'];
-    
-  constructor(private actesService: ActeMedicalService) { }
+
+    constructor(private actesService: ActeMedicalService, public dialogRef: MatDialogRef<CoutSoinsComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: AffectationPatientDialogData) {
+    }
 
   ngOnInit() {
     //console.log('actes du patient : '+this.acteSoin);
 
-    let unSoin :  dataInterface = {
+      let unSoin: soinInterface = {
       id : "",
       type : "",
       libelle : "",
@@ -49,7 +53,7 @@ export class CoutSoinsComponent implements OnInit {
     //console.log(' cout : '+this.total);     
   }
 
- 
-
-
+    onNoClick() {
+        this.dialogRef.close();
+    }
 }

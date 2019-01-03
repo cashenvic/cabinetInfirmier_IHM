@@ -10,6 +10,7 @@ import {InfirmierInterface} from "../dataInterfaces/infirmier";
 import {PatientAffectDialogComponent} from "../patient-affect-dialog/patient-affect-dialog.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
+import {CoutSoinsComponent} from "../cout-soins/cout-soins.component";
 
 export interface AffectationPatientDialogData {
     ajout: boolean;
@@ -63,6 +64,13 @@ export class ModifyPatientComponent implements OnInit {
         } else {
             this.sexePatient = 'Masculin';
         }
+    }
+
+    openFacture() {
+        const dialogRef = this.dialog.open(CoutSoinsComponent, {
+            width: '750px',
+            data: {ajout: false, patient: this.patient, infirmiers: undefined}
+        });
     }
 
     modifier() {
