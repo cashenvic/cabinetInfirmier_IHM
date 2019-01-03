@@ -114,7 +114,7 @@ export class ModifyPatientComponent implements OnInit {
             if (infirmier !== undefined) {
                 this.cabinetService.affectation(this.patient, infirmier.id).then(p => {
                     if (p !== null) {
-                        this.affectionEmitter.emit({patient: this.patient, infirmiers: this.infirmiers});
+                        this.affectionEmitter.emit({ajout: false, patient: this.patient, infirmiers: this.infirmiers});
                         this.snackBar.open(`${this.patient.prenom} ${this.patient.nom} a bien été affecté à 
                         ${infirmier.prenom} ${infirmier.nom}`, 'Ok', ({
                             duration: 5000,
