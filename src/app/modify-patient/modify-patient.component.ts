@@ -25,9 +25,7 @@ export interface AffectationPatientDialogData {
 })
 export class ModifyPatientComponent implements OnInit {
     ajouter = false;
-    affecter = false;
-    supprimer = false;
-    patients: PatientInterface[];
+    showDelay = 400;
     @Input() patient: PatientInterface;
     @Input() infirmiers: InfirmierInterface[];
     @Input() affected: boolean;
