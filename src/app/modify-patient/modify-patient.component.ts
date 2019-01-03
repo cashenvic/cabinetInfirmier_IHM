@@ -10,7 +10,7 @@ import {InfirmierInterface} from "../dataInterfaces/infirmier";
 import {PatientAffectDialogComponent} from "../patient-affect-dialog/patient-affect-dialog.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
-import {CoutSoinsComponent} from "../cout-soins/cout-soins.component";
+import {CoutSoinsComponent, soinInterface} from "../cout-soins/cout-soins.component";
 
 export interface AffectationPatientDialogData {
     ajout: boolean;
@@ -40,6 +40,15 @@ export class ModifyPatientComponent implements OnInit {
 
     tooltipAffecterPatient: string;
 
+    //variables soins
+    acteSoin: Array<string>;
+    total: number = 0.0;
+
+    dataActePatient: Array<soinInterface> = [];
+    displayedColumns: string[] = ['acteId', 'type', 'libelle', 'cout'];
+
+    //fin variables soins
+
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -67,9 +76,36 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     openFacture() {
+        let unSoin: soinInterface = {
+            id: "",
+            type: "",
+            libelle: "",
+            cout: 0.0,
+        };
+
+        this.acteSoin = this.patient.visite.actes;
+
+        this.acteSoin.forEach(element => {
+            unSoin.id = this.actesService.getActesbyId(element).id;
+            unSoin.type = this.actesService.getActesbyId(element).type;
+            unSoin.libelle = this.actesService.getActesbyId(element).nom;
+
+            let coef = this.actesService.getActesbyId(element).coef;
+            let cle = this.actesService.getActesbyId(element).cle;
+            let cout = this.actesService.facture(coef, cle);
+            unSoin.cout = cout;
+
+            this.total += (+cout);
+
+            this.dataActePatient.push(unSoin);
+        });
+        console.log('le total du cout des actes est: ' + this.total);
         const dialogRef = this.dialog.open(CoutSoinsComponent, {
             width: '750px',
-            data: {ajout: false, patient: this.patient, infirmiers: undefined}
+            data: {actes: this.dataActePatient, patient: this.patient, total: this.total}
+        });
+
+        dialogRef.afterClosed().subscribe(patient => {
         });
     }
 
