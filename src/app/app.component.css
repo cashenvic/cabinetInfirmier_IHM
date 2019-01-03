@@ -8,6 +8,9 @@ mat-sidenav {
  
 main {
     padding: 10px;
+    overflow:auto;
+    min-height:83.5%;
+    
 }
 
 a {
@@ -60,10 +63,3 @@ mat-toolbar{
 .siv{
     background: #fafafa!important
 }
-
-
-main {
-    overflow-y: auto;
-    flex: 1;
-}
-
