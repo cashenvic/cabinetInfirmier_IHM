@@ -36,7 +36,6 @@ export class SecretaryComponent implements OnInit {
         this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
             this.patients = cabinet.patientsNonAffectes;
             this.infirmiers = cabinet.infirmiers;
-            console.log('Je viens de recharger les donnees du xml');
         });
 
     }

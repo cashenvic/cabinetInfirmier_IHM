@@ -68,7 +68,9 @@
                                                 Patients
                                             </h4>
                                         </div>
-
+                                        <div *ngIf="infirmier.patients.length < 1">
+                                            <i>Aucun patient n'est affecté à cet infirmier</i>
+                                        </div>
                                         <mat-accordion>
                                             <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
                                                                 [affected]="true"
@@ -85,7 +87,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
-
+        </div>
+        <!--TODO: Modification d'un infirmier avec chargement de photo-->
     </mat-expansion-panel>
 </mat-accordion> 
