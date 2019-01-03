@@ -27,12 +27,17 @@ export class SecretaryComponent implements OnInit {
     }
 
     ngOnInit() {
-        //vérification de l'accès au page
+        //vérification de l'accès à la page
         const person = Log.secretaire;
         this.authService.verifLog(person);
+        this.patients = [];
+        this.infirmiers = [];
 
-        this.patients = this.cabinetService.cabinet.patientsNonAffectes;
-        this.infirmiers = this.cabinetService.cabinet.infirmiers;
+        this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
+            this.patients = cabinet.patientsNonAffectes;
+            this.infirmiers = cabinet.infirmiers;
+        });
+
     }
 
     onInfirmier() {
@@ -47,18 +52,40 @@ export class SecretaryComponent implements OnInit {
 
     //fonction d'ajout patient avec message correponsant
     ajoutP(): void {
+        let NewPatient: PatientInterface = {
+            prenom: '',
+            nom: '',
+            sexe: null,
+            naissance: '',
+            numeroSecuriteSociale: '',
+            adresse: {
+                ville: '',
+                codePostal: null,
+                rue: '',
+                numero: '',
+                etage: '',
+            },
+            visite: {
+                intervenant: '',
+                date: '',
+                actes: [],
+            }
+        };
+
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
-            data: {patient: undefined, infirmiers: undefined}
+            data: {ajout: true, patient: NewPatient, infirmiers: undefined}
         });
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
+                console.log('le patient etait ' + patient.sexe);
                 if (patient.sexe === 'M') {
                     patient.sexe = sexeEnum.M;
                 } else {
                     patient.sexe = sexeEnum.F;
                 }
+                console.log('le patient est now ' + patient.sexe);
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({

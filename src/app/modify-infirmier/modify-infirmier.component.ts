@@ -15,7 +15,7 @@ import {ActeInterface} from "../dataInterfaces/actes";
 export class ModifyInfirmierComponent implements OnInit {
     ajouter = false;
     infirmiers: InfirmierInterface[];
-    @Output() patientDesaff = new EventEmitter();
+    @Output() patientStateChanged = new EventEmitter();
     @Input() infirmier: InfirmierInterface;
     imgSrc: string;
     patients: PatientInterface[];
@@ -36,7 +36,6 @@ export class ModifyInfirmierComponent implements OnInit {
 
         this.imgSrc = 'data/' + this.infirmier.photo;
         this.patients = this.infirmier.patients;
-        console.log('Fin init modify-infirmier');
     }
 
     //redirection à la page d'ajout infirmier
@@ -45,9 +44,12 @@ export class ModifyInfirmierComponent implements OnInit {
         this.router.navigate(['ajout-infirmier']);
     }
 
-    
     onPatientDesaff() {
-        this.patientDesaff.emit();
+        this.patientStateChanged.emit();
+    }
+
+    onPatientReaff() {
+        this.patientStateChanged.emit();
     }
 
 }

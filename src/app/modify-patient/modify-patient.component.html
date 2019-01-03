@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div *ngIf="patient.visite.actes !== ''">
+            <div *ngIf="patient.visite.actes.length > 0">
                 <hr>
                 <h5 class="blue">
                     <span class="middle">Soins</span>
@@ -73,23 +73,26 @@
             <br/><br/>
             
             <div fxLayoutAlign="center">
+                <!--button modifier patient-->
+                <button mat-raised-button
+                        matTooltip="Modifier ce patient"
+                        class="mr-2 w-25" (click)="modifier()">
+                    Modifier
+                </button>
                 <!--button affecter-->
                 <button mat-raised-button
-                        matTooltip="Affecter le patient un infirmier"
-                        class="affect mr-2" (click)="openAffectationDialog()" style="width: 150px">
+                        matTooltip="{{tooltipAffecterPatient}}"
+                        class="affect mr-2 w-25" (click)="openAffectationDialog()" style="width: 150px">
                     {{affecterText}}
                 </button>
                  <!--button désaffecter-->
                 <button mat-raised-button
                         matTooltip="Désaffecter le patient de cet infirmier"
-                        class="desaff" [disabled]="!affected" (click)="desaffect()"
+                        class="desaff w-25" [disabled]="!affected" (click)="desaffect()"
                         style="width: 150px">
                     Désaffecter
                 </button>
             </div>
-
-            <div fxLayoutAlign="center"> <!--**********************??????????????****************-->
-            </div>                          
         </div>  <!-- fin contenu-->
 
     </mat-expansion-panel>

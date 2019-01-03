@@ -9,8 +9,10 @@ import {MatDialog, MatSnackBar} from "@angular/material";
 import {InfirmierInterface} from "../dataInterfaces/infirmier";
 import {PatientAffectDialogComponent} from "../patient-affect-dialog/patient-affect-dialog.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
+import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
 
 export interface AffectationPatientDialogData {
+    ajout: boolean;
     patient: PatientInterface;
     infirmiers: InfirmierInterface[];
 }
@@ -35,6 +37,8 @@ export class ModifyPatientComponent implements OnInit {
 
     actesMedical: ActeInterface;
 
+    tooltipAffecterPatient: string;
+
     constructor(private cabinetService: CabinetMedicalService, private authService: AuthService,
                 private actesService: ActeMedicalService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
@@ -48,7 +52,9 @@ export class ModifyPatientComponent implements OnInit {
 
         if (this.affected) {
             this.affecterText = "Réaffecter";
+            this.tooltipAffecterPatient = "Réaffecter le patient à un autre infirmier";
         } else {
+            this.tooltipAffecterPatient = "Affecter le patient à un infirmier";
             this.affecterText = "Affecter";
         }
         
@@ -57,6 +63,36 @@ export class ModifyPatientComponent implements OnInit {
         } else {
             this.sexePatient = 'Masculin';
         }
+    }
+
+    modifier() {
+        const dialogRef = this.dialog.open(PatientAddFormComponent, {
+            width: '750px',
+            data: {ajout: false, patient: this.patient, infirmiers: undefined}
+        });
+
+        dialogRef.afterClosed().subscribe(patient => {
+            if (patient !== undefined) {
+                console.log('le patient etait ' + patient.sexe);
+                if (patient.sexe === 'M') {
+                    patient.sexe = sexeEnum.M;
+                } else {
+                    patient.sexe = sexeEnum.F;
+                }
+                console.log('le patient est now ' + patient.sexe);
+                this.cabinetService.addPatient(patient).then((p) => {
+                    if (patient !== null) { // la requete a abouti code de retour 200 ok
+                        this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
+                            duration: 3000,
+                        }));
+                    } else { // la requete n'a pas abouti code de retour 400 bad request
+                        this.snackBar.open(`Oups! Il y a eu un problème lors de l'ajout du patient`, 'Ok', ({
+                            duration: 3000,
+                        }));
+                    }
+                });
+            }
+        });
     }
 
     patientActions() {
