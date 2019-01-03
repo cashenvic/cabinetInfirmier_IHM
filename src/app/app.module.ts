@@ -47,7 +47,6 @@ import {InfirmierComponent} from './infirmier/infirmier.component';
 import {LoginComponent} from './login/login.component';
 import {ModifyInfirmierComponent} from './modify-infirmier/modify-infirmier.component';
 import {ModifyPatientComponent} from './modify-patient/modify-patient.component';
-import {ProfilInfComponent} from './profil-inf/profil-inf.component';
 
 
 import {RouterModule, Routes} from '@angular/router';

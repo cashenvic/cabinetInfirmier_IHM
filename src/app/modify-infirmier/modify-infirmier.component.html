@@ -73,7 +73,8 @@
                                             <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
                                                                 [affected]="true"
                                                                 [infirmiers]="infirmiers"
-                                                                (desAffectionEmitter)="onPatientDesaff()">
+                                                                (desAffectionEmitter)="onPatientDesaff()"
+                                                                (affectionEmitter)="onPatientReaff()">
                                             </app-modify-patient>                                           
                                         </mat-accordion> <!--finpatient-->
 

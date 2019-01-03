@@ -27,12 +27,18 @@ export class SecretaryComponent implements OnInit {
     }
 
     ngOnInit() {
-        //vérification de l'accès au page
+        //vérification de l'accès à la page
         const person = Log.secretaire;
         this.authService.verifLog(person);
+        this.patients = [];
+        this.infirmiers = [];
 
-        this.patients = this.cabinetService.cabinet.patientsNonAffectes;
-        this.infirmiers = this.cabinetService.cabinet.infirmiers;
+        this.cabinetService.getData('/data/cabinetInfirmier.xml').then(cabinet => {
+            this.patients = cabinet.patientsNonAffectes;
+            this.infirmiers = cabinet.infirmiers;
+            console.log('Je viens de recharger les donnees du xml');
+        });
+
     }
 
     onInfirmier() {
