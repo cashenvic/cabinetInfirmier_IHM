@@ -56,7 +56,7 @@ import {LogIComponent} from './login/log-i/log-i.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {PatientAddFormComponent} from './patient-add-form/patient-add-form.component';
 import {PatientAffectDialogComponent} from './patient-affect-dialog/patient-affect-dialog.component';
-import { CoutSoinsComponent } from './cout-soins/cout-soins.component';
+import {CoutSoinsComponent} from './cout-soins/cout-soins.component';
 
 const appRoutes: Routes = [
   { path: 'main', component: AppComponent },
@@ -66,7 +66,6 @@ const appRoutes: Routes = [
   { path: 'secretaire', component: SecretaryComponent },
   { path: 'infirmier/:id', component: InfirmierComponent },
   { path: 'modify-infirmier', component: ModifyInfirmierComponent },
-  { path: 'profil-infirmier', component: ProfilInfComponent },
   { path: '', component: LoginComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
@@ -80,7 +79,6 @@ const appRoutes: Routes = [
     LoginComponent,
     ModifyInfirmierComponent,
     ModifyPatientComponent,
-    ProfilInfComponent,
     LogSComponent,
     LogIComponent,
       NotFoundComponent,
