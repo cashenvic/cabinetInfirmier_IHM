@@ -1,7 +1,11 @@
 .footer, .push{   
-    color:black!important;
+    color:white!important;
     height: 5%;
     font-size: small;
     box-shadow: black 0 2px 10px;
-    background: white!important;
+    background: #00695c!important;
+}
+
+a{
+    color:white!important;
 }
