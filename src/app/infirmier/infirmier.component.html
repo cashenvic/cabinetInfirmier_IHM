@@ -116,8 +116,11 @@
                       <h5 class="blue">
                         <span class="middle">Soins</span>
                       </h5><br/>
-
-                      <app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>
+                        <!--<app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>-->
+                        <button (click)="openFacture(patient)" mat-raised-button
+                                matTooltip="Afficher le detail des soins"
+                                [matTooltipShowDelay]="showDelay">Facture detaillée
+                        </button>
     
                     </div>
                     
