@@ -52,9 +52,29 @@ export class SecretaryComponent implements OnInit {
 
     //fonction d'ajout patient avec message correponsant
     ajoutP(): void {
+        let NewPatient: PatientInterface = {
+            prenom: '',
+            nom: '',
+            sexe: null,
+            naissance: '',
+            numeroSecuriteSociale: '',
+            adresse: {
+                ville: '',
+                codePostal: null,
+                rue: '',
+                numero: '',
+                etage: '',
+            },
+            visite: {
+                intervenant: '',
+                date: '',
+                actes: [],
+            }
+        };
+
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
-            data: {patient: undefined, infirmiers: undefined}
+            data: {ajout: true, patient: NewPatient, infirmiers: undefined}
         });
 
         dialogRef.afterClosed().subscribe(patient => {

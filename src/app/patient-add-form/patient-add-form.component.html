@@ -1,29 +1,30 @@
 <!--TODO: Ajout de champs soins en select multiple, date de visite et l'intervenant en optionnel-->
 <!--TODO: Modification de patient-->
 <!--TODO: Restreindre les valeurs possibles des champs-->
-<h1 mat-dialog-title>Ajouter un patient</h1>
+<h1 mat-dialog-title>{{titreDialog}}</h1>
 <div mat-dialog-content>
     <form (submit)="addPatient()" #formulaire="ngForm">
         <div>
             <!--<label for="prenom" class="">Prénom*</label>-->
             <mat-form-field appearance="outline">
                 <mat-label>Prénom</mat-label>
-                <input matInput type="text" id="prenom" name="prenom"
-                       [(ngModel)]="patient.prenom" placeholder="Prénom" required/>
+                <input matInput type="text" id="prenom" name="prenom" pattern="[A-Za-z]+"
+                       [(ngModel)]="data.patient.prenom" placeholder="Prénom" required/>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Nom</mat-label>
-                <input matInput type="text" id="nom" name="nom" [(ngModel)]="patient.nom" placeholder="Nom" required/>
+                <input matInput type="text" id="nom" name="nom" pattern="[A-Za-z]+"
+                       [(ngModel)]="data.patient.nom" placeholder="Nom" required/>
             </mat-form-field>
         </div>
 
         <!--Date de naissance-->
         <div>
             <mat-form-field>
-                <input matInput id="naissance" name="naissance" [(ngModel)]="patient.naissance"
+                <input matInput id="naissance" name="naissance" [(ngModel)]="data.patient.naissance"
                        [max]="maxDate" [matDatepicker]="picker" placeholder="Date de naissance"/>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -32,7 +33,7 @@
 
         <div>
             <mat-form-field>
-                <mat-select placeholder="Sexe" name="sexe" [(ngModel)]="patient.sexe" required>
+                <mat-select placeholder="Sexe" name="sexe" [(ngModel)]="data.patient.sexe" required>
                     <mat-option value="F">F</mat-option>
                     <mat-option value="M">M</mat-option>
                 </mat-select>
@@ -43,7 +44,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Numéro de sécurité sociale</mat-label>
                 <input matInput type="text" id="secu" name="secu" placeholder="0001"
-                       [(ngModel)]="patient.numeroSecuriteSociale"
+                       [(ngModel)]="data.patient.numeroSecuriteSociale"
                        required/>
             </mat-form-field>
         </div>
@@ -51,34 +52,36 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Code postal</mat-label>
-                <input matInput type="number" pattern="\d\d\d\d\d" ngModel="patient.adresse" id="codepostal"
+                <input matInput type="number" pattern="\d\d\d\d\d" ngModel="data.patient.adresse" id="codepostal"
                        placeholder="38000"
                        name="codepostal"
-                       [(ngModel)]="patient.adresse.codePostal" required/>
+                       [(ngModel)]="data.patient.adresse.codePostal" required/>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Ville</mat-label>
-                <input matInput type="text" ngModel="patient.adresse" id="ville" placeholder="Grenoble" name="ville"
-                       [(ngModel)]="patient.adresse.ville" required/>
+                <input matInput type="text" ngModel="data.patient.adresse" id="ville" placeholder="Grenoble"
+                       name="ville"
+                       [(ngModel)]="data.patient.adresse.ville" required/>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Rue</mat-label>
-                <input matInput type="text" ngModel="patient.adresse" id="rue" placeholder="Rue" name="rue"
-                       [(ngModel)]="patient.adresse.rue" required/>
+                <input matInput type="text" ngModel="data.patient.adresse" id="rue" placeholder="Rue" name="rue"
+                       [(ngModel)]="data.patient.adresse.rue" required/>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Numero</mat-label>
-                <input matInput type="number" ngModel="patient.adresse" id="numero" name="numero" placeholder="Numéro"
-                       [(ngModel)]="patient.adresse.numero" required/>
+                <input matInput type="number" ngModel="data.patient.adresse" id="numero" name="numero"
+                       placeholder="Numéro"
+                       [(ngModel)]="data.patient.adresse.numero" required/>
             </mat-form-field>
         </div>
 
@@ -87,9 +90,9 @@
                 <mat-label>Etage</mat-label>
                 <!--https://fr.sputniknews.com/insolite/201512011019945249-arabie-saoudite-gratte-ciel-record/-->
                 <!-- +1 juste au cas ou ;)-->
-                <input matInput type="number" min="0" max="201" ngModel="patient.adresse" id="etage" name="etage"
+                <input matInput type="number" min="0" max="201" ngModel="data.patient.adresse" id="etage" name="etage"
                        placeholder="Etage"
-                       [(ngModel)]="patient.adresse.etage" required/>
+                       [(ngModel)]="data.patient.adresse.etage" required/>
             </mat-form-field>
         </div>
         <!--actes-->
@@ -103,7 +106,7 @@
 <!-- cdkFocusInitial dirige le focus vers l'element-->
 <div mat-dialog-actions fxLayoutAlign="center">
     <button mat-raised-button (click)="onNoClick()" class="mr-3 w-25">Annuler</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="patient" cdkFocusInitial
+    <button mat-raised-button color="primary" [mat-dialog-close]="data.patient" cdkFocusInitial
             [disabled]="!formulaire.valid" class="w-25">
         Ok
     </button>
