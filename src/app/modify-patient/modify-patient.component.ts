@@ -83,6 +83,8 @@ export class ModifyPatientComponent implements OnInit {
         };
 
         this.acteSoin = this.patient.visite.actes;
+        this.total = 0.0;
+        this.dataActePatient = [];
 
         this.acteSoin.forEach(element => {
             unSoin.id = this.actesService.getActesbyId(element).id;
@@ -108,7 +110,8 @@ export class ModifyPatientComponent implements OnInit {
         });
     }
 
-    modifier() {
+    modifierPatient() {
+
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
             data: {ajout: false, patient: this.patient, infirmiers: undefined}
