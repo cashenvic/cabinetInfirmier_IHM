@@ -107,14 +107,16 @@ export class ModifyPatientComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(patient => {
+            // what ever we want to do with the "facture" either "imprimer" or something else
         });
     }
 
     modifierPatient() {
+        let modPatient = Object.assign({}, this.patient);
 
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
-            data: {ajout: false, patient: this.patient, infirmiers: undefined}
+            data: {ajout: false, patient: modPatient, infirmiers: undefined}
         });
 
         dialogRef.afterClosed().subscribe(patient => {
@@ -126,11 +128,11 @@ export class ModifyPatientComponent implements OnInit {
                 }
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
-                        this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
+                        this.snackBar.open(`Le patient a bien été modifié`, 'Ok', ({
                             duration: 3000,
                         }));
                     } else { // la requete n'a pas abouti code de retour 400 bad request
-                        this.snackBar.open(`Oups! Il y a eu un problème lors de l'ajout du patient`, 'Ok', ({
+                        this.snackBar.open(`Oups! Il y a eu un problème lors de la modofication du patient`, 'Ok', ({
                             duration: 3000,
                         }));
                     }
