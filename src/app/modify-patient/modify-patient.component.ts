@@ -41,7 +41,7 @@ export class ModifyPatientComponent implements OnInit {
 
     //variables soins
     acteSoin: Array<string>;
-    total: number = 0.0;
+    total = 0.0;
 
     dataActePatient: Array<soinInterface> = [];
     displayedColumns: string[] = ['acteId', 'type', 'libelle', 'cout'];
@@ -100,7 +100,6 @@ export class ModifyPatientComponent implements OnInit {
 
             this.dataActePatient.push(unSoin);
         });
-        console.log('le total du cout des actes est: ' + this.total);
         const dialogRef = this.dialog.open(CoutSoinsComponent, {
             width: '750px',
             data: {actes: this.dataActePatient, patient: this.patient, total: this.total}
