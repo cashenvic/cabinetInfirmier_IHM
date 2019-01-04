@@ -1,7 +1,8 @@
-<mat-accordion color="primary" class="mt-3">
-    <mat-expansion-panel
-    (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false">
+<mat-accordion color="primary">
+    <mat-expansion-panel class="mb-2"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false"
+                         expanded="true">
 
         <!--Affichage des profils des infirmiers-->
         <mat-expansion-panel-header class="lightsmoke">

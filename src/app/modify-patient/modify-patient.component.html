@@ -1,8 +1,9 @@
 <mat-accordion>
     <!--Affichage du profil du patient-->
-    <mat-expansion-panel
-    (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false">
+    <mat-expansion-panel class="mb-2"
+                         (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false"
+                         expanded="{{!inInfirmier}}">
         <mat-expansion-panel-header class="lightsmoke">
 
             <mat-panel-title class="blue">
