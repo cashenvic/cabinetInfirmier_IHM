@@ -18,6 +18,8 @@ import {sexeEnum} from "../dataInterfaces/sexe";
 export class PatientAddFormComponent implements OnInit {
     @ViewChild('formulaire') formulaire: NgForm;
     sexe: string;
+    feminin = sexeEnum.F;
+    masculin = sexeEnum.M;
 
     // pour eviter de choisir des dates de naissances dans le futur
     maxDate = new Date();
@@ -26,11 +28,11 @@ export class PatientAddFormComponent implements OnInit {
     constructor(public snackBar: MatSnackBar,
                 public dialogRef: MatDialogRef<PatientAddFormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: AffectationPatientDialogData) {
-        if (data.patient.sexe === sexeEnum.F) {
+        /*if (data.patient.sexe === sexeEnum.F) {
             this.data.patient.sexe = 'F';
         } else {
             this.data.patient.sexe = 'M';
-        }
+        }*/
     }
 
     ngOnInit() {

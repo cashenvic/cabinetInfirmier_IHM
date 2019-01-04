@@ -36,8 +36,8 @@
         <div>
             <mat-form-field>
                 <mat-select placeholder="Sexe" name="sexe" [(ngModel)]="data.patient.sexe" required>
-                    <mat-option value="F">F</mat-option>
-                    <mat-option value="M">M</mat-option>
+                    <mat-option value="{{feminin}}">Feminin</mat-option>
+                    <mat-option value="{{masculin}}">Masculin</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
