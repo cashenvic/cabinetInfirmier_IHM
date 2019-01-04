@@ -23,8 +23,8 @@
         <!--Date de naissance-->
         <div>
             <mat-form-field>
-                <input matInput id="naissance" name="naissance" [(ngModel)]="data.patient.naissance"
-                       [max]="maxDate" [matDatepicker]="picker" placeholder="Date de naissance"/>
+                <input matInput id="naissance" name="naissance" [(ngModel)]="dateNais"
+                       [max]="maxDate" [matDatepicker]="picker" placeholder="Choississez la date de naissance"/>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -33,7 +33,7 @@
         
         <div>
             <mat-form-field>
-                <mat-select placeholder="Sexe" name="sexe" [(ngModel)]="data.patient.sexe" required>
+                <mat-select placeholder="Sexe" id="sexe" name="sexe" [(ngModel)]="data.patient.sexe" required>
                     <mat-option value="{{feminin}}">Feminin</mat-option>
                     <mat-option value="{{masculin}}">Masculin</mat-option>
                 </mat-select>
@@ -68,11 +68,11 @@
 
         <div>
             <mat-form-field appearance="outline">
-                <mat-label>Etage</mat-label>
+                <mat-label>Étage</mat-label>
                 <!--https://fr.sputniknews.com/insolite/201512011019945249-arabie-saoudite-gratte-ciel-record/-->
                 <!-- +1 juste au cas ou ;)-->
                 <input matInput type="number" min="1" max="201" id="etage" name="etage"
-                       placeholder="Etage Facultatif"
+                       placeholder="Étage Facultatif"
                        [(ngModel)]="data.patient.adresse.etage"/>
             </mat-form-field>
         </div>
@@ -90,7 +90,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Code postal</mat-label>
                 <input matInput type="number" pattern="\d\d\d\d\d" id="codepostal"
-                       placeholder="5 chifres"   name="codepostal"
+                       placeholder="5 chiffres"   name="codepostal"
                        [(ngModel)]="data.patient.adresse.codePostal" required/>
             </mat-form-field>
         </div>
@@ -106,9 +106,9 @@
 </div>
 <!-- cdkFocusInitial dirige le focus vers l'element-->
 <div mat-dialog-actions fxLayoutAlign="center">
-    <button mat-raised-button class="mr-3 w-25 annuler" (click)="onNoClick()" >Annuler</button>
-    <button mat-raised-button class="enregist" [mat-dialog-close]="data.patient" cdkFocusInitial
-            [disabled]="!formulaire.valid" class="w-25">
+    <button mat-raised-button (click)="onNoClick()" class="mr-3 w-25 annuler" >Annuler</button>
+    <button mat-raised-button [mat-dialog-close]="data.patient" cdkFocusInitial
+            [disabled]="!formulaire.valid" class="w-25 enregist">
         Enregistrer
     </button>
 </div>

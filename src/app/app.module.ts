@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {CdkTableModule} from '@angular/cdk/table';
-
+import { DatePipe } from '@angular/common'
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -164,7 +164,7 @@ const appRoutes: Routes = [
     MatTooltipModule
   ],
     entryComponents: [PatientAddFormComponent, PatientAffectDialogComponent, CoutSoinsComponent],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

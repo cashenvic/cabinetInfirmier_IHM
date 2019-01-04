@@ -1,5 +1,13 @@
-<footer class="footer" fxLayoutAlign="center center" >
-  <div class="footer-copyright text-center">© 2019 Copyright :
+<footer class="footer" fxLayoutAlign="center center">
+  <div>          
+    <span > {{cabinetService.cabinet.nom}} :&nbsp;
+       au {{cabinetService.cabinet.adresse.numero}} 
+          {{cabinetService.cabinet.adresse.rue}} ,&nbsp;
+          {{cabinetService.cabinet.adresse.codePostal}} ,&nbsp;
+          {{cabinetService.cabinet.adresse.ville}}&nbsp;
+    </span>
+  </div>
+  <div> -- © 2019 Copyright :
     <a href="https://gitlab.com/yakuzHanh/clientangular"> Do Hanh - Cisse Drissa</a>
   </div>
 </footer>

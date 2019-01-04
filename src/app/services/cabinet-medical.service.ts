@@ -95,7 +95,7 @@ export class CabinetMedicalService {
         patientForname: patient.prenom,
         patientNumber: patient.numeroSecuriteSociale,
         patientSex: patient.sexe === sexeEnum.M ? 'M' : 'F',
-        patientBirthday: 'AAAA-MM-JJ',
+        patientBirthday: patient.naissance ,
         patientFloor: patient.adresse.etage,
         patientStreetNumber: patient.adresse.numero,
         patientStreet: patient.adresse.rue,

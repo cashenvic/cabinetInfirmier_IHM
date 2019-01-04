@@ -20,7 +20,7 @@ export class PatientAffectDialogComponent implements OnInit {
     }
 
     closeDialog() {
-        this.dialogRef.close('Pizza!');
+        this.dialogRef.close('Fermé!');
     }
 
     ngOnInit() {
