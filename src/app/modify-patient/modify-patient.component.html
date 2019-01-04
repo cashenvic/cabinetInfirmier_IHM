@@ -60,18 +60,21 @@
                     <span *ngIf="patient.adresse.etage !== ''">au {{patient.adresse.etage}}e étage</span>
                 </div>
             </div>
+            <div *ngIf="patient.visite.actes.length > 0" class="profile-info-row">
+                <div class="profilep-info-name">
+                    Soins
+                    <mat-icon>healing</mat-icon>
+                </div>
 
-            <div *ngIf="patient.visite.actes.length > 0">
-                <hr>
-                <h5 class="blue">
-                    <span class="middle">Soins</span>
-                </h5><br/>
-                <button (click)="openFacture()" mat-raised-button
-                        matTooltip="Afficher le detail des soins"
-                        [matTooltipShowDelay]="showDelay">Facture detaillée
-                </button>
-                <!--<app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>-->
+                <div class="profile-info-value">
+                    <button (click)="openFacture()" mat-stroked-button
+                            matTooltip="Afficher le detail des soins"
+                            [matTooltipShowDelay]="showDelay">
+                        <span class="blue">Afficher les soins</span>
+                    </button>
+                    <!--<app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>-->
 
+                </div>
             </div>
             <br/><br/>
             
@@ -91,7 +94,7 @@
                     {{affecterText}}
                 </button>
                  <!--button désaffecter-->
-                <button mat-raised-button
+                <button mat-raised-button *ngIf="affected"
                         matTooltip="Désaffecter le patient de cet infirmier"
                         [matTooltipShowDelay]="showDelay"
                         class="desaff w-25" [disabled]="!affected" (click)="desaffect()"
