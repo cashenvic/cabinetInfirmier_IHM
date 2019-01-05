@@ -79,18 +79,17 @@ export class SecretaryComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
-                console.log('le patient etait ' + patient.sexe);
                 if (patient.sexe === 'M') {
                     patient.sexe = sexeEnum.M;
                 } else {
                     patient.sexe = sexeEnum.F;
                 }
-                console.log('le patient est now ' + patient.sexe);
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
                             duration: 3000,
                         }));
+                        this.ngOnInit();
                     } else { // la requete n'a pas abouti code de retour 400 bad request
                         this.snackBar.open(`Oups! Il y a eu un problème lors de l'ajout du patient`, 'Ok', ({
                             duration: 3000,

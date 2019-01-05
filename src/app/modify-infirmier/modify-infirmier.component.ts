@@ -44,11 +44,7 @@ export class ModifyInfirmierComponent implements OnInit {
         this.router.navigate(['ajout-infirmier']);
     }
 
-    onPatientDesaff() {
-        this.patientStateChanged.emit();
-    }
-
-    onPatientReaff() {
+    onPatientStateChanged() {
         this.patientStateChanged.emit();
     }
 

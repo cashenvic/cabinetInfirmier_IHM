@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {CdkTableModule} from '@angular/cdk/table';
-import { DatePipe } from '@angular/common'
+import {DatePipe} from '@angular/common';
 import {
     MatAutocompleteModule,
     MatButtonModule,
@@ -56,7 +56,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {PatientAddFormComponent} from './patient-add-form/patient-add-form.component';
 import {PatientAffectDialogComponent} from './patient-affect-dialog/patient-affect-dialog.component';
 import {CoutSoinsComponent} from './cout-soins/cout-soins.component';
-import { FooterComponent } from './footer/footer.component';
+import {FooterComponent} from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },

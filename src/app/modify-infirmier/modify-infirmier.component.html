@@ -73,11 +73,10 @@
                                         </div>
                                         <!--affichage des données du patients-->
                                         <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
-                                            [affected]="true"
-                                            [inInfirmier]="true"
-                                            [infirmiers]="infirmiers"
-                                            (desAffectionEmitter)="onPatientDesaff()"
-                                            (affectionEmitter)="onPatientReaff()">
+                                                            [affected]="true"
+                                                            [inInfirmier]="true"
+                                                            [infirmiers]="infirmiers"
+                                                            (patientStateChanged)="onPatientStateChanged()">
                                         </app-modify-patient>    
 
                                     </div>

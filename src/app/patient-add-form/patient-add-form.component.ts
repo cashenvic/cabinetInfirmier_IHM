@@ -1,8 +1,8 @@
 import {Component, Inject, NgModule, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import {DatePipe} from '@angular/common';
 
-import { MAT_DATE_LOCALE, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
+import {MAT_DATE_LOCALE, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {AffectationPatientDialogData} from "../modify-patient/modify-patient.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
 
@@ -25,19 +25,19 @@ export class PatientAddFormComponent implements OnInit {
 
     // pour eviter de choisir des dates de naissances dans le futur
     maxDate = new Date();
-    dateNais = new Date();;
+    dateNais = new Date();
     titreDialog: string;
 
     constructor(public datepipe: DatePipe, public snackBar: MatSnackBar,
                 public dialogRef: MatDialogRef<PatientAddFormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: AffectationPatientDialogData) {
-        
-        this.data.patient.naissance = this.datepipe.transform(this.dateNais, 'yyyy-MM-dd');
+
     }
 
     ngOnInit() {
         if (this.data.ajout) {
             this.titreDialog = "Ajout d'un nouveau patient";
+            this.data.patient.naissance = this.datepipe.transform(this.dateNais, 'yyyy-MM-dd');
         } else {
             this.titreDialog = "Modification des données d'un patient";
         }
