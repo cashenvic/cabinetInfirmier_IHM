@@ -10,10 +10,32 @@ Il a été réalisé par [Do Hanh](https://gitlab.com/yakuzHanh) et [Cissé Dris
 ## Lancement du serveur de développement
 Après avoir lancé le serveur, placez vous dans le repertoire du projet et taper la commande `npm start`. L'application s'execute à l'adresse `http://localhost:4200/`.
 
+## Développement
+- ###### Authentification du sécretaire ou de l'infirmier :
+
+Pour **se connecter en tant que secretaire**, il suffit  de `cliquer sur le bouton connecter`. 
+
+Pour **se connecter en tant qu'infirmier**, il faut renseigner l'`id de l'infirmier`.
+
+- ###### Déconnection du compte
+
+Pour **se deconnecter ** de son compte, il suffit  de `cliquer sur le bouton deconnecter` situé sur la barre du navigateur 
+ou aller sur la page de connection correspondant du compte puis de `cliquer sur le bouton deconnecter` . 
+
+
+On a fait des accès restreinte entre les 2 comptes. L'infirmier ne peut pas accèder au contenu du compte d'un sécretaire et vice versa.
+
+On s'est mis l'idée que l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients alors que la sécretaire :
+- ###### Consulter les données des infirmiers et des patients
+- ###### Affectation d'un patient à un infirmier
+- ###### Désaffectation d'un patient à son infirmier
+- ###### Ajout d'un nouveau patient
 
 ## Innovations
 Après la réalisation des taches demandées, nous avons pris l'initiative d'apporter les modifications suivantes:
-- ###### Affichage des actes que doit subir un patient
+- ###### Affichage des actes de soins du patient
+- ###### Calcul des coûts de soins du patient (on s'est inspiré du projet Voyageur de Santé du Langage Web)
+- ###### Modification des données d'un patient (coté sécretaire)
 
 ## Points à dev
 ###### page de login login.html et secretary.html non dispo
