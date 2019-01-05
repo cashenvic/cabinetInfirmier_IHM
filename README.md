@@ -13,9 +13,16 @@ Après avoir lancé le serveur se placer dans le repertoire du projet et taper l
 
 ## Innovations
 Après la réalisatioin des taches demandées, nous avons pris l'initiative d'apporter les modifications suivantes:
-- affichage des actes que doit subir un patient
+- ###### Affichage des actes que doit subir un patient
 
-###### Points à dev
-* page de login login.html et secretary.html non dispo
+## Points à dev
+###### page de login login.html et secretary.html non dispo
+
+Les pages login.html et secretary.html n'etant pas disponibles sur le serveur nous avons créé une page de login sur laquelle on peut se connecter soit en tant qu'infirmier 
+ou en tant que secretaire.
+
+Pour **se connecter en tant que secretaire** il suffit  de `cliquer sur le bouton connecter`.
+
+Pour **se connecter en tant qu'infirmier** il faut renseigner l'`id de l'infirmier`.
+Dans les deux cas aucune requête d'authentification n'est envoyée au serveur.
 * usage de material angular
-* connexion secretaire et infirmier (comment ça se passe)
