@@ -8,11 +8,11 @@ Il a été réalisé par [Do Hanh](https://gitlab.com/yakuzHanh) et [Cissé Dris
 
 
 ## Lancement du serveur de développement
-Après avoir lancé le serveur se placer dans le repertoire du projet et taper la commande `npm start`. L'application s'affiche à l'adresse `http://localhost:4200/`.
+Après avoir lancé le serveur, placez vous dans le repertoire du projet et taper la commande `npm start`. L'application s'execute à l'adresse `http://localhost:4200/`.
 
 
 ## Innovations
-Après la réalisatioin des taches demandées, nous avons pris l'initiative d'apporter les modifications suivantes:
+Après la réalisation des taches demandées, nous avons pris l'initiative d'apporter les modifications suivantes:
 - ###### Affichage des actes que doit subir un patient
 
 ## Points à dev
