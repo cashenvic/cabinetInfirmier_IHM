@@ -25,20 +25,20 @@ Pour **se déconnecter** de son compte, il suffit  de `cliquer sur le bouton dé
 ou aller sur la page de connection correspondant du compte puis de `cliquer sur le bouton déconnecter` . 
 
 
-On s'est mis l'idée que l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients 
-alors que la sécretaire peut :
+On s'est mis l'idée que `l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients`
+alors que `la sécretaire` peut :
 - ###### Consulter les données des infirmiers et des patients
 - ###### Affecter un patient à un infirmier
 - ###### Réaffecter un patient à un autre infirmier
 - ###### Désaffecter un patient à son infirmier
-- ###### Ajout d'un nouveau patient
+- ###### Ajouter un nouveau patient
 
 
 ## Innovations
 Après la réalisation des tâches demandées, nous avons pris l'initiative d'apporter des innovations suivantes:
 - ###### Affichage des actes de soins des patients
-- ###### Calcul des coûts de soins des patients (on s'est inspiré du projet Voyageur de Santé du Langage Web)
-- ###### Modification des données d'un patient (côté sécretaire)
+- ###### Calcul des coûts de soins des patients (**on s'est inspiré du projet Voyageur de Santé du Langage Web**)
+- ###### Modification des données d'un patient `côté sécretaire`
 
 
 ## Points à dev
