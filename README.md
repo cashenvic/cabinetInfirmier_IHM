@@ -15,23 +15,22 @@ Après avoir lancé le serveur, placez vous dans le repertoire du projet et tape
 
 Pour **se connecter en tant que sécretaire**, il suffit  de `cliquer sur le bouton connecter`. 
 
-Pour **se connecter en tant qu'infirmier**, il faut renseigner l'`id de l'infirmier`.
+Pour **se connecter en tant qu'infirmier**, il faut renseigner l'`id de l'infirmier` puis de `cliquer sur le bouton connecter`.
 
+On a mis `des accès restreintes` entre les 2 comptes. L'infirmier ne peut pas accèder au contenu du compte d'un sécretaire et vice versa.
 
 - ###### Déconnection du compte
 
-Pour **se déconnecter ** de son compte, il suffit  de `cliquer sur le bouton déconnecter` situé sur la barre du navigateur 
+Pour **se déconnecter** de son compte, il suffit  de `cliquer sur le bouton déconnecter` situé sur la barre du navigateur 
 ou aller sur la page de connection correspondant du compte puis de `cliquer sur le bouton déconnecter` . 
-
-
-On a mis 'des accès restreintes' entre les 2 comptes. L'infirmier ne peut pas accèder au contenu du compte d'un sécretaire et vice versa.
 
 
 On s'est mis l'idée que l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients 
 alors que la sécretaire peut :
 - ###### Consulter les données des infirmiers et des patients
-- ###### Affectation d'un patient à un infirmier
-- ###### Désaffectation d'un patient à son infirmier
+- ###### Affecter un patient à un infirmier
+- ###### Réaffecter un patient à un autre infirmier
+- ###### Désaffecter un patient à son infirmier
 - ###### Ajout d'un nouveau patient
 
 
