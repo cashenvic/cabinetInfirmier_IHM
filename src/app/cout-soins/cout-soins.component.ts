@@ -31,10 +31,6 @@ export class CoutSoinsComponent implements OnInit {
     }
 
     ngOnInit() {
-    //console.log('actes du patient : '+this.acteSoin);
-
-
-        //console.log(' cout : '+this.total);
     }
 
     onNoClick() {

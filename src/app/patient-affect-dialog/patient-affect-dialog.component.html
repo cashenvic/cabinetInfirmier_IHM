@@ -10,7 +10,7 @@
         </mat-select>
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Annuler</button>
-    <button mat-button [mat-dialog-close]="infirmier" cdkFocusInitial>Ok</button>
+<div mat-dialog-actions fxLayoutAlign="center">
+    <button mat-button (click)="onNoClick()" class="annuler" matTooltip="Annuler">Annuler</button>
+    <button mat-button [mat-dialog-close]="infirmier" class="enregist" cdkFocusInitial matTooltip="Affecter">Ok</button>
 </div>

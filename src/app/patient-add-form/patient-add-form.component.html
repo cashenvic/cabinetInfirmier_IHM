@@ -24,7 +24,7 @@
         <div>
             <mat-form-field>
                 <input matInput id="naissance" name="naissance" [(ngModel)]="dateNais"
-                       [max]="maxDate" [matDatepicker]="picker" placeholder="Choississez la date de naissance"/>
+                       [max]="maxDate" [matDatepicker]="picker" placeholder="Saississez la date de naissance"/>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -106,8 +106,8 @@
 </div>
 <!-- cdkFocusInitial dirige le focus vers l'element-->
 <div mat-dialog-actions fxLayoutAlign="center">
-    <button mat-raised-button (click)="onNoClick()" class="mr-3 w-25 annuler" >Annuler</button>
-    <button mat-raised-button [mat-dialog-close]="data.patient" cdkFocusInitial
+    <button mat-raised-button (click)="onNoClick()" class="mr-3 w-25 annuler" matTooltip="Annuler l'ajout">Annuler</button>
+    <button mat-raised-button [mat-dialog-close]="data.patient" matTooltip="Création d'un nouveau patient"
             [disabled]="!formulaire.valid" class="w-25 enregist">
         Enregistrer
     </button>

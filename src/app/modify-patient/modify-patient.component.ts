@@ -30,6 +30,7 @@ export class ModifyPatientComponent implements OnInit {
     @Input() infirmiers: InfirmierInterface[];
     @Input() affected: boolean;
     @Input() inInfirmier: boolean;
+    @Input() infirmierCo: boolean;
     @Output() affectionEmitter: EventEmitter<AffectationPatientDialogData> = new EventEmitter();
     @Output() desAffectionEmitter: EventEmitter<PatientInterface> = new EventEmitter();
     affecterText: string;
@@ -55,15 +56,11 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     ngOnInit() {
-        //vérification de l'accès au page
-        const person = Log.secretaire;
-        this.authService.verifLog(person);
-
         if (this.affected) {
             this.affecterText = "Réaffecter";
-            this.tooltipAffecterPatient = "Réaffecter le patient à un autre infirmier";
+            this.tooltipAffecterPatient = "Réaffecter à un autre infirmier";
         } else {
-            this.tooltipAffecterPatient = "Affecter le patient à un infirmier";
+            this.tooltipAffecterPatient = "Affecter à un infirmier";
             this.affecterText = "Affecter";
         }
         
@@ -75,18 +72,17 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     openFacture() {
-        let unSoin: soinInterface = {
-            id: "",
-            type: "",
-            libelle: "",
-            cout: 0.0,
-        };
-
         this.acteSoin = this.patient.visite.actes;
         this.total = 0.0;
         this.dataActePatient = [];
 
         this.acteSoin.forEach(element => {
+            let unSoin: soinInterface = {
+                id: "",
+                type: "",
+                libelle: "",
+                cout: 0.0,
+            };
             unSoin.id = this.actesService.getActesbyId(element).id;
             unSoin.type = this.actesService.getActesbyId(element).type;
             unSoin.libelle = this.actesService.getActesbyId(element).nom;
@@ -96,7 +92,7 @@ export class ModifyPatientComponent implements OnInit {
             let cout = this.actesService.facture(coef, cle);
             unSoin.cout = cout;
 
-            this.total += (+cout);
+            this.total += cout;
 
             this.dataActePatient.push(unSoin);
         });

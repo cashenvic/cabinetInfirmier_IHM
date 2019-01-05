@@ -22,8 +22,8 @@
 
   <mat-card-actions>
     <div fxLayoutAlign="center">
-      <button mat-raised-button class="connect" *ngIf="!authService.isAuth"  style="width: 150px" (click)="onSignInI()">Connecter</button>
-      <button mat-raised-button class="disconnect" *ngIf="authService.isAuth"  style="width: 150px" (click)="onSignOut()">Déconnecter</button>
+      <button mat-raised-button class="connect" *ngIf="!authService.isAuth" (click)="onSignInI()" matTooltip="Connecter">Connecter</button>
+      <button mat-raised-button class="disconnect" *ngIf="authService.isAuth" (click)="onSignOut()" matTooltip="Déconnecter">Déconnecter</button>
     </div>
   </mat-card-actions>
   

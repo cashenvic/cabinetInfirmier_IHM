@@ -3,16 +3,15 @@
         <mat-card-title>Authentification</mat-card-title>
     </mat-card-header>
     <span class="full-spacer"></span>    
-    <br/>
-    <span><i fxLayoutAlign="start" ><h6>Connexion en tant que :</h6></i></span>
+    <span class="message"><i><h6>Connexion en tant que :</h6></i></span>
     <br/>
     <span class="full-spacer"></span>       
     <div fxLayoutAlign="center" fxLayout="row" fxLayoutGap="20px" >
         <div>
-            <button mat-raised-button  class="blue" (click)="loginS()" style="width: 200px">Secrétaire</button>
+            <button mat-raised-button  class="blue" (click)="loginS()" matTooltip="Secrétaire" >Secrétaire</button>
         </div>  
         <div>
-            <button mat-raised-button  class="blue" (click)="loginI()" style="width: 200px">Infirmier</button>
+            <button mat-raised-button  class="blue" (click)="loginI()" matTooltip="Infirmier">Infirmier</button>
         </div>     
     </div>
  </mat-card>

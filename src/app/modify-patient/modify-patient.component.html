@@ -73,33 +73,30 @@
                             [matTooltipShowDelay]="showDelay">
                         <span class="blue">Afficher les soins</span>
                     </button>
-                    <!--<app-cout-soins [acteSoin]="patient.visite.actes"></app-cout-soins>-->
-
                 </div>
             </div>
             <br/><br/>
             
-            <div fxLayoutAlign="center">
+            <div fxLayoutAlign="center" *ngIf="!infirmierCo">
                 <!--button modifierPatient patient-->
                 <button mat-raised-button *ngIf="!inInfirmier"
                         matTooltip="Modifier ce patient"
                         [matTooltipShowDelay]="showDelay"
-                        class="mr-2 w-25" (click)="modifierPatient()">
+                        class="modif mr-2 w-25 " (click)="modifierPatient()">
                     Modifier
                 </button>
                 <!--button affecter-->
                 <button mat-raised-button
                         matTooltip="{{tooltipAffecterPatient}}"
                         [matTooltipShowDelay]="showDelay"
-                        class="affect mr-2 w-25" (click)="openAffectationDialog()" style="width: 150px">
+                        class="affect mr-2 w-25" (click)="openAffectationDialog()">
                     {{affecterText}}
                 </button>
                  <!--button désaffecter-->
                 <button mat-raised-button *ngIf="affected"
-                        matTooltip="Désaffecter le patient de cet infirmier"
+                        matTooltip="Désaffecter à l'infirmier"
                         [matTooltipShowDelay]="showDelay"
-                        class="desaff w-25" [disabled]="!affected" (click)="desaffect()"
-                        style="width: 150px">
+                        class="desaff  mr-2 w-25" [disabled]="!affected" (click)="desaffect()">
                     Désaffecter
                 </button>
             </div>

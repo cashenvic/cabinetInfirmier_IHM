@@ -64,7 +64,6 @@ const appRoutes: Routes = [
   { path: 'secretairelog', component: LogSComponent },
   { path: 'secretaire', component: SecretaryComponent },
   { path: 'infirmier/:id', component: InfirmierComponent },
-  { path: 'modify-infirmier', component: ModifyInfirmierComponent },
   { path: '', component: LoginComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }

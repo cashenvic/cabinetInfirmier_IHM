@@ -1,4 +1,4 @@
-<mat-accordion color="primary">
+<mat-accordion >
     <mat-expansion-panel class="mb-2"
                          (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false"
@@ -10,14 +10,14 @@
                 # {{infirmier.id}}
             </mat-panel-title>
             <mat-panel-description fxLayoutAlign="end">
-                <i>{{infirmier.nom}} {{infirmier.prenom}}</i>
+                <i>{{infirmier.nom}} {{infirmier.prenom}}&nbsp;</i>
             </mat-panel-description>
         </mat-expansion-panel-header>
 
+        <!--contenu du panel expansion-->
         <div>
             <div class="panel-body">
-
-                <div id="user-profile-2" class="user-profile">
+                <div class="user-profile">
                     <div class="tabbable">
 
                         <div class="tab-content no-border padding-24">
@@ -36,14 +36,13 @@
                                     <!-- profil -->
                                     <div class="col-xs-12 col-sm-9">
                                         <h4 class="blue">
-                                            <span class="middle">{{infirmier.prenom}} {{infirmier.nom}}</span>
+                                            <span class="middle"> {{infirmier.nom}} {{infirmier.prenom}}</span>
                                         </h4>
                                         <div class="profile-user-info">
                                             <div class="profile-info-row">
                                                 <div class="profile-info-name"> Adresse</div>
 
                                                 <div class="profile-info-value">
-                                                    <i class="fa fa-map-marker light-orange bigger-110"></i>
                                                     <span> {{infirmier.adresse.numero}} {{infirmier.adresse.rue}} </span>
                                                     <span>{{infirmier.adresse.codePostal}}</span>
                                                     <span>{{infirmier.adresse.ville}}</span>
@@ -70,25 +69,26 @@
                                             </h4>
                                         </div>
                                         <div *ngIf="infirmier.patients.length < 1">
-                                            <i>Aucun patient n'est affecté à cet infirmier</i>
+                                            <i>Aucun patient n'est affecté à cet(te) infirmier(e)</i>
                                         </div>
-                                        <mat-accordion>
-                                            <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
-                                                                [affected]="true"
-                                                                [inInfirmier]="true"
-                                                                [infirmiers]="infirmiers"
-                                                                (desAffectionEmitter)="onPatientDesaff()"
-                                                                (affectionEmitter)="onPatientReaff()">
-                                            </app-modify-patient>                                           
-                                        </mat-accordion> <!--finpatient-->
+                                        <!--affichage des données du patients-->
+                                        <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
+                                            [affected]="true"
+                                            [inInfirmier]="true"
+                                            [infirmiers]="infirmiers"
+                                            (desAffectionEmitter)="onPatientDesaff()"
+                                            (affectionEmitter)="onPatientReaff()">
+                                        </app-modify-patient>    
 
                                     </div>
                                 </div>
                             </div>                          
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </mat-expansion-panel>
 </mat-accordion> 

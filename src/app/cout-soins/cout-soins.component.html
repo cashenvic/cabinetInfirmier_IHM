@@ -1,10 +1,43 @@
-<h1 mat-dialog-title>Facture detaillée</h1>
+<h1 mat-dialog-title class="blue">Facture detaillée</h1>
+<hr>
 <div mat-dialog-content>
-    {{data.patient.nom}} {{data.patient.prenom}} {{data.patient.numeroSecuriteSociale}}
-    <span>{{data.patient.adresse.numero}} {{data.patient.adresse.rue}}</span>
-    <span> {{data.patient.adresse.codePostal}}</span>
-    <span> {{data.patient.adresse.ville}}</span>
-    <span *ngIf="data.patient.adresse.etage !== ''"> au {{data.patient.adresse.etage}}e étage</span>
+    <!--données du patient-->
+    <div class="profile-info-row">
+        <div class="profilep-info-name">Nom</div>
+
+        <div class="profile-info-value">
+            <span>{{data.patient.nom}}</span>
+        </div>
+    </div>
+
+    <div class="profile-info-row">
+        <div class="profilep-info-name">Prénom</div>
+
+        <div class="profile-info-value">
+            <span>{{data.patient.prenom}}</span>
+        </div>
+    </div>
+
+    <div class="profile-info-row">
+        <div class="profilep-info-name">N° de sécurité sociale</div>
+
+        <div class="profile-info-value">
+            <span>{{data.patient.numeroSecuriteSociale}}</span>
+        </div>
+    </div>
+
+    <div class="profile-info-row">
+        <div class="profilep-info-name"> Adresse </div>
+        
+        <div class="profile-info-value">
+            <span> {{data.patient.adresse.numero}} {{data.patient.adresse.rue}}</span>
+            <span>{{data.patient.adresse.codePostal}}</span>
+            <span>{{data.patient.adresse.ville}}</span>
+            <span *ngIf="data.patient.adresse.etage !== ''">au {{data.patient.adresse.etage}}e étage</span>
+        </div>
+    </div><br/>
+  
+    <!--données des soins du patient-->
     <table mat-table [dataSource]="data.actes" fxLayoutGap="20px">
         <!-- Id Column -->
         <ng-container matColumnDef="acteId">
@@ -39,8 +72,7 @@
         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
 </div>
+<br/>
 <div mat-dialog-actions fxLayoutAlign="center">
-    <button mat-button (click)="onNoClick()" class="w-25">Imprimer
-    </button>
-    <button mat-button cdkFocusInitial (click)="onNoClick()" class="w-25">Ok</button>
+    <button mat-button (click)="onNoClick()" class="w-25 retour"><mat-icon>keyboard_return</mat-icon>Retour</button>
 </div>

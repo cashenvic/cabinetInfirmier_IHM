@@ -15,3 +15,51 @@ tr.mat-footer-row {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.blue {
+  color: #478FCA!important;    
+}
+
+.retour {
+  background: rgb(187, 210, 230)!important;    
+  color: white!important;    
+}
+
+.profile-info-row {
+  display: table-row
+}
+
+.profile-info-row:first-child .profile-info-name,
+.profile-info-row:first-child .profile-info-value {
+    border-top: none
+}
+
+.profile-info-name,
+.profile-info-value {
+    display: table-cell;
+    border-top: 1px dotted #D5E4F1
+}
+
+.profile-info-value {
+  padding: 6px 4px 6px 6px
+}
+
+.profile-info-value>span+span:before {
+  display: inline;
+  content: ",";
+  margin-left: 1px;
+  margin-right: 3px;
+  color: #666;
+  border-bottom: 1px solid #FFF
+}
+
+
+.profilep-info-name {
+  text-align: left;
+  padding: 6px 10px 6px 4px;
+  font-weight: 400;
+  color: #667E99;
+  background-color: transparent;
+  width: 200px;
+  vertical-align: middle
+}
