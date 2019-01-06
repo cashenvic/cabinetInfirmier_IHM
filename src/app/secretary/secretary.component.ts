@@ -84,6 +84,7 @@ export class SecretaryComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
+                //naissance format yyyy-MM-dd
                 patient.naissance = this.datepipe.transform(patient.naissance, 'yyyy-MM-dd'),
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
