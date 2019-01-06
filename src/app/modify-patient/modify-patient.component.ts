@@ -172,16 +172,17 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     desaffect() {
-        const p = this.cabinetService.desAffectation(this.patient);
-        if (p !== null) {
-            this.patientStateChanged.emit(this.patient);
-            this.snackBar.open(`${this.patient.prenom} ${this.patient.nom} a bien été desaffecté  de tout infirmier`, 'Ok', ({
-                duration: 5000,
-            }));
-        } else {
-            this.snackBar.open(`Echec de la desaffectation`, 'Ok', ({
-                duration: 5000,
-            }));
-        }
+        this.cabinetService.desAffectation(this.patient).then(p => {
+            if (p !== null) {
+                this.patientStateChanged.emit(this.patient);
+                this.snackBar.open(`${this.patient.prenom} ${this.patient.nom} a bien été desaffecté  de tout infirmier`, 'Ok', ({
+                    duration: 5000,
+                }));
+            } else {
+                this.snackBar.open(`Echec de la desaffectation`, 'Ok', ({
+                    duration: 5000,
+                }));
+            }
+        });
     }
 }
