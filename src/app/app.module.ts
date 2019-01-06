@@ -57,6 +57,7 @@ import {PatientAddFormComponent} from './patient-add-form/patient-add-form.compo
 import {PatientAffectDialogComponent} from './patient-affect-dialog/patient-affect-dialog.component';
 import {CoutSoinsComponent} from './cout-soins/cout-soins.component';
 import {FooterComponent} from './footer/footer.component';
+import {StartWithPipe} from './start-with.pipe';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -84,6 +85,7 @@ const appRoutes: Routes = [
       PatientAffectDialogComponent,
       CoutSoinsComponent,
       FooterComponent,
+      StartWithPipe,
   ],
   imports: [
     BrowserModule,

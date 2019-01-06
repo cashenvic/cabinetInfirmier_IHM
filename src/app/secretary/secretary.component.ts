@@ -20,6 +20,7 @@ export class SecretaryComponent implements OnInit {
     patient = false;
     patients: PatientInterface[];
     infirmiers: InfirmierInterface[];
+    query: string = '';
 
     constructor(private authService: AuthService, private cabinetService: CabinetMedicalService,
                 private dialog: MatDialog, private snackBar: MatSnackBar) {
