@@ -21,6 +21,7 @@ export class SecretaryComponent implements OnInit {
     patients: PatientInterface[];
     infirmiers: InfirmierInterface[];
     query: string = '';
+    searchPlaceholder = "Commencez à taper pour rechercher";
 
     constructor(private authService: AuthService, private cabinetService: CabinetMedicalService,
                 private dialog: MatDialog, private snackBar: MatSnackBar) {
@@ -43,11 +44,13 @@ export class SecretaryComponent implements OnInit {
     onInfirmier() {
         this.infirmier = true;
         this.patient = false;
+        this.searchPlaceholder = "Commencez à taper pour rechercher les infirmiers";
     }
 
     onPatient() {
         this.patient = true;
         this.infirmier = false;
+        this.searchPlaceholder = "Commencez à taper pour rechercher les patients";
     }
 
     //fonction d'ajout patient avec message correponsant
