@@ -11,7 +11,8 @@
               <mat-icon>local_hospital</mat-icon><span class="nav-caption">Infirmier</span>
           </a>
           <a mat-list-item *ngIf="authService.isAuth" routerLink="login" (click)="onSidenavClose();Logout()">
-              <mat-icon>exit_to_app</mat-icon><span class="nav-caption">déconnecter</span>
+              <mat-icon>exit_to_app</mat-icon>
+              <span class="nav-caption">Déconnexion</span>
           </a>
         </mat-nav-list>
   </mat-sidenav>
@@ -36,13 +37,13 @@
         <!--login + logout-->
         <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
           <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-          <li>                    
-            <a routerLink="login" *ngIf="!authService.isAuth" > connecter
+          <li>
+              <a routerLink="login" *ngIf="!authService.isAuth"> Connexion
               <button mat-icon-button>
                   <mat-icon>person</mat-icon>
               </button>
             </a>
-            <a routerLink="login" *ngIf="authService.isAuth" (click)="Logout()"> déconnecter
+              <a routerLink="login" *ngIf="authService.isAuth" (click)="Logout()"> Déconnexion
               <button mat-icon-button>
                 <mat-icon>exit_to_app</mat-icon>
               </button>

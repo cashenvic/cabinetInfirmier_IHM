@@ -27,7 +27,7 @@ export class ModifyPatientComponent implements OnInit {
     ajouter = false;
     showDelay = 400;
     @Input() patient: PatientInterface;
-    @Input() infirmiers: InfirmierInterface[];
+    infirmiers: InfirmierInterface[];
     @Input() affected: boolean;
     @Input() inInfirmier: boolean;
     @Input() infirmierCo: boolean;
@@ -56,6 +56,7 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.infirmiers = this.cabinetService.cabinet.infirmiers;
         if (this.affected) {
             this.affecterText = "Réaffecter";
             this.tooltipAffecterPatient = "Réaffecter à un autre infirmier";

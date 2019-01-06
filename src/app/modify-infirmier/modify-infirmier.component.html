@@ -75,7 +75,6 @@
                                         <app-modify-patient *ngFor="let p of infirmier.patients" [patient]="p"
                                                             [affected]="true"
                                                             [inInfirmier]="true"
-                                                            [infirmiers]="infirmiers"
                                                             (patientStateChanged)="onPatientStateChanged()">
                                         </app-modify-patient>    
 

@@ -3,7 +3,6 @@ import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {InfirmierInterface} from '../dataInterfaces/infirmier';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
-import {Log} from '../dataInterfaces/Log';
 import {PatientInterface} from "../dataInterfaces/patient";
 import {ActeInterface} from "../dataInterfaces/actes";
 
@@ -29,19 +28,11 @@ export class ModifyInfirmierComponent implements OnInit {
 
     ngOnInit() {
         //vérification de l'accès au page
-        const person = Log.secretaire;
-        this.authService.verifLog(person);
-
-        this.infirmiers = this.cabinetService.cabinet.infirmiers;
+        /*const person = Log.secretaire;
+        this.authService.verifLog(person);*/
 
         this.imgSrc = 'data/' + this.infirmier.photo;
         this.patients = this.infirmier.patients;
-    }
-
-    //redirection à la page d'ajout infirmier
-    ajoutInf() {
-        this.ajouter = true;
-        this.router.navigate(['ajout-infirmier']);
     }
 
     onPatientStateChanged() {
