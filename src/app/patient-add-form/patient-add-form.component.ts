@@ -1,21 +1,19 @@
-import {Component, Inject, NgModule, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
-import {MAT_DATE_LOCALE, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
+import {DateAdapter, MAT_DATE_LOCALE, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
 import {AffectationPatientDialogData} from "../modify-patient/modify-patient.component";
 import {sexeEnum} from "../dataInterfaces/sexe";
-
-@NgModule({
-    providers: [
-        {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
-    ],
-})
 
 @Component({
     selector: 'app-patientaddform',
     templateUrl: './patient-add-form.component.html',
-    styleUrls: ['./patient-add-form.component.css']
+    styleUrls: ['./patient-add-form.component.css'],
+    providers: [
+        {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+    ]
 })
+
 export class PatientAddFormComponent implements OnInit {
     @ViewChild('formulaire') formulaire: NgForm;
     sexe: string;
@@ -28,10 +26,10 @@ export class PatientAddFormComponent implements OnInit {
     titreDialog: string;
     enrgBtnText: string;
 
-    constructor( public snackBar: MatSnackBar,
+    constructor( private adapter: DateAdapter<any>, public snackBar: MatSnackBar,
                 public dialogRef: MatDialogRef<PatientAddFormComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: AffectationPatientDialogData) {
-
+        this.adapter.setLocale('fr');
     }
 
     ngOnInit() {
@@ -50,4 +48,5 @@ export class PatientAddFormComponent implements OnInit {
     onNoClick(): void {
         this.dialogRef.close();
     }
+
 }
