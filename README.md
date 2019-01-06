@@ -25,7 +25,7 @@ Pour **se déconnecter** de son compte, il suffit  de cliquer sur le bouton déc
 correspondant du compte puis de cliquer sur le `bouton déconnecter` . 
 
 
--> On s'est mis l'idée que `l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients` alors que `la sécretaire` peut :
+On s'est mis l'idée que `l'infirmier ne peut consulter que ses données personnelles et ceux de ses patients` alors que `la sécretaire` peut :
 - ###### Consulter les données des infirmiers et des patients
 - ###### Affecter un patient à un infirmier
 - ###### Réaffecter un patient à un autre infirmier
@@ -39,17 +39,9 @@ Après la réalisation des tâches demandées, nous avons pris l'initiative d'ap
 - ###### Affichage des actes de soins des patients
 - ###### Calcul des coûts de soins des patients (on s'est inspiré du projet Voyageur de Santé du Langage Web)
 - ###### Modification des données d'un patient `côté sécretaire`
+- ###### Barre de recherche des noms et/ou prénoms pour les infirmiers et les patients `côté sécretaire`
 
-
-## Points à dev
-###### page de login login.html et secretary.html non dispo
-
-Les pages login.html et secretary.html n'etant pas disponibles sur le serveur nous avons créé une page de login sur laquelle on peut se connecter soit en tant qu'infirmier 
-ou en tant que secretaire.
-
-Pour **se connecter en tant que secretaire** il suffit  de `cliquer sur le bouton connecter`.
-
-Pour **se connecter en tant qu'infirmier** il faut renseigner l'`id de l'infirmier`.
-Dans les deux cas aucune requête d'authentification n'est envoyée au serveur.
+## Design
+Pour une utilisation responsive, on a utilisé :
 * usage de material angular
 * usage du boostraps
