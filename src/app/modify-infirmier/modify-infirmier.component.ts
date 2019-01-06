@@ -16,6 +16,7 @@ export class ModifyInfirmierComponent implements OnInit {
     infirmiers: InfirmierInterface[];
     @Output() patientStateChanged = new EventEmitter();
     @Input() infirmier: InfirmierInterface;
+    @Input() infirmierCo;
     imgSrc: string;
     patients: PatientInterface[];
     actesMedical: ActeInterface;
