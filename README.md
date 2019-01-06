@@ -42,12 +42,12 @@ correspondant du compte puis de cliquer sur le `bouton déconnecter` .
 ## Innovations
 
 Après la réalisation des tâches demandées, nous avons pris l'initiative d'apporter des développements suivantes:
-- ###### Affichage des actes de soins des patients
-- ###### Calcul des coûts de soins des patients (on s'est inspiré du projet Voyageur de Santé du Langage Web)
-- ###### Modification des données d'un patient `côté sécretaire`
-- ###### Barre de recherche des noms et/ou prénoms pour les infirmiers et les patients `côté sécretaire`
+- Affichage des actes de soins des patients
+- Calcul des coûts de soins des patients (on s'est inspiré du projet Voyageur de Santé du Langage Web)
+- Modification des données d'un patient `côté sécretaire`
+- Barre de recherche des noms et/ou prénoms pour les infirmiers et les patients `côté sécretaire`
 
 ## Design
 Pour produire des rendus de grande qualité et une application responsive, nous avons utilisé :
-* material angular
+* angular material
 * boostrap
