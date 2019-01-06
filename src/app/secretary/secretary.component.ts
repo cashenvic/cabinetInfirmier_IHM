@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {DatePipe} from '@angular/common';
+
 import {CabinetInterface} from '../dataInterfaces/cabinet';
 import {Log} from '../dataInterfaces/Log';
 import {AuthService} from '../services/auth.service';
@@ -23,8 +25,8 @@ export class SecretaryComponent implements OnInit {
     query: string = '';
     searchPlaceholder = "Commencez à taper pour rechercher";
 
-    constructor(private authService: AuthService, private cabinetService: CabinetMedicalService,
-                private dialog: MatDialog, private snackBar: MatSnackBar) {
+    constructor( private authService: AuthService, private cabinetService: CabinetMedicalService,
+                private dialog: MatDialog, private snackBar: MatSnackBar, public datepipe: DatePipe,) {
     }
 
     ngOnInit() {
@@ -82,6 +84,7 @@ export class SecretaryComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
+                patient.naissance = this.datepipe.transform(patient.naissance, 'yyyy-MM-dd'),
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({

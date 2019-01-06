@@ -18,7 +18,7 @@ export class CabinetMedicalService {
   private doc: Document;
   public cabinet: CabinetInterface;
 
-  constructor(private http: HttpClient) {
+  constructor( private http: HttpClient) {
   }
 
   //fonction pull des données du document XML cabinetInfirmier
@@ -95,7 +95,7 @@ export class CabinetMedicalService {
         patientForname: patient.prenom,
         patientNumber: patient.numeroSecuriteSociale,
         patientSex: patient.sexe === sexeEnum.M ? 'M' : 'F',
-        patientBirthday: patient.naissance ,
+        patientBirthday: patient.naissance,
         patientFloor: patient.adresse.etage,
         patientStreetNumber: patient.adresse.numero,
         patientStreet: patient.adresse.rue,

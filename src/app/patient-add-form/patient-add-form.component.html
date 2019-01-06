@@ -23,8 +23,8 @@
         <!--Date de naissance-->
         <div>
             <mat-form-field>
-                <input matInput id="naissance" name="naissance" [(ngModel)]="data.patient.naissance"
-                       [max]="maxDate" [matDatepicker]="picker" placeholder="Saisissez la date de naissance"/>
+                <input matInput id="naissance" name="naissance" [(ngModel)]="data.patient.naissance" 
+                [max]="maxDate" [matDatepicker]="picker" placeholder="Saisissez la date de naissance" [disabled]="!ajout"/>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
