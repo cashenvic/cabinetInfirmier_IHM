@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { InfirmierInterface } from 'src/app/dataInterfaces/infirmier';
-import { CabinetMedicalService } from 'src/app/services/cabinet-medical.service';
-import { Log } from 'src/app/dataInterfaces/Log';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from 'src/app/services/auth.service';
+import {InfirmierInterface} from 'src/app/dataInterfaces/infirmier';
+import {CabinetMedicalService} from 'src/app/services/cabinet-medical.service';
+import {Log} from 'src/app/dataInterfaces/Log';
+import {MatSnackBar} from "@angular/material";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-log-i',
@@ -14,7 +16,10 @@ export class LogIComponent implements OnInit {
   IdInfirmier : String;
   infirmiers : InfirmierInterface[];
   wholog : Log;
-  constructor(private cabinetService : CabinetMedicalService, private authService: AuthService,  private router: Router ) { 
+    @ViewChild('form') monform: NgForm;
+
+    constructor(private cabinetService: CabinetMedicalService, private authService: AuthService, private router: Router,
+                private snackBar: MatSnackBar) {
     
   }
 
@@ -47,8 +52,10 @@ export class LogIComponent implements OnInit {
     });
 
     //si id incorrect/inexistant retourne un message d'alerte
-    if(!vérif){      
-      alert("ID Invalid");
+    if(!vérif){
+        this.snackBar.open(`L'id que vous avez entré ne correspond à auncun infirmier`, 'Ok', {
+            duration: 6000,
+        });
     }
   }
   
