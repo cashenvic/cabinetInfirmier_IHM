@@ -27,6 +27,7 @@ export class PatientAddFormComponent implements OnInit {
     maxDate = new Date();
     dateNais = new Date();
     titreDialog: string;
+    enrgBtnText: string;
 
     constructor(public datepipe: DatePipe, public snackBar: MatSnackBar,
                 public dialogRef: MatDialogRef<PatientAddFormComponent>,
@@ -38,8 +39,10 @@ export class PatientAddFormComponent implements OnInit {
         if (this.data.ajout) {
             this.titreDialog = "Ajout d'un nouveau patient";
             this.data.patient.naissance = this.datepipe.transform(this.dateNais, 'yyyy-MM-dd');
+            this.enrgBtnText = "Création d'un nouveau patient";
         } else {
-            this.titreDialog = "Modification des données d'un patient";
+            this.titreDialog = `Modification des données de ${this.data.patient.prenom} ${this.data.patient.nom}`;
+            this.enrgBtnText = "Enregistrer les modifications";
         }
         
     }

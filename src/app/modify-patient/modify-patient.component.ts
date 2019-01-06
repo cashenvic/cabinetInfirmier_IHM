@@ -107,7 +107,9 @@ export class ModifyPatientComponent implements OnInit {
     }
 
     modifierPatient() {
+        //clone de l'objet pour ne pas modifier l'objet directement mais attendre la validation
         let modPatient = Object.assign({}, this.patient);
+        modPatient.naissance = this.datepipe.transform(this.patient.naissance, 'yyyy-MM-dd');
 
         const dialogRef = this.dialog.open(PatientAddFormComponent, {
             width: '750px',
@@ -116,10 +118,7 @@ export class ModifyPatientComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
-                console.log('Le sexe du patient ' + patient.sexe);
-                console.log('Avant: La date de nais du patient ' + patient.naissance);
-                this.patient.naissance = this.datepipe.transform(this.patient.naissance);
-                console.log('Après: La date de nais du patient ' + patient.naissance);
+                this.patient.naissance = this.datepipe.transform(this.patient.naissance, 'yyyy-MM-dd');
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.patientStateChanged.emit();

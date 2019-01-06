@@ -5,7 +5,6 @@ import {AuthService} from '../services/auth.service';
 import {CabinetMedicalService} from "../services/cabinet-medical.service";
 import {PatientInterface} from "../dataInterfaces/patient";
 import {PatientAddFormComponent} from "../patient-add-form/patient-add-form.component";
-import {sexeEnum} from "../dataInterfaces/sexe";
 import {MatDialog, MatSnackBar} from "@angular/material";
 import {InfirmierInterface} from "../dataInterfaces/infirmier";
 
@@ -17,7 +16,7 @@ import {InfirmierInterface} from "../dataInterfaces/infirmier";
 
 export class SecretaryComponent implements OnInit {
     cabinetInt: CabinetInterface;
-    infirmier = false;
+    infirmier = true;
     patient = false;
     patients: PatientInterface[];
     infirmiers: InfirmierInterface[];
@@ -79,11 +78,6 @@ export class SecretaryComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(patient => {
             if (patient !== undefined) {
-                if (patient.sexe === 'M') {
-                    patient.sexe = sexeEnum.M;
-                } else {
-                    patient.sexe = sexeEnum.F;
-                }
                 this.cabinetService.addPatient(patient).then((p) => {
                     if (patient !== null) { // la requete a abouti code de retour 200 ok
                         this.snackBar.open(`${p.prenom} ${p.nom} a bien été ajouté`, 'Ok', ({
