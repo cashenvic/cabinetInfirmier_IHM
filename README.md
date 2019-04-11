@@ -7,7 +7,8 @@ Il a été réalisé par [Do Hanh](https://gitlab.com/yakuzHanh) et [Cissé Dris
 
 
 ## Lancement du serveur de développement
-Commencez par récuperer le projet et lancez `npm install` à la racine du projet pour installer ses dépendances. Puis lancez le serveur.
+
+Commencez par récuperer le serveur ici `https://github.com/AlexDmr/L3M-Projet.git` puis ce projet (le client) et lancez `npm install` à la racine des projets (serveur et client) pour installer ses dépendances. Enfin lancez les 2 applications avec `npm start` dans les dossiers respectifs.
 Ensuite placez vous dans le repertoire du projet et taper la commande `npm start`. L'application s'execute à l'adresse `http://localhost:4200/`.
 
 ## Développement
